@@ -20,17 +20,17 @@ public class VaultsRepository : IRepository<Vault, int>
         (@creatorId, @name, @description, @img, @isPrivate);
 
         SELECT
-        vaults.*,
-        accounts.*
-        FROM accounts
-        JOIN accounts ON account.Id == vaults.creatorId
-        WHERE vaults.id = LAST_INSERT_ID
+            vaults.*,
+            accounts.*
+        FROM vaults
+        JOIN accounts ON accounts.id = vaults.creatorId
+        WHERE vaults.id = LAST_INSERT_ID()
         ;";
         Vault newVault = _db.Query<Vault, Account, Vault>(sql, (vault, account) =>
         {
             vault.Creator = account;
             return vault;
-        }).FirstOrDefault();
+        }, newData).FirstOrDefault();
         return newVault;
     }
 
@@ -44,9 +44,23 @@ public class VaultsRepository : IRepository<Vault, int>
         throw new NotImplementedException();
     }
 
-    public Vault GetById(int id)
+    public Vault GetById(int vaultId)
     {
-        throw new NotImplementedException();
+        string sql = @"
+        SELECT
+        vaults.*,
+        accounts.*
+        FROM vaults
+        JOIN accounts ON accounts.id = vaults.creatorId
+        WHERE vaults.id = @vaultId
+        ;";
+
+        Vault foundVault = _db.Query<Vault, Account, Vault>(sql, (vault, account) =>
+        {
+            vault.Creator = account;
+            return vault;
+        }, new { vaultId }).FirstOrDefault();
+        return foundVault;
     }
 
     public void Update(Vault updateData)

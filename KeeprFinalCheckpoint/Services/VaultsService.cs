@@ -1,5 +1,6 @@
 
 
+
 namespace KeeprFinalCheckpoint.Services;
 
 public class VaultsService
@@ -15,5 +16,12 @@ public class VaultsService
     {
         Vault newVault = _repo.Create(vaultData);
         return newVault;
+    }
+
+    internal Vault GetById(int vaultId)
+    {
+        Vault foundVault = _repo.GetById(vaultId);
+        if (foundVault == null) throw new Exception("No vault was found.");
+        return foundVault;
     }
 }

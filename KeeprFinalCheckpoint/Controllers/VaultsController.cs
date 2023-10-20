@@ -21,9 +21,25 @@ public class VaultsController : ControllerBase
         try
         {
             Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+            vaultData.CreatorId = userInfo.Id;
             vaultData.Creator = userInfo;
             Vault newVault = _vaultsService.Create(vaultData);
             return newVault;
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
+    [HttpGet("{vaultId}")]
+    public async Task<ActionResult<Vault>> GetById(int vaultId)
+    {
+        try
+        {
+            Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+            Vault foundVault = _vaultsService.GetById(vaultId);
+            return foundVault;
         }
         catch (Exception e)
         {

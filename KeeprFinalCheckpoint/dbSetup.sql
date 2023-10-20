@@ -79,7 +79,7 @@ VALUES (
         '650a24a4fe35b4c25b2ada9f ',
         'best keep',
         'this is the best keep',
-        'https: / / plus.unsplash.com / premium_photo -1677101221533 -52 b45823a2dc ? auto = format & fit = crop & q = 80 & w = 2071 & ixlib = rb -4.0.3 & ixid = M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA % 3 D % 3 D',
+        'https://plus.unsplash.com/premium_photo-1677101221533-52b45823a2dc?auto=format&fit=crop&q=80&w=2071&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         2,
         1
     )
@@ -94,3 +94,30 @@ SELECT accounts.*, keeps.*
 FROM keeps
     JOIN accounts on accounts.id = keeps.creatorId
 WHERE keeps.id = 1
+
+INSERT INTO
+    vaults (
+        creatorId,
+        name,
+        description,
+        img,
+        isPrivate
+    )
+VALUES (
+        '650a24a4fe35b4c25b2ada9f',
+        'CatVault',
+        'Many Cats',
+        'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=2043&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        false
+    );
+
+SELECT vaults.*, accounts.*
+FROM vaults
+    JOIN accounts ON accounts.id = vaults.creatorId
+WHERE
+    vaults.id = LAST_INSERT_ID()
+
+SELECT vaults.*, accounts.*
+FROM vaults
+    JOIN accounts ON accounts.id = vaults.creatorId
+WHERE vaults.id = @vaultId
