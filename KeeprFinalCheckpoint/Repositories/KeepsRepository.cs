@@ -34,16 +34,28 @@ public class KeepsRepository : IRepository<Keep, int>
         }, keepData).FirstOrDefault();
         return newKeep;
     }
+    public List<Keep> Get()
+    {
+        string sql = @"
+        SELECT
+        kps.*,
+        acc.*
+        FROM keeps kps
+        JOIN accounts acc ON acc.id = kps.creatorId
+        ;";
+        List<Keep> keeps = _db.Query<Keep, Account, Keep>(sql, (keep, account) =>
+        {
+            keep.Creator = account;
+            return keep;
+        }).ToList();
+        return keeps;
+    }
 
     public int Delete(int id)
     {
         throw new NotImplementedException();
     }
 
-    public List<Keep> Get()
-    {
-        throw new NotImplementedException();
-    }
 
     public Keep GetById(int id)
     {

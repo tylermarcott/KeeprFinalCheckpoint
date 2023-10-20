@@ -18,6 +18,7 @@ public class KeepsService
     // TODO: finish get method after you do the post
     internal List<Keep> GetKeeps()
     {
-        throw new NotImplementedException();
+        List<Keep> keeps = _repo.Get();
+        return keeps;
     }
 }

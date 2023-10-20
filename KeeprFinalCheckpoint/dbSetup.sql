@@ -34,3 +34,7 @@ CREATE TABLE
 --         keepId INT NOT NULL
 
 --     )
+
+SELECT kps.*, acc.*
+FROM keeps kps
+    JOIN accounts acc ON acc.id = kps.creatorId
