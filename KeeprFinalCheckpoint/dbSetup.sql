@@ -15,26 +15,68 @@ CREATE TABLE
         name VARCHAR(255) NOT NULL,
         description VARCHAR(2000) NOT NULL,
         img VARCHAR(500) NOT NULL,
-        views INT NOT NULL,
-        kept INT NOT NULL,
-        FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE,
-        FOREIGN KEY (kept) REFERENCES vaultKeeps(id) ON DELETE CASCADE
+        views INT DEFAULT 0,
+        kept INT DEFAULT 0,
+        FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
     ) default charset utf8 COMMENT '';
 
--- CREATE TABLE
-
---     IF NOT EXISTS vaultKeeps(
-
---         id INT AUTO_INCREMENT PRIMARY KEY,
-
---         creatorId VARCHAR(255) NOT NULL,
-
---         vaultId INT NOT NULL,
-
---         keepId INT NOT NULL
-
---     )
+CREATE TABLE
+    IF NOT EXISTS vaultKeeps(
+        id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        creatorId VARCHAR(255) NOT NULL,
+        vaultId INT NOT NULL,
+        keepId INT NOT NULL
+    )
 
 SELECT kps.*, acc.*
 FROM keeps kps
     JOIN accounts acc ON acc.id = kps.creatorId
+
+INSERT INTO
+    keeps (
+        creatorId,
+        name,
+        description,
+        img,
+        views,
+        kept
+    )
+VALUES (
+        @creatorId,
+        @name,
+        @description,
+        @img,
+        @views,
+        @kept
+    )
+
+SELECT kps.*, acc.*
+FROM keeps kps
+    JOIN accounts acc ON acc.id = kps.creatorId
+WHERE kps.id = LAST_INSERT_ID()
+
+INSERT INTO
+    keeps (
+        creatorId,
+        name,
+        description,
+        img,
+        views,
+        kept
+    )
+VALUES (
+        '650a24a4fe35b4c25b2ada9f ',
+        'best keep',
+        'this is the best keep',
+        'https: / / plus.unsplash.com / premium_photo -1677101221533 -52 b45823a2dc ? auto = format & fit = crop & q = 80 & w = 2071 & ixlib = rb -4.0.3 & ixid = M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA % 3 D % 3 D',
+        2,
+        1
+    )
+
+SELECT
+    keeps.*,
+    accounts.*
+FROM keeps
+    JOIN accounts ON accounts.id = keeps.creatorId
+WHERE
+    keeps.id = LAST_INSERT_ID()

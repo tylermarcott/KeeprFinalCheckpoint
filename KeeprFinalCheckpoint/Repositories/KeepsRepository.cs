@@ -17,16 +17,15 @@ public class KeepsRepository : IRepository<Keep, int>
         INSERT INTO keeps
         (creatorId, name, description, img, views, kept)
         VALUES
-        (@creatorId, @name, @description, @img, @views, @kept)
+        (@creatorId, @name, @description, @img, @views, @kept);
 
         SELECT
-        kps.*,
-        acc.*
-        FROM keeps kps
-        JOIN accounts acc ON acc.id = kps.creatorId
-        WHERE kps.id = LAST_INSERT_ID()
+            keeps.*,
+            accounts.*
+        FROM keeps
+        JOIN accounts ON accounts.id = keeps.creatorId
+        WHERE keeps.id = LAST_INSERT_ID()
         ;";
-
         Keep newKeep = _db.Query<Keep, Account, Keep>(sql, (keep, account) =>
         {
             keep.Creator = account;
