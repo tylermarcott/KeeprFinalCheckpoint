@@ -59,4 +59,39 @@ public class KeepsController : ControllerBase
             return BadRequest(e.Message);
         }
     }
+
+    [Authorize]
+    [HttpPut("{keepId}")]
+
+    public async Task<ActionResult<Keep>> Update([FromBody] Keep updateData, int keepId)
+    {
+        try
+        {
+            Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+            Keep updatedKeep = _keepsService.Update(updateData, keepId, userInfo.Id);
+            return updateData;
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
+    [Authorize]
+    [HttpDelete("{keepId}")]
+
+    public async Task<ActionResult<string>> Delete(int keepId)
+    {
+        try
+        {
+            Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+            _keepsService.Delete(keepId, userInfo.Id);
+            string message = "Keep successfully deleted.";
+            return Ok(message);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
 }
