@@ -11,9 +11,28 @@ public class KeepsRepository : IRepository<Keep, int>
     }
 
 
-    public Keep Create(Keep newData)
+    public Keep Create(Keep keepData)
     {
-        throw new NotImplementedException();
+        string sql = @"
+        INSERT INTO keeps
+        (creatorId, name, description, img, views, kept)
+        VALUES
+        (@creatorId, @name, @description, @img, @views, @kept)
+
+        SELECT
+        kps.*,
+        acc.*
+        FROM keeps kps
+        JOIN accounts acc ON acc.id = kps.creatorId
+        WHERE kps.id = LAST_INSERT_ID()
+        ;";
+
+        Keep newKeep = _db.Query<Keep, Account, Keep>(sql, (keep, account) =>
+        {
+            keep.Creator = account;
+            return keep;
+        }, keepData).FirstOrDefault();
+        return newKeep;
     }
 
     public int Delete(int id)
