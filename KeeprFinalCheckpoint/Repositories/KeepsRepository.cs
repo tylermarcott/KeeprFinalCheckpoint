@@ -50,19 +50,40 @@ public class KeepsRepository : IRepository<Keep, int>
         return keeps;
     }
 
-    public int Delete(int id)
+    public Keep GetById(int keepId)
     {
-        throw new NotImplementedException();
+        string sql = @"
+        SELECT
+        accounts.*,
+        keeps.*
+        FROM keeps
+        JOIN accounts on accounts.id = keeps.creatorId
+        WHERE keeps.id = @keepId
+        ;";
+        Keep foundKeep = _db.Query<Account, Keep, Keep>(sql, (account, keep) =>
+        {
+            keep.Creator = account;
+            return keep;
+        }, new { keepId }).FirstOrDefault();
+        return foundKeep;
     }
 
-
-    public Keep GetById(int id)
+    public int Delete(int id)
     {
         throw new NotImplementedException();
     }
 
     public void Update(Keep updateData)
     {
-        throw new NotImplementedException();
+        string sql = @"
+        UPDATE keeps
+        SET
+        name = @name,
+        description = @description,
+        img = @img,
+        views = @views
+        WHERE id = @id
+        ;";
+        _db.Execute(sql, updateData);
     }
 }

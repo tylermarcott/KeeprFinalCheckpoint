@@ -73,10 +73,13 @@ VALUES (
         1
     )
 
-SELECT
-    keeps.*,
-    accounts.*
+SELECT keeps.*, accounts.*
 FROM keeps
     JOIN accounts ON accounts.id = keeps.creatorId
 WHERE
     keeps.id = LAST_INSERT_ID()
+
+SELECT accounts.*, keeps.*
+FROM keeps
+    JOIN accounts on accounts.id = keeps.creatorId
+WHERE keeps.id = 1
