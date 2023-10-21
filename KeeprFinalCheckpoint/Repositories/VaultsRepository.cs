@@ -34,11 +34,6 @@ public class VaultsRepository : IRepository<Vault, int>
         return newVault;
     }
 
-    public int Delete(int id)
-    {
-        throw new NotImplementedException();
-    }
-
     public List<Vault> Get()
     {
         throw new NotImplementedException();
@@ -74,5 +69,16 @@ public class VaultsRepository : IRepository<Vault, int>
         WHERE id = @id
         ;";
         _db.Execute(sql, updateData);
+    }
+
+    public int Delete(int vaultId)
+    {
+        string sql = @"
+        DELETE FROM vaults
+        WHERE id = @vaultId
+            LIMIT 1
+        ;";
+        int rows = _db.Execute(sql, new { vaultId });
+        return rows;
     }
 }

@@ -36,4 +36,15 @@ public class VaultsService
 
         return original;
     }
+
+    internal void Delete(int vaultId, string userId)
+    {
+        Vault foundVault = this.GetById(vaultId);
+        if (foundVault == null) throw new Exception("No vault was found.");
+        if (foundVault.CreatorId != userId) throw new Exception("This is not your vault to delete");
+        int rows = _repo.Delete(vaultId);
+        if (rows < 1) throw new Exception("Something unexpected has happened, returned with < 1 rows deleted.");
+        if (rows > 1) throw new Exception("Something unexpected has happened, returned with > 1 rows deleted.");
+    }
+
 }
