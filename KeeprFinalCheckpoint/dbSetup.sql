@@ -137,3 +137,13 @@ FROM vaultKeeps
     JOIN accounts ON accounts.id = vaultKeeps.creatorId
 WHERE
     vaultKeeps.id = LAST_INSERT_ID()
+
+SELECT
+    keeps.*,
+    accounts.*,
+    vaults.*,
+    vaultKeeps.*
+FROM keeps
+    JOIN accounts ON accounts.id = vaultKeeps.creatorId
+    JOIN vaults ON vaults.id = vaultKeeps.vaultId
+    JOIN vaultKeeps ON vaultKeeps.WHERE vaultKeeps.vaultId = 1

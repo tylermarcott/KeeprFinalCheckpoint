@@ -68,15 +68,32 @@ public class KeepsRepository : IRepository<Keep, int>
         return foundKeep;
     }
 
+    // FIXME: work on this more, need to do some front end first. This is where I left off in the back end, come back to this and read below
+
+    // NOTE: need to merge the keeps where vaultKeep.keepId = keep.Id, and where vaultId = vaultKeep.vaultId
+
     // TODO: we have to merge and use vaultKeep to link the keeps to a specific vault. So, we need to say something to the affect of.... join vaults and keeps, where keep.id = vaultKeep.keepId and join where vault.Id = vaultKeep.vaultId
-    internal List<Keep> GetKeepsInVault(int vaultId)
-    {
-        string sql = @"
-        SELECT
-        
-    
-        ;";
-    }
+    // internal List<Keep> GetKeepsInVault(int vaultId)
+    // {
+    //     //     string sql = @"
+    //     //     SELECT
+    //     //     keeps.*,
+    //     //     accounts.*,
+    //     //     vaults.*,
+    //     //     vaultKeeps.*
+    //     //     FROM keeps
+    //     //     JOIN accounts ON accounts.id = vaultKeeps.creatorId
+    //     //     JOIN vaults ON vaults.id = vaultKeeps.vaultId
+    //     //     JOIN keeps ON keeps.id = vaultsKeeps.keepId
+    //     //     WHERE vaultKeeps.vaultId = @vaultId
+    //     //     ;";
+
+    //     // List<Keep> foundKeeps = _db.Query<Keep, Account, Vault, VaultKeep, Keep>(sql, (keep, account, vault, vaultKeep)=>
+    //     // {
+    //     //     keep.Creator = account.Id;
+    //     //     return keep;
+    //     // })
+    // }
 
     public int Delete(int keepId)
     {
