@@ -37,12 +37,12 @@ public class KeepsService
     }
 
     // FIXME: this doesn't have any checks for userId, implement this if needed.
-    internal List<Keep> GetKeepsInVault(int vaultId, string userId)
-    {
-        Vault foundVault = _vaultsService.GetById(vaultId);
-        List<Keep> foundKeeps = _repo.GetKeepsInVault(vaultId);
-        return foundKeeps;
-    }
+    // internal List<Keep> GetKeepsInVault(int vaultId, string userId)
+    // {
+    //     Vault foundVault = _vaultsService.GetById(vaultId);
+    //     List<Keep> foundKeeps = _repo.GetKeepsInVault(vaultId);
+    //     return foundKeeps;
+    // }
 
     internal Keep Update(Keep updateData, int keepId, string userId)
     {
