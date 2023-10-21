@@ -7,6 +7,8 @@
         </button>
         <img :src="keep.img">
         {{ keep.name }}
+        <!-- TODO: add creator img, get rid of name -->
+        {{ keep.creator.name }}
       </div>
     </div>
   </div>

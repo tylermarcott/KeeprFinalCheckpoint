@@ -4,7 +4,28 @@
       Home
     </router-link>
     <div class="me-4">
-      create
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            create
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">
+              <ModalWrapper id="create-keep" v-if="user.isAuthenticated">
+                <template #button>
+                  <button class="btn btn-light">
+                    new keep
+                  </button>
+                </template>
+                <template #body>
+                  <KeepForm/>
+                </template>
+              </ModalWrapper>
+            </a></li>
+            <li><a class="dropdown-item" href="#">new vault
+
+            </a></li>
+          </ul>
+        </div>
     </div>
     <h3>the keepr co.</h3>
 
@@ -30,12 +51,17 @@
 </template>
 
 <script>
+import { computed } from "vue";
 import Login from './Login.vue';
+import { AppState } from "../AppState.js";
+import ModalWrapper from '../components/ModalWrapper.vue'
 export default {
   setup() {
-    return {}
+    return {
+      user: computed(()=> AppState.user)
+    }
   },
-  components: { Login }
+  components: { Login, ModalWrapper }
 }
 </script>
 
