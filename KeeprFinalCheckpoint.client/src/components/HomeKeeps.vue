@@ -1,7 +1,13 @@
 <template>
-  <div class="col-6 col-md-3">
+  <div class="col-12 col-md-7 col-lg-9">
     <div class="masonry-container">
-      <img class="keep-img" v-for="keep in keeps" :key="keep.id" :src="keep.img" :alt="keep.name">
+      <div class="bg-dark text-light" v-for="keep in keeps" :key="keep.id">
+        <button v-if="keep.creatorId == user.id" class="btn btn-danger">
+          <i class="mdi mdi-cancel"></i>
+        </button>
+        <img :src="keep.img">
+        {{ keep.name }}
+      </div>
     </div>
   </div>
 </template>
@@ -26,7 +32,8 @@ export default {
       }
     }
   return { 
-    keeps: computed(()=> AppState.activeKeeps)
+    keeps: computed(()=> AppState.activeKeeps),
+    user: computed(()=> AppState.user)
    }
   }
 };
@@ -34,10 +41,14 @@ export default {
 
 
 <style lang="scss" scoped>
-.keep-img{
-  max-height: 30vh;
-  aspect-ratio: 1/1;
-  object-fit: cover;
-  object-position: center;
+.masonry-container{
+  $gap: 1.25em;
+  columns: 200px;
+  column-gap: $gap;
+  img{
+    border-radius: 10px;
+    width: 100%;
+    margin-bottom: $gap;
+  }
 }
 </style>
