@@ -1,7 +1,7 @@
 <template>
   <div class="col-6 col-md-3">
     <div class="masonry-container">
-      <img src="" alt="">
+      <img class="keep-img" v-for="keep in keeps" :key="keep.id" :src="keep.img" :alt="keep.name">
     </div>
   </div>
 </template>
@@ -9,7 +9,7 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, reactive, onMounted, watchEffect } from 'vue';
+import { computed, watchEffect } from 'vue';
 import {keepsService} from '../services/KeepsService.js'
 import Pop from "../utils/Pop.js";
 export default {
@@ -26,7 +26,7 @@ export default {
       }
     }
   return { 
-
+    keeps: computed(()=> AppState.activeKeeps)
    }
   }
 };
@@ -34,5 +34,10 @@ export default {
 
 
 <style lang="scss" scoped>
-
+.keep-img{
+  max-height: 30vh;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  object-position: center;
+}
 </style>
