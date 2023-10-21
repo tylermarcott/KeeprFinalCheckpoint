@@ -121,3 +121,19 @@ SELECT vaults.*, accounts.*
 FROM vaults
     JOIN accounts ON accounts.id = vaults.creatorId
 WHERE vaults.id = @vaultId
+
+INSERT INTO
+    vaultKeeps (creatorId, vaultId, keepId)
+VALUES (
+        '650a24a4fe35b4c25b2ada9f',
+        1,
+        1
+    );
+
+SELECT
+    vaultKeeps.*,
+    accounts.*
+FROM vaultKeeps
+    JOIN accounts ON accounts.id = vaultKeeps.creatorId
+WHERE
+    vaultKeeps.id = LAST_INSERT_ID()

@@ -22,14 +22,14 @@ namespace KeeprFinalCheckpoint.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<ActionResult<VaultKeep>> Create([FromBody] VaultKeep vaultKeepData, int vaultKeepId)
+        public async Task<ActionResult<VaultKeep>> Create([FromBody] VaultKeep vaultKeepData)
         {
             try
             {
                 Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
                 vaultKeepData.CreatorId = userInfo.Id;
                 VaultKeep newVaultKeep = _vaultKeepsService.Create(vaultKeepData);
-                return newVaultKeep;
+                return Ok(newVaultKeep);
             }
             catch (Exception e)
             {

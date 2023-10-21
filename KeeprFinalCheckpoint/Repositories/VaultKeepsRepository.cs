@@ -16,9 +16,9 @@ public class VaultKeepsRepository : IRepository<VaultKeep, int>
     {
         string sql = @"
         INSERT INTO vaultKeeps
-        (vaultId, keepId)
+        (vaultId, keepId, creatorId)
         VALUES
-        (@vaultId, @keepId);
+        (@vaultId, @keepId, @creatorId);
 
         SELECT
             vaultKeeps.*,

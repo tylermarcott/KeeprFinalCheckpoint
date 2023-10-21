@@ -13,6 +13,6 @@ public class VaultKeepsService
     internal VaultKeep Create(VaultKeep vaultKeepData)
     {
         VaultKeep newVaultKeep = _repo.Create(vaultKeepData);
-        return vaultKeepData;
+        return newVaultKeep;
     }
 }
