@@ -68,6 +68,16 @@ public class KeepsRepository : IRepository<Keep, int>
         return foundKeep;
     }
 
+    // TODO: we have to merge and use vaultKeep to link the keeps to a specific vault. So, we need to say something to the affect of.... join vaults and keeps, where keep.id = vaultKeep.keepId and join where vault.Id = vaultKeep.vaultId
+    internal List<Keep> GetKeepsInVault(int vaultId)
+    {
+        string sql = @"
+        SELECT
+        
+    
+        ;";
+    }
+
     public int Delete(int keepId)
     {
         string sql = @"
@@ -92,4 +102,5 @@ public class KeepsRepository : IRepository<Keep, int>
         ;";
         _db.Execute(sql, updateData);
     }
+
 }

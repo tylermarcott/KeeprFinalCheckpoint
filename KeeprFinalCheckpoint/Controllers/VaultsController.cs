@@ -5,13 +5,15 @@ namespace KeeprFinalCheckpoint.Controllers;
 [Route("api/vaults")]
 public class VaultsController : ControllerBase
 {
+    private readonly KeepsService _keepsService;
     private readonly VaultsService _vaultsService;
     private readonly Auth0Provider _auth;
 
-    public VaultsController(VaultsService vaultsService, Auth0Provider auth)
+    public VaultsController(VaultsService vaultsService, Auth0Provider auth, KeepsService keepsService)
     {
         _vaultsService = vaultsService;
         _auth = auth;
+        _keepsService = keepsService;
     }
 
     [Authorize]
@@ -40,6 +42,22 @@ public class VaultsController : ControllerBase
             Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
             Vault foundVault = _vaultsService.GetById(vaultId);
             return foundVault;
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
+    // NOTE: get keeps in vault
+    [HttpGet("{vaultId}/keeps")]
+    public async Task<ActionResult<List<Keep>>> GetKeepsInVault(int vaultId)
+    {
+        try
+        {
+            Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+            List<Keep> keepsInVault = _keepsService.GetKeepsInVault(vaultId, userInfo?.Id);
+            return keepsInVault;
         }
         catch (Exception e)
         {

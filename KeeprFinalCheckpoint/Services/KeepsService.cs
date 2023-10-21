@@ -5,9 +5,12 @@ public class KeepsService
 {
     private readonly KeepsRepository _repo;
 
-    public KeepsService(KeepsRepository repo)
+    private readonly VaultsService _vaultsService;
+
+    public KeepsService(KeepsRepository repo, VaultsService vaultsService)
     {
         _repo = repo;
+        _vaultsService = vaultsService;
     }
 
     internal Keep Create(Keep keepData)
@@ -31,6 +34,14 @@ public class KeepsService
             this.IncreaseViews(foundKeep);
         }
         return foundKeep;
+    }
+
+    // FIXME: this doesn't have any checks for userId, implement this if needed.
+    internal List<Keep> GetKeepsInVault(int vaultId, string userId)
+    {
+        Vault foundVault = _vaultsService.GetById(vaultId);
+        List<Keep> foundKeeps = _repo.GetKeepsInVault(vaultId);
+        return foundKeeps;
     }
 
     internal Keep Update(Keep updateData, int keepId, string userId)
@@ -61,4 +72,5 @@ public class KeepsService
         foundKeep.Views++;
         _repo.Update(foundKeep);
     }
+
 }
