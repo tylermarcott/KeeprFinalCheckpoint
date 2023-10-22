@@ -18,6 +18,9 @@ import { keepsService } from "../services/KeepsService.js";
 import Pop from "../utils/Pop.js";
 import { logger } from "../utils/Logger.js";
 
+
+// FIXME: issue where the active keep is not resetting, so it displays the same keep on all modals, even if you click a different keep
+
 export default {
   props: {keep: {type: Object || Keep, required: true}},
 setup() {
