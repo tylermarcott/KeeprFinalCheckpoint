@@ -29,5 +29,19 @@ namespace KeeprFinalCheckpoint.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [HttpGet("{profileId}")]
+        public ActionResult<List<Keep>> GetKeepsByProfile(string profileId)
+        {
+            try
+            {
+                List<Keep> foundKeeps = _profilesService.GetKeepsByProfile(profileId);
+                return foundKeeps;
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }

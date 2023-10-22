@@ -147,3 +147,8 @@ FROM keeps
     JOIN accounts ON accounts.id = vaultKeeps.creatorId
     JOIN vaults ON vaults.id = vaultKeeps.vaultId
     JOIN vaultKeeps ON vaultKeeps.WHERE vaultKeeps.vaultId = 1
+
+SELECT keeps.*, profiles.*
+FROM keeps
+    JOIN accounts profiles ON profiles.id = keeps.creatorId
+WHERE keeps.creatorId = '65271b81e57f826489d44109'
