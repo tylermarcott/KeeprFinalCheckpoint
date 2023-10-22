@@ -30,7 +30,7 @@ namespace KeeprFinalCheckpoint.Controllers
             }
         }
 
-        [HttpGet("{profileId}")]
+        [HttpGet("{profileId}/keeps")]
         public ActionResult<List<Keep>> GetKeepsByProfile(string profileId)
         {
             try

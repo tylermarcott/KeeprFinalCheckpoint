@@ -125,7 +125,7 @@ public class KeepsRepository : IRepository<Keep, int>
         string sql = @"
         SELECT
         keeps.*,
-        profiles.*
+        profile.*
         FROM keeps
             JOIN accounts profile ON profile.id = keeps.creatorId
         WHERE keeps.creatorId = @profileId
