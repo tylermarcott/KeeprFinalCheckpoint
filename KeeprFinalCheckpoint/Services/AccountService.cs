@@ -24,6 +24,12 @@ public class AccountService
     return profile;
   }
 
+  internal Account GetProfileById(string profileId)
+  {
+    Account profile = _repo.GetById(profileId);
+    return profile;
+  }
+
   internal Account Edit(Account editData, string userEmail)
   {
     Account original = GetProfileByEmail(userEmail);
