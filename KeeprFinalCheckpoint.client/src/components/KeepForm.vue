@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <form @submit="createKeep">
+    <form @submit.prevent="createKeep">
       <div class="mb-3">
         <label for="title" class="form-label">Keep Title</label>
         <input v-model="keepData.title" type="title" class="form-control" id="keepTitle"
