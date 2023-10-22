@@ -51,7 +51,7 @@ export default {
       }
     }
   return { 
-    keeps: computed(()=> AppState.activeKeeps),
+    keeps: computed(()=> AppState.keeps),
     user: computed(()=> AppState.user)
    }
   }
