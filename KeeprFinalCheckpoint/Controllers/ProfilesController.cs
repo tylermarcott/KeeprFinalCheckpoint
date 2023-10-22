@@ -8,7 +8,7 @@ namespace KeeprFinalCheckpoint.Controllers
         private readonly ProfilesService _profilesService;
         private readonly Auth0Provider _auth;
 
-        public ProfilesController(ProfilesService profilesService, Auth0Provider auth)
+        public ProfilesController(ProfilesService profilesService, Auth0Provider auth, VaultKeepsService vaultsService)
         {
             _profilesService = profilesService;
             _auth = auth;
@@ -37,6 +37,20 @@ namespace KeeprFinalCheckpoint.Controllers
             {
                 List<Keep> foundKeeps = _profilesService.GetKeepsByProfile(profileId);
                 return foundKeeps;
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("{profileId}/vaults")]
+        public ActionResult<List<Vault>> GetVaultsByProfile(string profileId)
+        {
+            try
+            {
+                List<Vault> foundVaults = _profilesService.GetVaultsByProfile(profileId);
+                return foundVaults;
             }
             catch (Exception e)
             {

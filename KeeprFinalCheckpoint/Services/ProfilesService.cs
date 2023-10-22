@@ -2,17 +2,20 @@
 
 
 
+
 namespace KeeprFinalCheckpoint.Services;
 
 public class ProfilesService
 {
     private readonly AccountService _accountsService;
-    private readonly KeepsRepository _repo;
+    private readonly VaultsRepository _vaultsRepo;
+    private readonly KeepsRepository _keepsRepo;
 
-    public ProfilesService(AccountService accountsService, KeepsRepository repo)
+    public ProfilesService(AccountService accountsService, KeepsRepository keepsRepo, VaultsRepository vaultsRepo)
     {
         _accountsService = accountsService;
-        _repo = repo;
+        _keepsRepo = keepsRepo;
+        _vaultsRepo = vaultsRepo;
     }
     internal Profile GetById(string profileId)
     {
@@ -23,7 +26,13 @@ public class ProfilesService
     internal List<Keep> GetKeepsByProfile(string profileId)
     {
         // Profile profile = this.GetById(profileId);
-        List<Keep> foundKeeps = _repo.GetKeepsByProfile(profileId);
+        List<Keep> foundKeeps = _keepsRepo.GetKeepsByProfile(profileId);
         return foundKeeps;
+    }
+
+    internal List<Vault> GetVaultsByProfile(string profileId)
+    {
+        List<Vault> foundVaults = _vaultsRepo.GetVaultsByProfile(profileId);
+        return foundVaults;
     }
 }
