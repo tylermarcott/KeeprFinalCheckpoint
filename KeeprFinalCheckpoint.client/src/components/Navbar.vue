@@ -8,20 +8,22 @@
           <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             create
           </button>
-          <!-- FIXME: modal is not displaying the form -->
+          <!-- FIXME: ok, so display form works now, but the modal is on top of the form (everything is grayed out), and it won't go away. Need to fix this next. -->
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">
-              <ModalWrapper id="create-keep" v-if="user.isAuthenticated">
-                <template #button>
-                  <button class="btn btn-light">
-                    new keep
-                  </button>
-                </template>
-                <template #body>
-                  <KeepForm/>
-                </template>
-              </ModalWrapper>
-            </a></li>
+            <li>    
+              <a class="dropdown-item" href="#" @click.stop>
+                <ModalWrapper id="create-keep" v-if="user.isAuthenticated">
+                  <template #button>
+                    <button class="btn btn-light" @click.stop>
+                      new keep
+                    </button>
+                  </template>
+                  <template #body>
+                    <KeepForm/>
+                  </template>
+                </ModalWrapper>
+              </a>
+            </li>
             <li><a class="dropdown-item" href="#">new vault
 
             </a></li>
