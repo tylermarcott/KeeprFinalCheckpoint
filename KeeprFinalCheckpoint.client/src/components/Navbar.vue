@@ -8,6 +8,7 @@
           <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             create
           </button>
+          <!-- FIXME: modal is not displaying the form -->
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">
               <ModalWrapper id="create-keep" v-if="user.isAuthenticated">
@@ -28,6 +29,7 @@
         </div>
     </div>
     <h3>the keepr co.</h3>
+    
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
