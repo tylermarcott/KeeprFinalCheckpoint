@@ -37,4 +37,10 @@ setup() {
 
 
 <style>
+/* NOTE: had to pull this out of the masonry styling on HomeKeeps comp. Be wary. */
+  img{
+    border-radius: 10px;
+    width: 100%;
+    margin-bottom: 1.25em;
+  }
 </style>
