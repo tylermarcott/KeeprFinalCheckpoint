@@ -1,38 +1,47 @@
 
 
 
+
 namespace KeeprFinalCheckpoint.Services;
 
 public class VaultsService
 {
-    private readonly VaultsRepository _repo;
+    private readonly VaultsRepository _vaultsRepo;
+    private readonly KeepsRepository _keepsRepo;
 
-    public VaultsService(VaultsRepository repo)
+    public VaultsService(VaultsRepository repo, KeepsRepository keepsRepo)
     {
-        _repo = repo;
+        _vaultsRepo = repo;
+        _keepsRepo = keepsRepo;
     }
 
     internal Vault Create(Vault vaultData)
     {
-        Vault newVault = _repo.Create(vaultData);
+        Vault newVault = _vaultsRepo.Create(vaultData);
         return newVault;
     }
 
     internal Vault GetById(int vaultId)
     {
-        Vault foundVault = _repo.GetById(vaultId);
+        Vault foundVault = _vaultsRepo.GetById(vaultId);
         if (foundVault == null) throw new Exception("No vault was found.");
         return foundVault;
     }
 
+    internal List<Keep> GetKeepsInVault(int vaultId, string userId)
+    {
+        List<Keep> keepsInVault = _keepsRepo.getKeepsInVault(vaultId, userId);
+        return keepsInVault;
+    }
+
     internal Vault Update(Vault updateData)
     {
-        Vault original = _repo.GetById(updateData.Id);
+        Vault original = _vaultsRepo.GetById(updateData.Id);
         original.Name = updateData.Name ?? original.Name;
         original.Description = updateData.Description ?? original.Description;
         original.Img = updateData.Img ?? original.Img;
 
-        _repo.Update(original);
+        _vaultsRepo.Update(original);
 
         return original;
     }
@@ -42,9 +51,10 @@ public class VaultsService
         Vault foundVault = this.GetById(vaultId);
         if (foundVault == null) throw new Exception("No vault was found.");
         if (foundVault.CreatorId != userId) throw new Exception("This is not your vault to delete");
-        int rows = _repo.Delete(vaultId);
+        int rows = _vaultsRepo.Delete(vaultId);
         if (rows < 1) throw new Exception("Something unexpected has happened, returned with < 1 rows deleted.");
         if (rows > 1) throw new Exception("Something unexpected has happened, returned with > 1 rows deleted.");
     }
+
 
 }

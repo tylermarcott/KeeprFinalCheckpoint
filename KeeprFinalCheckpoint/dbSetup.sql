@@ -152,3 +152,14 @@ SELECT keeps.*, profiles.*
 FROM keeps
     JOIN accounts profiles ON profiles.id = keeps.creatorId
 WHERE keeps.creatorId = '65271b81e57f826489d44109'
+
+SELECT
+    keeps.*,
+    vaults.*,
+    accounts.*,
+    vaultKeeps.*
+FROM keeps
+    JOIN vaultKeeps ON vaultKeeps.creatorId = keeps.creatorId
+    JOIN vaults ON vaults.creatorId = keeps.creatorId
+    JOIN accounts ON accounts.id = keeps.creatorId
+WHERE vaultKeeps.vaultId = 15
