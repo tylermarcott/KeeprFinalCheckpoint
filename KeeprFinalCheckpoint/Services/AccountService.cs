@@ -23,7 +23,6 @@ public class AccountService
     }
     return profile;
   }
-
   internal Account GetProfileById(string profileId)
   {
     Account profile = _repo.GetById(profileId);

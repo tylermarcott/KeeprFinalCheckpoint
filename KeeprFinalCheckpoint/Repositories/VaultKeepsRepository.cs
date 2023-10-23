@@ -60,7 +60,7 @@ public class VaultKeepsRepository : IRepository<VaultKeep, int>
 
         List<Keep> foundKeeps = _db.Query<VaultKeep, Keep, Vault, Profile, VaultKeep>(sql, (vaultKeep, keep, vault, profile) =>
         {
-
+            return foundKeeps;
         }, new { vaultId }).FirstOrDefault();
         return foundKeeps;
     }

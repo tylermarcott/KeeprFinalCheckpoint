@@ -2,6 +2,7 @@
 
 
 
+
 namespace KeeprFinalCheckpoint.Services;
 
 public class VaultsService
@@ -38,6 +39,12 @@ public class VaultsService
         return keepsInVault;
     }
 
+    internal Task<List<Vault>> GetVaultsByAccount(string userId)
+    {
+        List<Vault> myVaults = _vaultsRepo.GetVaultsByProfile(userId);
+        return myVaults;
+    }
+
     internal Vault Update(Vault updateData)
     {
         Vault original = _vaultsRepo.GetById(updateData.Id);
@@ -60,6 +67,5 @@ public class VaultsService
         if (rows < 1) throw new Exception("Something unexpected has happened, returned with < 1 rows deleted.");
         if (rows > 1) throw new Exception("Something unexpected has happened, returned with > 1 rows deleted.");
     }
-
 
 }
