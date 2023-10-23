@@ -15,7 +15,7 @@
         {{ keep.name }}   
       </div>
       <!-- FIXME: need to prevent the modal from opening when clicking on the user img for router link -->
-      <router-link :to="{ name: 'Profile' }">
+      <router-link :to="{ path: `profile/${keep.creatorId}` }">
         <div class="col-4">
           <div @click="setActiveProfile(keep.creator.id)">
             <img :src="keep.creator.picture">
@@ -30,10 +30,8 @@
 import { computed } from "vue";
 import { AppState } from "../AppState.js";
 import { Keep } from "../models/Keep.js";
-import { keepsService } from "../services/KeepsService.js";
 import Pop from "../utils/Pop.js";
 import {profilesService} from '../services/ProfilesService.js'
-import { logger } from "../utils/Logger.js";
 
 
 
@@ -42,17 +40,17 @@ export default {
 setup() {
   return {
     user: computed(()=> AppState.user),
-    async setActiveKeep(keepId){
-      // FIXME: need to make it so views increment every time the keep details is opened
-      try {
-        const activeKeep = await keepsService.setActiveKeep(keepId)
-        if(this.user.id != activeKeep.creatorId){
-          activeKeep.views++
-        }
-      } catch (error) {
-        Pop.error(error)
-      }
-    },
+    // async setActiveKeep(keepId){
+    //   // FIXME: need to make it so views increment every time the keep details is opened
+    //   try {
+    //     const activeKeep = await keepsService.setActiveKeep(keepId)
+    //     if(this.user.id != activeKeep.creatorId){
+    //       activeKeep.views++
+    //     }
+    //   } catch (error) {
+    //     Pop.error(error)
+    //   }
+    // },
 
     // async getProfileKeeps(){
     //   try {

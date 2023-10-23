@@ -44,39 +44,41 @@ import { profilesService } from "../services/ProfilesService.js";
 import { AppState } from "../AppState.js";
 import { logger } from "../utils/Logger.js";
 
+// TODO: to fix this, I need to fix the router.js so the route.params can be used, I need the profile ID in the route. When the id is in the route, I can pull that route id, get my profile by id, then get the keeps and vaults by the profile. Everything needs to be done on this page, not on the keep card****
+
 export default {
   setup() {
-    onMounted(()=> {
-      // getActiveProfile(),
-      getProfileKeeps(),
-      getProfileVaults()
-    })
+    // watchEffect(()=> {
+    //   getActiveProfile(),
+    //   getProfileKeeps(),
+    //   getProfileVaults()
+    // })
 
-    function getActiveProfile(){
-      try {
-        const activeProfile = profilesService.getActiveProfile()
-        return activeProfile
-      } catch (error) {
-        Pop.error(error)
-      }
-    }
-    async function getProfileKeeps() {
-      try {
-        const profileId = this.getActiveProfile.id
-        await profilesService.getProfileKeeps(profileId)
-      } catch (error) {
-        Pop.error(error)
-      }
-    }
+    // function getActiveProfile(){
+    //   try {
+    //     const activeProfile = profilesService.getActiveProfile()
+    //     return activeProfile
+    //   } catch (error) {
+    //     Pop.error(error)
+    //   }
+    // }
+    // async function getProfileKeeps() {
+    //   try {
+    //     const profileId = this.getActiveProfile.id
+    //     await profilesService.getProfileKeeps(profileId)
+    //   } catch (error) {
+    //     Pop.error(error)
+    //   }
+    // }
 
-    async function getProfileVaults() {
-      try {
-        const profileId = this.getActiveProfile.id
-        await profilesService.getProfileVaults(profileId)
-      } catch (error) {
-        Pop.error(error)
-      }
-    }
+    // async function getProfileVaults() {
+    //   try {
+    //     const profileId = this.getActiveProfile.id
+    //     await profilesService.getProfileVaults(profileId)
+    //   } catch (error) {
+    //     Pop.error(error)
+    //   }
+    // }
   return {
     profile: computed(()=> AppState.activeProfile),
     keeps: computed(() => AppState.activeKeeps),
