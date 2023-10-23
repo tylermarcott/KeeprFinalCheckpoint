@@ -126,8 +126,8 @@ INSERT INTO
     vaultKeeps (creatorId, vaultId, keepId)
 VALUES (
         '650a24a4fe35b4c25b2ada9f',
-        1,
-        4
+        15,
+        6
     );
 
 SELECT
@@ -162,4 +162,4 @@ FROM vaultKeeps
     JOIN keeps ON keeps.id = vaultKeeps.keepId
     JOIN vaults ON vaults.id = vaultKeeps.vaultId
     JOIN accounts profiles ON profiles.id = vaultKeeps.creatorId
-WHERE vaultKeeps.vaultId = 1
+WHERE vaultKeeps.vaultId = 15
