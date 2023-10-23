@@ -43,7 +43,7 @@ public class VaultKeepsRepository : IRepository<VaultKeep, int>
 
 
     // NOTE: just because keeps are the final endpoint does NOT mean that keeps is where the repo needs to be. In this case, vaults/vaultId/keeps is going to be in the vaultKeeps repo.
-    internal List<Keep> GetKeepsInVault(int vaultId, string userId)
+    internal List<VaultKeepViewModel> GetKeepsInVault(int vaultId, string userId)
     {
         string sql = @"
         SELECT
@@ -58,10 +58,14 @@ public class VaultKeepsRepository : IRepository<VaultKeep, int>
         WHERE vaultKeeps.vaultId = @vaultId
         ;";
 
-        List<Keep> foundKeeps = _db.Query<VaultKeep, Keep, Vault, Profile, VaultKeep>(sql, (vaultKeep, keep, vault, profile) =>
+        // FIXME: this needs to be extending a view model extended from keep, where the additional info aka the id of the vaultKeep extends the keep model. This is what we will be returning a list of below.
+
+        List<VaultKeepViewModel> foundKeeps = _db.Query<VaultKeep, VaultKeepViewModel, Vault, Profile, VaultKeepViewModel>(sql, (vaultKeep, vaultKeepView, vault, profile) =>
         {
-            return foundKeeps;
-        }, new { vaultId }).FirstOrDefault();
+            vaultKeepView.VaultKeepId = vaultKeep.Id;
+            vaultKeepView.CreatorId = profile.Id;
+            return vaultKeepView;
+        }, new { vaultId }).ToList();
         return foundKeeps;
     }
 

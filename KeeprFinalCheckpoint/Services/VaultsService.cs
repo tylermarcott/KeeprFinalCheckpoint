@@ -33,17 +33,17 @@ public class VaultsService
     }
 
     // NOTE: this needs to be done in the vaultKeeps repo.
-    internal List<Keep> GetKeepsInVault(int vaultId, string userId)
+    internal List<VaultKeepViewModel> GetKeepsInVault(int vaultId, string userId)
     {
-        List<Keep> keepsInVault = _vaultKeepsRepo.GetKeepsInVault(vaultId, userId);
+        List<VaultKeepViewModel> keepsInVault = _vaultKeepsRepo.GetKeepsInVault(vaultId, userId);
         return keepsInVault;
     }
 
-    internal Task<List<Vault>> GetVaultsByAccount(string userId)
-    {
-        List<Vault> myVaults = _vaultsRepo.GetVaultsByProfile(userId);
-        return myVaults;
-    }
+    // internal Task<List<Vault>> GetVaultsByAccount(string userId)
+    // {
+    //     List<Vault> myVaults = _vaultsRepo.GetVaultsByProfile(userId);
+    //     return myVaults;
+    // }
 
     internal Vault Update(Vault updateData)
     {

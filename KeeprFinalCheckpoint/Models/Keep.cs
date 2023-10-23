@@ -11,3 +11,11 @@ public class Keep
     public int Kept { get; set; }
     public Profile Creator { get; set; }
 }
+
+// NOTE: this is the key to attaching the vaultKeepId to the keep when we do our dapper statement. Without this, the dapper statement is impossible to create for getting keeps in a vault.
+
+public class VaultKeepViewModel : Keep
+{
+    public int VaultKeepId { get; set; }
+    public string ProfileId { get; set; }
+}
