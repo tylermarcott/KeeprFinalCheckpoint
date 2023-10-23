@@ -55,10 +55,31 @@ setup() {
       }
     },
 
+    async getProfileKeeps(){
+      try {
+        const profileId = AppState.activeProfile.id
+        await profilesService.getProfileKeeps(profileId)
+      } catch (error) {
+        Pop.error(error)
+      }
+    },
+
+    async getProfileVaults() {
+      try {
+        const profileId = AppState.activeProfile.id
+        logger.log('here is the profile id of the active profile:', profileId)
+        await profilesService.getProfileVaults(profileId)
+      } catch (error) {
+        Pop.error(error)
+      }
+    },
+
     async setActiveProfile(profileId){
       try {
         logger.log('passing the following id to profiles service:', profileId)
-        await profilesService.setActiveProfile(profileId)
+        const activeProfile = await profilesService.setActiveProfile(profileId)
+        this.getProfileKeeps(activeProfile.id)
+        this.getProfileVaults(activeProfile.id)
       } catch (error) {
         Pop.error(error)
       }
