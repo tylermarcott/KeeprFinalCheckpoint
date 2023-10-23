@@ -163,3 +163,16 @@ FROM vaultKeeps
     JOIN vaults ON vaults.id = vaultKeeps.vaultId
     JOIN accounts profiles ON profiles.id = vaultKeeps.creatorId
 WHERE vaultKeeps.vaultId = 15
+
+--NOTE: ok, so Miles is saying this is wrong, that I need to select from keeps, and join vaultKeeps, instead of the other way around. I am going to give this a shot and see if I can get all keeps in vault through this method.
+
+SELECT
+    keeps.*,
+    vaultKeeps.*,
+    vaults.*,
+    profiles.*
+FROM keeps
+    JOIN vaultKeeps ON vaultKeeps.keepId = keeps.id
+    JOIN vaults ON vaults.id = vaultKeeps.vaultId
+    JOIN accounts profiles ON profiles.id = vaultKeeps.creatorId
+WHERE vaultKeeps.vaultId = 1

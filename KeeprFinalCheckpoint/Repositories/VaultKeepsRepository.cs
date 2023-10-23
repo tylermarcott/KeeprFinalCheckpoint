@@ -47,12 +47,12 @@ public class VaultKeepsRepository : IRepository<VaultKeep, int>
     {
         string sql = @"
         SELECT
-            vaultKeeps.*,
             keeps.*,
+            vaultKeeps.*,
             vaults.*,
             profiles.*
-        FROM vaultKeeps
-            JOIN keeps ON keeps.id = vaultKeeps.keepId
+        FROM keeps
+            JOIN vaultKeeps ON vaultKeeps.keepId = keeps.id
             JOIN vaults ON vaults.id = vaultKeeps.vaultId
             JOIN accounts profiles ON profiles.id = vaultKeeps.creatorId
         WHERE vaultKeeps.vaultId = @vaultId
@@ -60,10 +60,11 @@ public class VaultKeepsRepository : IRepository<VaultKeep, int>
 
         // FIXME: this needs to be extending a view model extended from keep, where the additional info aka the id of the vaultKeep extends the keep model. This is what we will be returning a list of below.
 
-        List<VaultKeepViewModel> foundKeeps = _db.Query<VaultKeep, VaultKeepViewModel, Vault, Profile, VaultKeepViewModel>(sql, (vaultKeep, vaultKeepView, vault, profile) =>
+        List<VaultKeepViewModel> foundKeeps = _db.Query<VaultKeepViewModel, VaultKeep, Vault, Profile, VaultKeepViewModel>(sql, (vaultKeepView, vaultKeep, vault, profile) =>
         {
             vaultKeepView.VaultKeepId = vaultKeep.Id;
-            vaultKeepView.CreatorId = profile.Id;
+            vault.Creator = profile;
+            vaultKeepView.Creator = profile;
             return vaultKeepView;
         }, new { vaultId }).ToList();
         return foundKeeps;
