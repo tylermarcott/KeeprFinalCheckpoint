@@ -70,18 +70,24 @@ public class VaultKeepsRepository : IRepository<VaultKeep, int>
         return foundKeeps;
     }
 
-
-    public int Delete(int id)
-    {
-        throw new NotImplementedException();
-    }
-
     public List<VaultKeep> Get()
     {
         throw new NotImplementedException();
     }
 
-    public VaultKeep GetById(int id)
+    public VaultKeep GetById(int vaultKeepId)
+    {
+        string sql = @"
+        SELECT
+        vaultKeeps.*
+        FROM vaultKeeps
+        WHERE vaultKeeps.Id = @vaultKeepId
+        ;";
+        VaultKeep foundVaultKeep = _db.Query<VaultKeep>(sql, new { vaultKeepId }).FirstOrDefault();
+        return foundVaultKeep;
+    }
+
+    public int Delete(int id)
     {
         throw new NotImplementedException();
     }

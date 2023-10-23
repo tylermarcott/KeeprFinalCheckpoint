@@ -176,3 +176,5 @@ FROM keeps
     JOIN vaults ON vaults.id = vaultKeeps.vaultId
     JOIN accounts profiles ON profiles.id = vaultKeeps.creatorId
 WHERE vaultKeeps.vaultId = 1
+
+SELECT vaultKeeps.* FROM vaultKeeps WHERE vaultKeeps.Id = 2 
