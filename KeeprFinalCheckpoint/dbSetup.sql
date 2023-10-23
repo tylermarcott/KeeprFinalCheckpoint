@@ -204,3 +204,24 @@ FROM keeps
     JOIN vaults ON vaults.id = vaultCreator.vaultId
     JOIN vaultKeeps vaultCreator ON vaultCreator.id = vaults.creatorId
 WHERE vaultKeeps.vaultId = 1
+
+--note this kinda works, but we need to get keeps, not vaultKeeps
+
+SELECT
+    vaultKeeps.*,
+    accounts.*,
+    keeps.*
+FROM vaultKeeps
+    JOIN keeps ON keeps.id = vaultKeeps.keepId
+    JOIN accounts ON accounts.id = vaultKeeps.creatorId
+WHERE vaultKeeps.vaultId = 15
+
+SELECT
+    vaults.*,
+    vaultKeeps.*,
+    accounts.*
+FROM keeps
+    JOIN vaultKeeps ON vaultKeeps.keepId = keeps.id
+    JOIN accounts ON vaultKeeps.creatorId = accounts.id
+    JOIN vaults ON vaults.id = @vaultId
+WHERE keeps something

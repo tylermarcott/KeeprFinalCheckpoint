@@ -9,10 +9,13 @@ public class VaultsService
     private readonly VaultsRepository _vaultsRepo;
     private readonly KeepsRepository _keepsRepo;
 
-    public VaultsService(VaultsRepository repo, KeepsRepository keepsRepo)
+    private readonly VaultKeepsRepository _vaultKeepsRepo;
+
+    public VaultsService(VaultsRepository repo, KeepsRepository keepsRepo, VaultKeepsRepository vaultKeepsRepo)
     {
         _vaultsRepo = repo;
         _keepsRepo = keepsRepo;
+        _vaultKeepsRepo = vaultKeepsRepo;
     }
 
     internal Vault Create(Vault vaultData)
@@ -28,9 +31,10 @@ public class VaultsService
         return foundVault;
     }
 
+    // NOTE: this needs to be done in the vaultKeeps repo.
     internal List<Keep> GetKeepsInVault(int vaultId, string userId)
     {
-        List<Keep> keepsInVault = _keepsRepo.GetKeepsInVault(vaultId, userId);
+        List<Keep> keepsInVault = _vaultKeepsRepo.GetKeepsInVault(vaultId, userId);
         return keepsInVault;
     }
 
