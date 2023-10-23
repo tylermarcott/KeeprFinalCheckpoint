@@ -42,13 +42,27 @@ public class VaultKeepsRepository : IRepository<VaultKeep, int>
     // TODO: we have to merge and use vaultKeep to link the keeps to a specific vault. So, we need to say something to the affect of.... join vaults and keeps, where keep.id = vaultKeep.keepId and join where vault.Id = vaultKeep.vaultId
 
 
+    // NOTE: just because keeps are the final endpoint does NOT mean that keeps is where the repo needs to be. In this case, vaults/vaultId/keeps is going to be in the vaultKeeps repo.
     internal List<Keep> GetKeepsInVault(int vaultId, string userId)
     {
         string sql = @"
-        
-        
-        
+        SELECT
+            vaultKeeps.*,
+            keeps.*,
+            vaults.*,
+            profiles.*
+        FROM vaultKeeps
+            JOIN keeps ON keeps.id = vaultKeeps.keepId
+            JOIN vaults ON vaults.id = vaultKeeps.vaultId
+            JOIN accounts profiles ON profiles.id = vaultKeeps.creatorId
+        WHERE vaultKeeps.vaultId = @vaultId
         ;";
+
+        List<Keep> foundKeeps = _db.Query<VaultKeep, Keep, Vault, Profile, VaultKeep>(sql, (vaultKeep, keep, vault, profile) =>
+        {
+
+        }, new { vaultId }).FirstOrDefault();
+        return foundKeeps;
     }
 
 

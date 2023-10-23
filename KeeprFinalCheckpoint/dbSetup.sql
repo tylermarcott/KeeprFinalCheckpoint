@@ -127,7 +127,7 @@ INSERT INTO
 VALUES (
         '650a24a4fe35b4c25b2ada9f',
         1,
-        1
+        4
     );
 
 SELECT
@@ -153,75 +153,13 @@ FROM keeps
     JOIN accounts profiles ON profiles.id = keeps.creatorId
 WHERE keeps.creatorId = '65271b81e57f826489d44109'
 
--- get keeps by vault prototype sql
-
-SELECT
-    keeps.*,
-    vaults.*,
-    accounts.*,
-    vaultKeeps.*
-FROM keeps
-    JOIN vaultKeeps ON vaultKeeps.creatorId = keeps.creatorId
-    JOIN vaults ON vaults.creatorId = keeps.creatorId
-    JOIN accounts ON accounts.id = keeps.creatorId
-WHERE vaultKeeps.vaultId = 15
-
--- prototype #2
-
-SELECT
-    keeps.*,
-    keepCreator.*,
-    vaults.*,
-    vaultCreator.*
-FROM keeps
-    JOIN vaultKeeps keepCreator ON keepCreator.creatorId = keeps.creatorId
-    JOIN vaults ON vaults.creatorId = keeps.creatorId
-    JOIN vaultKeeps vaultCreator ON vaultCreator.creatorId = vaults.creatorId
-WHERE keeps.creatorId = '65271b81e57f826489d44109'
-
--- prototype 3: vault 1 and keep 1 have a vaultKeep. Try to use this.
-
---NOTE we already HAVE the vault. We just need to get the vaultKeep creatorId and vaultKeep keepId
-
-SELECT
-    keeps.*,
-    vaultKeepCreator.*,
-    vaultKeepVault.*
-FROM keeps
-    JOIN vaultKeeps vaultKeepCreator ON vaultKeepCreator.creatorId = '650a24a4fe35b4c25b2ada9f'
-    JOIN vaultKeeps vaultKeepVault ON vaultKeepVault.vaultId = 1
-WHERE keeps.creatorId = '650a24a4fe35b4c25b2ada9f'
-
--- prototype 4
-
-SELECT
-    keeps.*,
-    keepCreator.*,
-    vaults.*,
-    vaultCreator.*
-FROM keeps
-    JOIN vaultKeeps keepCreator ON keepCreator.id = keeps.creatorId
-    JOIN vaults ON vaults.id = vaultCreator.vaultId
-    JOIN vaultKeeps vaultCreator ON vaultCreator.id = vaults.creatorId
-WHERE vaultKeeps.vaultId = 1
-
---note this kinda works, but we need to get keeps, not vaultKeeps
-
 SELECT
     vaultKeeps.*,
-    accounts.*,
-    keeps.*
+    keeps.*,
+    vaults.*,
+    profiles.*
 FROM vaultKeeps
     JOIN keeps ON keeps.id = vaultKeeps.keepId
-    JOIN accounts ON accounts.id = vaultKeeps.creatorId
-WHERE vaultKeeps.vaultId = 15
-
-SELECT
-    vaults.*,
-    vaultKeeps.*,
-    accounts.*
-FROM keeps
-    JOIN vaultKeeps ON vaultKeeps.keepId = keeps.id
-    JOIN accounts ON vaultKeeps.creatorId = accounts.id
-    JOIN vaults ON vaults.id = @vaultId
-WHERE keeps something
+    JOIN vaults ON vaults.id = vaultKeeps.vaultId
+    JOIN accounts profiles ON profiles.id = vaultKeeps.creatorId
+WHERE vaultKeeps.vaultId = 1
