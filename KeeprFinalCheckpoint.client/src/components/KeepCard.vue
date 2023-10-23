@@ -19,7 +19,6 @@ import Pop from "../utils/Pop.js";
 import { logger } from "../utils/Logger.js";
 
 
-// FIXME: issue where the active keep is not resetting, so it displays the same keep on all modals, even if you click a different keep
 
 export default {
   props: {keep: {type: Object || Keep, required: true}},
@@ -27,8 +26,12 @@ setup() {
   return {
     user: computed(()=> AppState.user),
     async setActiveKeep(keepId){
+      // FIXME: need to make it so views increment every time the keep details is opened
       try {
-        keepsService.setActiveKeep(keepId)
+        const activeKeep = keepsService.setActiveKeep(keepId)
+        if(this.user.id != activeKeep.creatorId){
+          activeKeep.views++
+        }
       } catch (error) {
         Pop.error(error)
       }

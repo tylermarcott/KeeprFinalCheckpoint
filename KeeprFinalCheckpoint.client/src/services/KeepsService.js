@@ -19,6 +19,7 @@ class KeepsService{
   async setActiveKeep(keepId){
     const foundKeep = await this.getKeepById(keepId)
     AppState.activeKeep = foundKeep
+    return AppState.activeKeep
   }
 }
 
