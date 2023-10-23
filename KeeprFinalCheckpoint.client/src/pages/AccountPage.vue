@@ -1,10 +1,31 @@
 <template>
-  <div class="about text-center">
-    <h1>Welcome {{ account.name }}</h1>
-    <img class="rounded-circle" :src="account.picture" alt="" />
-    <p>{{ account.email }}</p>
-  </div>
+<div class="container">
 
+
+<!-- TODO: work on this next -->
+
+
+  <section>
+    <div class="row">
+      <div class="col-8">
+        account cover image here
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-8">
+        <img :src="account.picture" :alt="account.name">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8">
+        <h3>
+          {{ account.name }}
+        </h3>
+      </div>
+    </div>
+  </section>
+  
   <section class="container">
     <div class="row">
       <div class="col-8">
@@ -27,6 +48,7 @@
       </div>
     </div>
   </section>
+</div>
 </template>
 
 <script>
