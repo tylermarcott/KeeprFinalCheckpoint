@@ -20,7 +20,6 @@ class KeepsService{
     const foundKeep = await this.getKeepById(keepId)
     AppState.activeKeep = foundKeep
   }
-
 }
 
 export const keepsService = new KeepsService;
