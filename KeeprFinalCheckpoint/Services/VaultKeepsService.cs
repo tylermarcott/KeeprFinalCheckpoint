@@ -14,6 +14,7 @@ public class VaultKeepsService
 
     internal VaultKeep Create(VaultKeep vaultKeepData)
     {
+        // FIXME: need to add in syntax here to check that the user is authorized in order to create a vaultKeep
         VaultKeep newVaultKeep = _repo.Create(vaultKeepData);
         return newVaultKeep;
     }

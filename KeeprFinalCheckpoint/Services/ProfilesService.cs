@@ -32,6 +32,7 @@ public class ProfilesService
 
     internal List<Vault> GetVaultsByProfile(string profileId)
     {
+        // FIXME: need to add syntax, returned array contains vaults that are private
         List<Vault> foundVaults = _vaultsRepo.GetVaultsByProfile(profileId);
         return foundVaults;
     }
