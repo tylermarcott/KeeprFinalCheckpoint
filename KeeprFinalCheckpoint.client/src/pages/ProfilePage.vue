@@ -1,5 +1,39 @@
 <template>
-  hello from profile page
+  <div class="container">
+    <div class="row">
+      <div class="col-8">
+        put user profile cover img here
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <img class="profile-img" :src="profile.picture" :alt="profile.name">
+      </div>
+      <div class="col-12">
+        <h3>
+          {{ profile.name }}
+        </h3>
+      </div>
+      <div class="col-12">
+        vault number | keep number
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8">
+        <h1>
+          Vaults
+        </h1>
+        <div  class="masonry-container">
+          <div v-for="vault in vaults" :key="vault.id">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
 </template>
 <!-- TODO: onclick, active profile is set. Now I just need to compute and populate keeps and vaults -->
 
@@ -12,33 +46,33 @@ import { logger } from "../utils/Logger.js";
 
 export default {
 setup() {
-  onMounted(()=>{
-    
-    // getProfileKeeps(),
-    computed(()=> AppState.activeProfile)
-    // getProfileVaults()
-  });
-  // TODO: have to get the user's profile first before I can use their profile to get their vaults and keeps.
-  // ANCHOR: direction: get vaults and keeps to profile page, go to backend and finish vaults by account, then fill out account page
-  // async function getProfileKeeps(){
-  //   try {
-  //     const profileId = AppState.activeProfile.id
-  //     await profilesService.getProfileKeeps(profileId)
-  //   } catch (error) {
-  //     Pop.error(error)
-  //   }
-  // }
-
-  // async function getProfileVaults(){
-  //   const profileId = AppState.activeProfile.id
-  //   logger.log('here is the profile id of the active profile:', profileId)
-  //   await profilesService.getProfileVaults(profileId)
-  // }
-  return {};
+  return {
+    profile: computed(()=> AppState.activeProfile),
+    keeps: computed(() => AppState.activeKeeps),
+    vaults: computed(() => AppState.activeVaults)
+  };
 },
 };
 </script>
 
 
 <style>
+.profile-img{
+  border-radius: 50%;
+  height: 6vh;
+  aspect-ratio: 1/1;
+  object-position: cover;
+  object-fit: center;
+}
+
+.masonry-container{
+  gap: 1.25em;
+  columns: 200px;
+  column-gap: 1.25em;
+  img{
+    border-radius: 10px;
+    width: 100%;
+    margin-bottom: 1.25em;
+  }
+}
 </style>

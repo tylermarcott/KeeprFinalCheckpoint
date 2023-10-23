@@ -1,6 +1,5 @@
 <template>
   <section class="container">
-
     <div class="row">
       <div class="col-12">
         <div @click="setActiveKeep(keep.id)">
