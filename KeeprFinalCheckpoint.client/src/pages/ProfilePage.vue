@@ -1,35 +1,54 @@
 <template>
   <div class="container">
-    <div class="row">
-      <div class="col-8">
-        put user profile cover img here
+    <section>
+      <div class="row">
+        <div class="col-8">
+          put user profile cover img here
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-1">
-        <img class="profile-img" :src="profile?.picture" :alt="profile?.name">
+      <div class="row">
+        <div class="col-1">
+          <img class="profile-img" :src="profile?.picture" :alt="profile?.name">
+        </div>
+        <div class="col-12">
+          <h3>
+            {{ profile?.name }}
+          </h3>
+        </div>
+        <div class="col-12">
+          vault number | keep number
+        </div>
       </div>
-      <div class="col-12">
-        <h3>
-          {{ profile?.name }}
-        </h3>
-      </div>
-      <div class="col-12">
-        vault number | keep number
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-8">
-        <h1>
-          Vaults
-        </h1>
-        <div  class="masonry-container">
-          <div v-for="vault in vaults" :key="vault.id">
-            <VaultCard :vault="vault"/>
+    </section>
+    <section>
+      <div class="row">
+        <div class="col-8">
+          <h1>
+            Vaults
+          </h1>
+          <div class="masonry-container">
+            <div v-for="vault in vaults" :key="vault.id">
+              <VaultCard :vault="vault"/>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
+      <div class="row">
+        <div class="col-8">
+          <h1>
+            Keeps
+          </h1>
+        </div>
+        <div class="masonry-container">
+          <div v-for="keep in keeps" :key="keep.id">
+            <ProfileKeepCard :keep="keep"/>
+          </div>
+        </div>
+      </div>
+    <section>
+
+    </section>
   </div>
 
 

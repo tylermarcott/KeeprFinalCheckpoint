@@ -7,7 +7,7 @@
               <button v-if="vault?.creatorId == user.id" class="btn btn-danger">
                 <i class="mdi mdi-cancel"></i>
               </button>
-              <img :src="vault.img">
+              <img :src="vault?.img">
             </div>
           </div>
         </div>

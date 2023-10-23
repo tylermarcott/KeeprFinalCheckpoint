@@ -12,14 +12,10 @@
     </div>
     <div class="row">
       <div class="col-8">
-        {{ keep?.name }}   
+        {{ keep?.name }}
       </div>
       <!-- FIXME: need to prevent the modal from opening when clicking on the user img for router link -->
-      <router-link :to="{ path: `profile/${keep?.creatorId}` }">
-        <div class="col-4">
-            <img :src="keep?.creator.picture">
-        </div>
-      </router-link>
+
     </div>
   </section>
 </template>
@@ -28,34 +24,30 @@
 import { computed } from "vue";
 import { AppState } from "../AppState.js";
 import { Keep } from "../models/Keep.js";
-import Pop from "../utils/Pop.js";
-import {profilesService} from '../services/ProfilesService.js'
-
-
 
 export default {
-  props: {keep: {type: Object || Keep, required: true}},
-setup() {
-  return {
-    user: computed(()=> AppState.user)
-  };
-},
+  props: { keep: { type: Object || Keep, required: true } },
+  setup() {
+    return {
+      user: computed(() => AppState.user)
+    };
+  },
 };
 </script>
 
 
 <style>
 /* NOTE: had to pull this out of the masonry styling on HomeKeeps comp. Be wary. */
-  img{
-    border-radius: 10px;
-    width: 100%;
-    margin-bottom: 1.25em;
-  }
+img {
+  border-radius: 10px;
+  width: 100%;
+  margin-bottom: 1.25em;
+}
 
-  .creator-img{
-    border-radius: 50%;
-    height: 5vh;
-    object-fit: cover;
-    object-position: center;
-  }
+.creator-img {
+  border-radius: 50%;
+  height: 5vh;
+  object-fit: cover;
+  object-position: center;
+}
 </style>
