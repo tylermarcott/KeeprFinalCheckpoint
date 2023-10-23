@@ -153,6 +153,8 @@ FROM keeps
     JOIN accounts profiles ON profiles.id = keeps.creatorId
 WHERE keeps.creatorId = '65271b81e57f826489d44109'
 
+-- get keeps by vault prototype sql
+
 SELECT
     keeps.*,
     vaults.*,
@@ -163,3 +165,29 @@ FROM keeps
     JOIN vaults ON vaults.creatorId = keeps.creatorId
     JOIN accounts ON accounts.id = keeps.creatorId
 WHERE vaultKeeps.vaultId = 15
+
+-- prototype #2
+
+SELECT
+    keeps.*,
+    keepCreator.*,
+    vaults.*,
+    vaultCreator.*
+FROM keeps
+    JOIN vaultKeeps keepCreator ON keepCreator.creatorId = keeps.creatorId
+    JOIN vaults ON vaults.creatorId = keeps.creatorId
+    JOIN vaultKeeps vaultCreator ON vaultCreator.creatorId = vaults.creatorId
+WHERE keeps.creatorId = '65271b81e57f826489d44109'
+
+-- prototype 3: vault 1 and keep 1 have a vaultKeep. Try to use this.
+
+--NOTE we already HAVE the vault. We just need to get the vaultKeep creatorId and vaultKeep keepId
+
+SELECT
+    keeps.*,
+    vaultKeepCreator.*,
+    vaultKeepVault.*
+FROM keeps
+    JOIN vaultKeeps vaultKeepCreator ON vaultKeepCreator.creatorId = '650a24a4fe35b4c25b2ada9f'
+    JOIN vaultKeeps vaultKeepVault ON vaultKeepVault.vaultId = 1
+WHERE keeps.creatorId = '650a24a4fe35b4c25b2ada9f'

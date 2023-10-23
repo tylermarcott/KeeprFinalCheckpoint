@@ -30,7 +30,7 @@ public class VaultsService
 
     internal List<Keep> GetKeepsInVault(int vaultId, string userId)
     {
-        List<Keep> keepsInVault = _keepsRepo.getKeepsInVault(vaultId, userId);
+        List<Keep> keepsInVault = _keepsRepo.GetKeepsInVault(vaultId, userId);
         return keepsInVault;
     }
 

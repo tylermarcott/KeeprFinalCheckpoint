@@ -140,18 +140,20 @@ public class KeepsRepository : IRepository<Keep, int>
 
     // NOTE ok so I want to say join the keeps and they vaults where vaultKeep.creatorId = userId, vaultKeep.vaultId = vaultId. Then, once we find all the vaultKeeps from the user, where the vaultKeep.vaultId = vaultId, join all of the keeps from the corresponding vaultKeeps where vaultKeep.keepId = keeps.id
 
-    internal List<Keep> getKeepsInVault(int vaultId, string userId)
+    // NOTE: so EG: reports in a restaurant is the same as keeps in a vault
+
+    internal List<Keep> GetKeepsInVault(int vaultId, string userId)
     {
         string sql = @"
         SELECT
             keeps.*,
+            keepCreator.*,
             vaults.*,
-            accounts.*,
-            vaultKeeps.*
+            vaultCreator.*,
         FROM keeps
-            JOIN vaultKeeps ON vaultKeeps.creatorId = keeps.creatorId
-            JOIN vaults ON vaults.creatorId = keeps.creatorId
-            JOIN accounts ON accounts.id = keeps.creatorId
+            JOIN vaultKeeps keepCreator ON keepCreator.id = keeps.creatorId
+            JOIN vaults ON vaults.creatorId = vaultCreator.id
+            JOIN vaultKeeps vaultCreator ON vaultCreator.id = vaults.creatorId
         WHERE vaultKeeps.vaultId = 15
         ;";
         List<Keep> keepsInVault = _db.Query<Keep, Vault, Profile, VaultKeep, Keep>(sql, (keep, vault, profile, vaultKeep) =>
