@@ -34,13 +34,17 @@ public class VaultsController : ControllerBase
         }
     }
 
+
+
+
+    // FIXME: need to block users from being able to access vault if it is private
     [HttpGet("{vaultId}")]
     public async Task<ActionResult<Vault>> GetById(int vaultId)
     {
         try
         {
             Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
-            Vault foundVault = _vaultsService.GetById(vaultId);
+            Vault foundVault = _vaultsService.GetById(vaultId, userInfo.Id);
             return foundVault;
         }
         catch (Exception e)
@@ -65,6 +69,10 @@ public class VaultsController : ControllerBase
             return BadRequest(e.Message);
         }
     }
+
+
+
+    // FIXME: need to add syntax that prevents an unauthorized user from being able to edit the vault.
 
     [Authorize]
     [HttpPut("{vaultId}")]

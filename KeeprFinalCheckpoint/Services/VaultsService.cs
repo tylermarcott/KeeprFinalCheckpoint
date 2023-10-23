@@ -21,7 +21,7 @@ public class VaultsService
         return newVault;
     }
 
-    internal Vault GetById(int vaultId)
+    internal Vault GetById(int vaultId, string userId)
     {
         Vault foundVault = _vaultsRepo.GetById(vaultId);
         if (foundVault == null) throw new Exception("No vault was found.");
@@ -46,9 +46,10 @@ public class VaultsService
         return original;
     }
 
+    // NOTE: added userId to this for param, incase something breaks lol
     internal void Delete(int vaultId, string userId)
     {
-        Vault foundVault = this.GetById(vaultId);
+        Vault foundVault = this.GetById(vaultId, userId);
         if (foundVault == null) throw new Exception("No vault was found.");
         if (foundVault.CreatorId != userId) throw new Exception("This is not your vault to delete");
         int rows = _vaultsRepo.Delete(vaultId);

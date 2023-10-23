@@ -44,6 +44,9 @@ namespace KeeprFinalCheckpoint.Controllers
             }
         }
 
+
+        // FIXME: have to add an if statement that does not include vaults that are set to private.
+
         [HttpGet("{profileId}/vaults")]
         public ActionResult<List<Vault>> GetVaultsByProfile(string profileId)
         {
