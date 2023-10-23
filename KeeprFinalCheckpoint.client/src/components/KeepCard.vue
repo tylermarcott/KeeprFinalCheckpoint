@@ -18,7 +18,9 @@
       <!-- FIXME: need to prevent the modal from opening when clicking on the user img for router link -->
       <router-link :to="{ name: 'Profile' }">
         <div class="col-4">
-          <img :src="keep.creator.picture">
+          <div @click="setActiveProfile(keep.creator.id)">
+            <img :src="keep.creator.picture">
+          </div>
         </div>
       </router-link>
     </div>
@@ -31,6 +33,7 @@ import { AppState } from "../AppState.js";
 import { Keep } from "../models/Keep.js";
 import { keepsService } from "../services/KeepsService.js";
 import Pop from "../utils/Pop.js";
+import {profilesService} from '../services/ProfilesService.js'
 import { logger } from "../utils/Logger.js";
 
 
@@ -43,10 +46,19 @@ setup() {
     async setActiveKeep(keepId){
       // FIXME: need to make it so views increment every time the keep details is opened
       try {
-        const activeKeep = keepsService.setActiveKeep(keepId)
+        const activeKeep = await keepsService.setActiveKeep(keepId)
         if(this.user.id != activeKeep.creatorId){
           activeKeep.views++
         }
+      } catch (error) {
+        Pop.error(error)
+      }
+    },
+
+    async setActiveProfile(profileId){
+      try {
+        logger.log('passing the following id to profiles service:', profileId)
+        await profilesService.setActiveProfile(profileId)
       } catch (error) {
         Pop.error(error)
       }
