@@ -87,9 +87,15 @@ public class VaultKeepsRepository : IRepository<VaultKeep, int>
         return foundVaultKeep;
     }
 
-    public int Delete(int id)
+    public int Delete(int vaultKeepId)
     {
-        throw new NotImplementedException();
+        string sql = @"
+        DELETE FROM vaultKeeps
+        WHERE id = @vaultKeepId
+            LIMIT 1
+        ;";
+        int rows = _db.Execute(sql, new { vaultKeepId });
+        return rows;
     }
 
     public void Update(VaultKeep updateData)
