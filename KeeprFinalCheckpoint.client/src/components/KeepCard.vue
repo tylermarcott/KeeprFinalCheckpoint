@@ -1,13 +1,28 @@
 <template>
-  <div @click="setActiveKeep(keep.id)">
-    <button v-if="keep.creatorId == user.id" class="btn btn-danger">
-      <i class="mdi mdi-cancel"></i>
-    </button>
-    <img :src="keep.img">
-    {{ keep.name }}
-    <!-- TODO: add creator img, get rid of name -->
-    {{ keep.creator.name }}
-  </div>
+  <section class="container">
+
+    <div class="row">
+      <div class="col-12">
+        <div @click="setActiveKeep(keep.id)">
+          <button v-if="keep.creatorId == user.id" class="btn btn-danger">
+            <i class="mdi mdi-cancel"></i>
+          </button>
+          <img :src="keep.img">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8">
+        {{ keep.name }}   
+      </div>
+      <!-- FIXME: need to prevent the modal from opening when clicking on the user img for router link -->
+      <router-link :to="{ name: 'Profile' }">
+        <div class="col-4">
+          <img :src="keep.creator.picture">
+        </div>
+      </router-link>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -48,5 +63,12 @@ setup() {
     border-radius: 10px;
     width: 100%;
     margin-bottom: 1.25em;
+  }
+
+  .creator-img{
+    border-radius: 50%;
+    height: 5vh;
+    object-fit: cover;
+    object-position: center;
   }
 </style>
