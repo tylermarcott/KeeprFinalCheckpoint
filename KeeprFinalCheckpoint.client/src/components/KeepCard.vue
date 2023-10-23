@@ -17,9 +17,7 @@
       <!-- FIXME: need to prevent the modal from opening when clicking on the user img for router link -->
       <router-link :to="{ path: `profile/${keep.creatorId}` }">
         <div class="col-4">
-          <div @click="setActiveProfile(keep.creator.id)">
             <img :src="keep.creator.picture">
-          </div>
         </div>
       </router-link>
     </div>
@@ -70,15 +68,15 @@ setup() {
     //   }
     // },
 
-    async setActiveProfile(profileId){
-      try {
-        const activeProfile = await profilesService.setActiveProfile(profileId)
-        this.getProfileKeeps(activeProfile.id)
-        this.getProfileVaults(activeProfile.id)
-      } catch (error) {
-        Pop.error(error)
-      }
-    }
+    // async setActiveProfile(profileId){
+    //   try {
+    //     const activeProfile = await profilesService.setActiveProfile(profileId)
+    //     this.getProfileKeeps(activeProfile.id)
+    //     this.getProfileVaults(activeProfile.id)
+    //   } catch (error) {
+    //     Pop.error(error)
+    //   }
+    // }
   };
 },
 };

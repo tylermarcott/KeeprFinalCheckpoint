@@ -7,11 +7,11 @@
     </div>
     <div class="row">
       <div class="col-1">
-        <img class="profile-img" :src="profile.picture" :alt="profile.name">
+        <img class="profile-img" :src="profile?.picture" :alt="profile?.name">
       </div>
       <div class="col-12">
         <h3>
-          {{ profile.name }}
+          {{ profile?.name }}
         </h3>
       </div>
       <div class="col-12">
@@ -43,28 +43,31 @@ import Pop from "../utils/Pop.js";
 import { profilesService } from "../services/ProfilesService.js";
 import { AppState } from "../AppState.js";
 import { logger } from "../utils/Logger.js";
+import { useRoute } from "vue-router";
 
 // TODO: to fix this, I need to fix the router.js so the route.params can be used, I need the profile ID in the route. When the id is in the route, I can pull that route id, get my profile by id, then get the keeps and vaults by the profile. Everything needs to be done on this page, not on the keep card****
 
 export default {
   setup() {
-    // watchEffect(()=> {
-    //   getActiveProfile(),
-    //   getProfileKeeps(),
-    //   getProfileVaults()
-    // })
+    const route = useRoute()
+    watchEffect(()=> {
+      getActiveProfile()
+    })
 
-    // function getActiveProfile(){
+    // TODO: split this into different functions, but it works for now
+    async function getActiveProfile(){
+      try {
+        logger.log('getting the following profile id from route:', route.params.profileId)
+        await profilesService.getProfileById(route.params.profileId)
+        await profilesService.getProfileKeeps(route.params.profileId)
+        await profilesService.getProfileVaults(route.params.profileId)
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
+    // async function getProfileKeeps(profileId) {
     //   try {
-    //     const activeProfile = profilesService.getActiveProfile()
-    //     return activeProfile
-    //   } catch (error) {
-    //     Pop.error(error)
-    //   }
-    // }
-    // async function getProfileKeeps() {
-    //   try {
-    //     const profileId = this.getActiveProfile.id
+    //     const profileId = this.getProfileById.id
     //     await profilesService.getProfileKeeps(profileId)
     //   } catch (error) {
     //     Pop.error(error)
@@ -73,7 +76,7 @@ export default {
 
     // async function getProfileVaults() {
     //   try {
-    //     const profileId = this.getActiveProfile.id
+    //     const profileId = this.getProfileById.id
     //     await profilesService.getProfileVaults(profileId)
     //   } catch (error) {
     //     Pop.error(error)

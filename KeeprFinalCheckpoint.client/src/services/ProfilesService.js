@@ -13,14 +13,16 @@ class ProfilesService{
   async getProfileById(profileId){
     const res = await api.get(`api/profiles/${profileId}`)
     const foundProfile = res.data
+    AppState.activeProfile = foundProfile
+    logger.log('we have the following active profile now in appstate:', AppState.activeProfile)
     return foundProfile
   }
-  async setActiveProfile(profileId){
-    const foundProfile = await this.getProfileById(profileId)
-    AppState.activeProfile = foundProfile
-    logger.log('got the following active profile in the appstate:', AppState.activeProfile)
-    return AppState.activeProfile
-  }
+  // async setActiveProfile(profileId){
+  //   const foundProfile = await this.getProfileById(profileId)
+  //   AppState.activeProfile = foundProfile
+  //   logger.log('got the following active profile in the appstate:', AppState.activeProfile)
+  //   return AppState.activeProfile
+  // }
 
   async getProfileKeeps(profileId){
     const res = await api.get(`api/profiles/${profileId}/keeps`)
