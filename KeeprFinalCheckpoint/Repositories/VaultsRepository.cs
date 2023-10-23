@@ -82,7 +82,7 @@ public class VaultsRepository : IRepository<Vault, int>
         return rows;
     }
 
-    internal List<Vault> GetVaultsByProfile(string profileId)
+    internal List<Vault> GetVaultsByProfile(string accountId)
     {
         string sql = @"
         SELECT
@@ -90,14 +90,14 @@ public class VaultsRepository : IRepository<Vault, int>
         profile.*
         FROM vaults
         JOIN accounts profile ON profile.id = vaults.creatorId
-        WHERE vaults.creatorId = @profileId
+        WHERE vaults.creatorId = @accountId
         ;";
 
         List<Vault> foundVaults = _db.Query<Vault, Profile, Vault>(sql, (vault, profile) =>
         {
             vault.Creator = profile;
             return vault;
-        }, new { profileId }).ToList();
+        }, new { accountId }).ToList();
         return foundVaults;
     }
 }

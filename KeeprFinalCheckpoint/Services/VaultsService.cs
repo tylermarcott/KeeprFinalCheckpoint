@@ -7,27 +7,24 @@ namespace KeeprFinalCheckpoint.Services;
 
 public class VaultsService
 {
-    private readonly VaultsRepository _vaultsRepo;
-    private readonly KeepsRepository _keepsRepo;
-
+    private readonly VaultsRepository _repo;
     private readonly VaultKeepsRepository _vaultKeepsRepo;
 
-    public VaultsService(VaultsRepository repo, KeepsRepository keepsRepo, VaultKeepsRepository vaultKeepsRepo)
+    public VaultsService(VaultsRepository repo, VaultKeepsRepository vaultKeepsRepo)
     {
-        _vaultsRepo = repo;
-        _keepsRepo = keepsRepo;
+        _repo = repo;
         _vaultKeepsRepo = vaultKeepsRepo;
     }
 
     internal Vault Create(Vault vaultData)
     {
-        Vault newVault = _vaultsRepo.Create(vaultData);
+        Vault newVault = _repo.Create(vaultData);
         return newVault;
     }
 
     internal Vault GetById(int vaultId, string userId)
     {
-        Vault foundVault = _vaultsRepo.GetById(vaultId);
+        Vault foundVault = _repo.GetById(vaultId);
         if (foundVault == null) throw new Exception("No vault was found.");
         return foundVault;
     }
@@ -39,20 +36,20 @@ public class VaultsService
         return keepsInVault;
     }
 
-    // internal Task<List<Vault>> GetVaultsByAccount(string userId)
-    // {
-    //     List<Vault> myVaults = _vaultsRepo.GetVaultsByProfile(userId);
-    //     return myVaults;
-    // }
+    internal List<Vault> GetVaultsByAccount(string accountId)
+    {
+        List<Vault> myVaults = _repo.GetVaultsByProfile(accountId);
+        return myVaults;
+    }
 
     internal Vault Update(Vault updateData)
     {
-        Vault original = _vaultsRepo.GetById(updateData.Id);
+        Vault original = _repo.GetById(updateData.Id);
         original.Name = updateData.Name ?? original.Name;
         original.Description = updateData.Description ?? original.Description;
         original.Img = updateData.Img ?? original.Img;
 
-        _vaultsRepo.Update(original);
+        _repo.Update(original);
 
         return original;
     }
@@ -63,7 +60,7 @@ public class VaultsService
         Vault foundVault = this.GetById(vaultId, userId);
         if (foundVault == null) throw new Exception("No vault was found.");
         if (foundVault.CreatorId != userId) throw new Exception("This is not your vault to delete");
-        int rows = _vaultsRepo.Delete(vaultId);
+        int rows = _repo.Delete(vaultId);
         if (rows < 1) throw new Exception("Something unexpected has happened, returned with < 1 rows deleted.");
         if (rows > 1) throw new Exception("Something unexpected has happened, returned with > 1 rows deleted.");
     }
