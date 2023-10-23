@@ -152,7 +152,7 @@ public class KeepsRepository : IRepository<Keep, int>
             vaultCreator.*,
         FROM keeps
             JOIN vaultKeeps keepCreator ON keepCreator.id = keeps.creatorId
-            JOIN vaults ON vaults.creatorId = vaultCreator.id
+            JOIN vaults ON vaults.id = vaultCreator.vaultId
             JOIN vaultKeeps vaultCreator ON vaultCreator.id = vaults.creatorId
         WHERE vaultKeeps.vaultId = 15
         ;";

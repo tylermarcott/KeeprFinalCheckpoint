@@ -191,3 +191,16 @@ FROM keeps
     JOIN vaultKeeps vaultKeepCreator ON vaultKeepCreator.creatorId = '650a24a4fe35b4c25b2ada9f'
     JOIN vaultKeeps vaultKeepVault ON vaultKeepVault.vaultId = 1
 WHERE keeps.creatorId = '650a24a4fe35b4c25b2ada9f'
+
+-- prototype 4
+
+SELECT
+    keeps.*,
+    keepCreator.*,
+    vaults.*,
+    vaultCreator.*
+FROM keeps
+    JOIN vaultKeeps keepCreator ON keepCreator.id = keeps.creatorId
+    JOIN vaults ON vaults.id = vaultCreator.vaultId
+    JOIN vaultKeeps vaultCreator ON vaultCreator.id = vaults.creatorId
+WHERE vaultKeeps.vaultId = 1
