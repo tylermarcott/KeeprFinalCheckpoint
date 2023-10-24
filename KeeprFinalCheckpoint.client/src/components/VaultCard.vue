@@ -1,4 +1,6 @@
 <template>
+  <!-- TODO: add syntax to where the user is pushed to the homepage if they try to open a vault that is set to private. -->
+  <!-- NOTE: there is an example of a router push in the keep form -->
   <router-link :to="{ name: 'Vault' }">
     <section class="container">
         <div class="row">

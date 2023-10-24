@@ -6,6 +6,13 @@ import { api } from "./AxiosService.js";
 
 class KeepsService{
 
+  async createKeep(data){
+    const res = await api.post('api/keeps', data)
+    logger.log('just created the following keep:', res.data)
+    AppState.keeps.push(new Keep(res.data))
+    // FIXME: throws a backdrop error for modal once the form is submitted
+  }
+
   async getKeeps(){
     const res = await api.get('api/keeps')
     AppState.keeps = res.data.map(keep => new Keep(keep))

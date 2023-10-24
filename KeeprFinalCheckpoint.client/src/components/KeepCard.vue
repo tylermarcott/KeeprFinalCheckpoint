@@ -47,6 +47,7 @@ setup() {
     async setActiveKeep(keepId){
       try {
         keepsService.setActiveKeep(keepId)
+        // Modal.getOrCreateInstance('#show-keep-details').hide()
       } catch (error) {
         Pop.error(error)
       }

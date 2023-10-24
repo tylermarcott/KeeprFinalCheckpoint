@@ -3,7 +3,7 @@
     <form @submit.prevent="createKeep">
       <div class="mb-3">
         <label for="title" class="form-label">Keep Title</label>
-        <input v-model="keepData.title" type="title" class="form-control" id="keepTitle"
+        <input v-model="keepData.name" type="title" class="form-control" id="keepTitle"
           placeholder="Title..." required="true">
       </div>
       <div class="mb-3">
@@ -43,7 +43,9 @@ export default {
         try {
           let newKeep = await keepsService.createKeep(keepData.value)
           resetForm()
-          Modal.getOrCreateInstance('#create-keep').hide()
+          // FIXME: have to hide form once it is submitted.
+          // NOTE: good example of hiding a modal, here.
+          // Modal.getOrCreateInstance('#create-keep').hide()
           // FIXME: once you have details page created, reactivate this.
           // router.push({ name: 'Event Details', params: { eventId: newRecipe.id } })
 
