@@ -11,8 +11,13 @@
           <!-- FIXME: ok, so display form works now, but the modal is on top of the form (everything is grayed out), and it won't go away. Need to fix this next. -->
           <ul class="dropdown-menu">
             <li>    
-              <a class="dropdown-item" href="#" @click.stop>
-                <ModalWrapper id="create-keep" v-if="user.isAuthenticated">
+              <a class="dropdown-item" data-bs-target="#keep-create" data-bs-toggle="modal" href="#" @click.stop>
+
+
+
+                new keep
+
+                <!-- <ModalWrapper id="create-keep" v-if="user.isAuthenticated">
                   <template #button>
                     <button class="btn btn-light" @click.stop>
                       new keep
@@ -21,7 +26,7 @@
                   <template #body>
                     <KeepForm/>
                   </template>
-                </ModalWrapper>
+                </ModalWrapper> -->
               </a>
             </li>
             <li><a class="dropdown-item" href="#">new vault
@@ -65,7 +70,7 @@ export default {
       user: computed(()=> AppState.user)
     }
   },
-  components: { Login, ModalWrapper }
+  components: { Login}
 }
 </script>
 

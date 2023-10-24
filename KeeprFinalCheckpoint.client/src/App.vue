@@ -7,6 +7,11 @@
   </main>
    <footer>
   </footer>
+  <ModalWrapper :id="'keep-create'">
+    <template #body>
+      <KeepForm/>
+    </template>
+  </ModalWrapper>
 </template>
 
 <script>

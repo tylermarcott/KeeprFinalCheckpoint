@@ -15,7 +15,9 @@
         {{ keep?.name }}   
       </div>
       <!-- FIXME: need to prevent the modal from opening when clicking on the user img for router link -->
-      <router-link :to="{ path: `profile/${keep?.creatorId}` }">
+      <!-- NOTE: put this router link into keep details modal!!!! -->
+      <!-- NOTE: Jake says 'move your modal wrapper down man!''  -->
+      <router-link :to="{ path: `profile/${keep?.creatorId}` }" @click.stop.prevent="modal.getOrCreateInstance('#show-keep-details').hide()">
         <div class="col-4">
             <img :src="keep?.creator.picture">
         </div>
@@ -29,15 +31,17 @@ import { computed } from "vue";
 import { AppState } from "../AppState.js";
 import { Keep } from "../models/Keep.js";
 import Pop from "../utils/Pop.js";
-import {profilesService} from '../services/ProfilesService.js'
 import { keepsService } from "../services/KeepsService.js";
+import { Modal } from "bootstrap";
 
 
 
 export default {
   props: {keep: {type: Object || Keep, required: true}},
 setup() {
+  const modal = Modal;
   return {
+    modal,
     user: computed(()=> AppState.user),
     async setActiveKeep(keepId){
       try {
