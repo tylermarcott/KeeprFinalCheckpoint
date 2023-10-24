@@ -12,6 +12,22 @@
         <img :src="account.picture" :alt="account.name">
       </div>
     </div>
+    <!-- STUB: edit account -->
+    <div>
+      <div class="col-8">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Edit Account <i class="mdi mdi-dots-horizontal"></i>
+        </button>
+        <!-- FIXME: ok, so display form works now, but the modal is on top of the form (everything is grayed out), and it won't go away. Need to fix this next. -->
+        <ul class="dropdown-menu">
+          <li>    
+            <a class="dropdown-item" data-bs-target="#keep-create" data-bs-toggle="modal" href="#" @click.stop>
+              Edit Account
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
     <div class="row">
       <div class="col-8">
         <h3>

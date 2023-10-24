@@ -16,6 +16,12 @@
     </template>
   </ModalWrapper>
 
+  <ModalWrapper :id="'account-edit'">
+      <template #body>
+        <AccountForm/>
+      </template>
+    </ModalWrapper>
+
 
   <ModalWrapper :id="'vault-create'">
     <template #body>
