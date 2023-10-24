@@ -6,7 +6,7 @@
         <div class="row">
           <div class="col-12">
             <div @click="getVaultById(vault?.id)">
-              <button v-if="vault?.creatorId == user.id" class="btn btn-danger">
+              <button @click="deleteVault(vault.id)" v-if="vault?.creatorId == user.id" class="btn btn-danger">
                 <i class="mdi mdi-cancel"></i>
               </button>
               <img :src="vault?.img">
@@ -46,6 +46,16 @@ setup() {
       try {
         const vaultId = AppState.activeVault.id
         await vaultsService.getKeepsInVault(vaultId)
+      } catch (error) {
+        Pop.error(error)
+      }
+    },
+// FIXME: this deletes, but I get errors because it still pushes to the vault page on-click
+    async deleteVault(vaultId){
+      try {
+        if(Pop.confirm('Are you sure you want to delete this vault?', 'confirm')){
+          await vaultsService.deleteVault(vaultId)
+        }
       } catch (error) {
         Pop.error(error)
       }

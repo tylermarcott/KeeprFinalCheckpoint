@@ -1,10 +1,5 @@
 <template>
 <div class="container">
-
-
-<!-- TODO: work on this next -->
-
-
   <section>
     <div class="row">
       <div class="col-8">
