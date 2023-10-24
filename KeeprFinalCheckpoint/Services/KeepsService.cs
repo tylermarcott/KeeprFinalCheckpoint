@@ -27,6 +27,7 @@ public class KeepsService
 
     internal Keep GetById(int keepId, string userId, bool increaseViews = false)
     {
+        // FIXME: see example to properly do count increase in CultMemberService on InstaCult
         Keep foundKeep = _repo.GetById(keepId);
         if (foundKeep == null) throw new Exception("No keep found.");
         if (increaseViews && foundKeep.CreatorId != userId)
@@ -36,13 +37,6 @@ public class KeepsService
         return foundKeep;
     }
 
-    // FIXME: this doesn't have any checks for userId, implement this if needed.
-    // internal List<Keep> GetKeepsInVault(int vaultId, string userId)
-    // {
-    //     Vault foundVault = _vaultsService.GetById(vaultId);
-    //     List<Keep> foundKeeps = _repo.GetKeepsInVault(vaultId);
-    //     return foundKeeps;
-    // }
 
     internal Keep Update(Keep updateData, int keepId, string userId)
     {

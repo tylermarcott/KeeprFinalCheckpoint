@@ -16,6 +16,7 @@ public class VaultKeepsService
 
     internal VaultKeep Create(VaultKeep vaultKeepData, string userId)
     {
+        // FIXME: need to prevent user from being about to create a vaultKeep? I'm kind of confused of what I am trying to prevent, but this is the last test I need to pass.
         Vault foundVault = _vaultsService.GetById(vaultKeepData.VaultId, userId);
         if (foundVault.IsPrivate) throw new Exception("This vault is private, you cannot access this.");
         VaultKeep newVaultKeep = _repo.Create(vaultKeepData);
