@@ -30,6 +30,7 @@ import { AppState } from "../AppState.js";
 import { Keep } from "../models/Keep.js";
 import Pop from "../utils/Pop.js";
 import {profilesService} from '../services/ProfilesService.js'
+import { keepsService } from "../services/KeepsService.js";
 
 
 
@@ -37,7 +38,14 @@ export default {
   props: {keep: {type: Object || Keep, required: true}},
 setup() {
   return {
-    user: computed(()=> AppState.user)
+    user: computed(()=> AppState.user),
+    async setActiveKeep(keepId){
+      try {
+        keepsService.setActiveKeep(keepId)
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
   };
 },
 };
