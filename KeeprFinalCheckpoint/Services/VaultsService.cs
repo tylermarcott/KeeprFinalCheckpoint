@@ -25,8 +25,8 @@ public class VaultsService
     // FIXME: there's something wrong with the logic in here. 
 
     // NOTE: not passing the following tests:
-    // edit vault NOTED
-    // get vault by id (public) NOTED
+    // edit vault NOTED ✅
+    // get vault by id (public) NOTED ✅
     // get a user's vaults
     // get private vault (invalid-auth) NOTED
     // edit vault (invalid auth) NOTED 
