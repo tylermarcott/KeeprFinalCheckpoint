@@ -54,13 +54,18 @@
 <script>
 import { computed, watchEffect } from 'vue';
 import { AppState } from '../AppState';
+import { accountService } from "../services/AccountService.js";
 export default {
   setup() {
     watchEffect(()=> {
       getUserKeeps()
+      getMyVaults()
     });
+    async function getMyVaults(){
+      await accountService.getMyVaults()
+    }
     async function getUserKeeps(){
-      // FIXME: need to add this next, I need to go into backend and make get my vaults first
+      
     }
     return {
       account: computed(() => AppState.account)
