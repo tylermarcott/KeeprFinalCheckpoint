@@ -46,6 +46,7 @@ public class KeepsController : ControllerBase
 
 
     // FIXME: see example on HelpReviews, go to restaurantsController, see GetById example for how to increase views
+    // TODO: check and make sure this works, have to be able to add vaultKeeps first
 
     [HttpGet("{keepId}")]
 
@@ -54,7 +55,7 @@ public class KeepsController : ControllerBase
         try
         {
             Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
-            Keep foundKeep = _keepsService.GetById(keepId, userInfo?.Id, true);
+            Keep foundKeep = _keepsService.GetById(keepId);
             return Ok(foundKeep);
         }
         catch (Exception e)

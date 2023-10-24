@@ -24,10 +24,9 @@ public class KeepsService
         List<Keep> keeps = _repo.Get();
         return keeps;
     }
-    // FIXME: need to add syntax for increasing kept count on keeps that are kept, and views on keeps. These both need to be updated in SQL, so you have to increment the count, then update the body.
-    internal Keep GetById(int keepId, string userId, bool increaseViews = false)
+
+    internal Keep GetById(int keepId)
     {
-        // FIXME: see example to properly do count increase in CultMemberService on InstaCult
         Keep foundKeep = _repo.GetById(keepId);
         if (foundKeep == null) throw new Exception("No keep found.");
 

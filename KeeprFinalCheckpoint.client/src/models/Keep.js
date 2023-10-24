@@ -12,6 +12,7 @@ export class Keep{
     this.creator = data.creator
   }
 }
+// FIXME: have to be able to add vaultKeep id to a keep, just like we do in the backend. Check instacult I think for ref.
 
 // export class VaultKeep extends Keep{
 //   constructor(){

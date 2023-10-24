@@ -8,10 +8,13 @@ public class VaultKeepsService
     private readonly VaultKeepsRepository _repo;
     private readonly VaultsService _vaultsService;
 
-    public VaultKeepsService(VaultKeepsRepository repo, VaultsService vaultsService)
+    private readonly KeepsService _keepsService;
+
+    public VaultKeepsService(VaultKeepsRepository repo, VaultsService vaultsService, KeepsService keepsService)
     {
         _repo = repo;
         _vaultsService = vaultsService;
+        _keepsService = keepsService;
     }
 
     // FIXME: whenever a vault keep is created, have to increase keep count and update to corresponding keep.
@@ -21,6 +24,11 @@ public class VaultKeepsService
         if (foundVault.IsPrivate) throw new Exception("This vault is private, you cannot access this.");
         if (foundVault.CreatorId != userId) throw new Exception("You are not allowed to create this vault keep.");
         VaultKeep newVaultKeep = _repo.Create(vaultKeepData);
+
+        Keep foundKeep = _keepsService.GetById(newVaultKeep.KeepId);
+        foundKeep.Kept++;
+        _keepsService.Update(foundKeep);
+
         return newVaultKeep;
     }
 
