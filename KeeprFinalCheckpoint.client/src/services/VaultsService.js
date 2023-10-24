@@ -1,11 +1,23 @@
+import { AppState } from "../AppState.js"
 import { logger } from "../utils/Logger.js"
+import { api } from "./AxiosService.js"
 
 
 class VaultsService{
 
   async setActiveVault(vaultId){
-    logger.log('setting the active vault with the following id:', vaultId)
-    // TODO: next, create getVaultById, call that here, then build out the vault page with the active vault. Or maybe it's not a vault page, it's a modal? have to double check.
+    this.getVaultById(vaultId)
+  }
+
+  async getVaultById(vaultId){
+    const res = await api.get(`api/vaults/${vaultId}`)
+    AppState.activeVault = res.data
+    logger.log('we have the following vault as our active vault now:', AppState.activeVault)
+  }
+
+  async getKeepsInVault(vaultId){
+    const res = await api.get(`api/vaults/${vaultId}/keeps`)
+    logger.log('here are our keeps we got in our vault:', res.data)
   }
 }
 

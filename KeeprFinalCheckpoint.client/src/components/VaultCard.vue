@@ -3,7 +3,7 @@
     <section class="container">
         <div class="row">
           <div class="col-12">
-            <div @click="setActiveVault(vault?.id)">
+            <div @click="getVaultById(vault?.id)">
               <button v-if="vault?.creatorId == user.id" class="btn btn-danger">
                 <i class="mdi mdi-cancel"></i>
               </button>
@@ -32,9 +32,18 @@ export default {
 setup() {
   return {
     user: computed(()=> AppState.user),
-    async setActiveVault(vaultId){
+    async getVaultById(vaultId){
       try {
-        await vaultsService.setActiveVault(vaultId)
+        await vaultsService.getVaultById(vaultId)
+        this.getKeepsInVault(vaultId)
+      } catch (error) {
+        Pop.error(error)
+      }
+    },
+      async getKeepsInVault(){
+      try {
+        const vaultId = AppState.activeVault.id
+        await vaultsService.getKeepsInVault(vaultId)
       } catch (error) {
         Pop.error(error)
       }
