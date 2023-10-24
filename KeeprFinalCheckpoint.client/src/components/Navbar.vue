@@ -12,26 +12,14 @@
           <ul class="dropdown-menu">
             <li>    
               <a class="dropdown-item" data-bs-target="#keep-create" data-bs-toggle="modal" href="#" @click.stop>
-
-
-
                 new keep
-
-                <!-- <ModalWrapper id="create-keep" v-if="user.isAuthenticated">
-                  <template #button>
-                    <button class="btn btn-light" @click.stop>
-                      new keep
-                    </button>
-                  </template>
-                  <template #body>
-                    <KeepForm/>
-                  </template>
-                </ModalWrapper> -->
               </a>
             </li>
-            <li><a class="dropdown-item" href="#">new vault
-
-            </a></li>
+            <li>
+              <a class="dropdown-item" data-bs-target="#vault-create" data-bs-toggle="modal" href="#" @click.stop>
+                new vault
+              </a>
+            </li>
           </ul>
         </div>
     </div>
@@ -63,7 +51,6 @@
 import { computed } from "vue";
 import Login from './Login.vue';
 import { AppState } from "../AppState.js";
-import ModalWrapper from '../components/ModalWrapper.vue'
 export default {
   setup() {
     return {

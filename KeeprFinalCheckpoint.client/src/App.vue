@@ -7,9 +7,19 @@
   </main>
    <footer>
   </footer>
+
+  <!-- NOTE: does Jake mean bringing ALL the modal wrappers into the app.vue when he said bring them out...? Maybe that would solve the modal issues... -->
+
   <ModalWrapper :id="'keep-create'">
     <template #body>
       <KeepForm/>
+    </template>
+  </ModalWrapper>
+
+
+  <ModalWrapper :id="'vault-create'">
+    <template #body>
+      <VaultForm/>
     </template>
   </ModalWrapper>
 </template>

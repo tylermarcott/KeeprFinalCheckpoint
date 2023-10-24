@@ -1,10 +1,18 @@
 import { AppState } from "../AppState.js"
 import { Keep } from "../models/Keep.js"
+import { Vault } from "../models/Vault.js"
 import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 
 
 class VaultsService{
+
+  async createVault(vaultData){
+    logger.log('here is our vault data for create:', vaultData)
+    const res = await api.post('api/vaults', vaultData)
+    AppState.activeVaults.push(new Vault(res.data))
+    logger.log('created a new vault with the following data:', res.data)
+  }
 
   async setActiveVault(vaultId){
     this.getVaultById(vaultId)
