@@ -32,7 +32,7 @@ public class KeepsService
         if (foundKeep == null) throw new Exception("No keep found.");
         if (increaseViews && foundKeep.CreatorId != userId)
         {
-            this.IncreaseViews(foundKeep);
+            foundKeep.Views++;
         }
         return foundKeep;
     }
