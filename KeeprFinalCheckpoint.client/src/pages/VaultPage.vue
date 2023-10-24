@@ -1,5 +1,4 @@
 <template>
-  VAULT PAGE
   <div class="container">
     <section>
       <div class="row justify-content-center">
@@ -10,8 +9,39 @@
           {{ vault?.name }} by {{ vault?.creator.name }}
         </h4>
       </div>
+      <div class="row text-center mb-5">
+        <h5>
+          {{ keepLength }} Keeps
+        </h5>
+      </div>
     </section>
-  </div>
+    <section>
+      
+      <div class="col-12 col-md-7 col-lg-9">
+        <div class="masonry-container">
+          <div class="bg-dark text-light" v-for="keep in keeps" :key="keep.id">
+            
+            <ModalWrapper id="show-keep-details">
+              <template #button>
+              <ProfileKeepCard :keep="keep"/>
+            </template>
+            <template #body>
+              <KeepDetails :keep="keep"/>
+            </template>
+          </ModalWrapper>
+
+          <!-- <button v-if="keep.creatorId == user.id" class="btn btn-danger">
+            <i class="mdi mdi-cancel"></i>
+          </button>
+          <img :src="keep.img">
+          {{ keep.name }}
+          {{ keep.creator.name }} -->
+          
+        </div> 
+      </div>
+    </div>
+  </section>
+</div>
 </template>
 
 <script>
@@ -22,7 +52,9 @@ import { AppState } from "../AppState.js";
 export default {
 setup() {
   return {
-    vault: computed(()=> AppState.activeVault)
+    vault: computed(()=> AppState.activeVault),
+    keeps: computed(()=> AppState.activeKeeps),
+    keepLength: computed(()=> AppState.activeKeeps.length)
   };
 },
 };
@@ -35,5 +67,16 @@ setup() {
   object-position: center;
   height: 20vh;
   width: 50vh;
+}
+
+.masonry-container{
+  gap: 1.25em;
+  columns: 200px;
+  column-gap: 1.25em;
+  img{
+    border-radius: 10px;
+    width: 100%;
+    margin-bottom: 1.25em;
+  }
 }
 </style>

@@ -61,13 +61,13 @@ export default {
 
 <style lang="scss" scoped>
 .masonry-container{
-  $gap: 1.25em;
+  gap: 1.25em;
   columns: 200px;
-  column-gap: $gap;
+  column-gap: 1.25em;
   img{
     border-radius: 10px;
     width: 100%;
-    margin-bottom: $gap;
+    margin-bottom: 1.25em;
   }
 }
 </style>
