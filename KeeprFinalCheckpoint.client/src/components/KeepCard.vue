@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12">
         <div @click="setActiveKeep(keep?.id)">
-          <button v-if="keep?.creatorId == user.id" class="btn btn-danger">
+          <button @click="deleteKeep(keep.id)" v-if="keep?.creatorId == user.id" class="btn btn-danger">
             <i class="mdi mdi-cancel"></i>
           </button>
           <img :src="keep?.img">
@@ -48,6 +48,16 @@ setup() {
       try {
         keepsService.setActiveKeep(keepId)
         // Modal.getOrCreateInstance('#show-keep-details').hide()
+      } catch (error) {
+        Pop.error(error)
+      }
+    },
+    async deleteKeep(keepId){
+      try {
+        // FIXME: have to make this right, it doesn't wait for confirmation to delete as it stands.
+        if(Pop.confirm('Are you sure you want to delete this keep?', 'confirm')){
+          await keepsService.deleteKeep(keepId)
+        }
       } catch (error) {
         Pop.error(error)
       }
