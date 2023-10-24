@@ -22,22 +22,12 @@ public class VaultsService
         return newVault;
     }
 
-    // FIXME: there's something wrong with the logic in here. 
 
-    // NOTE: not passing the following tests:
-    // edit vault NOTED ✅
-    // get vault by id (public) NOTED ✅
-    // get a user's vaults
-    // get private vault (invalid-auth) NOTED
-    // edit vault (invalid auth) NOTED 
-    // create vaultKeep (invalid auth) NOTED
-    // get keeps in a private vault (invalid auth) NOTED
-
+    // FIXME: SYNTAX for check:
+    // foundVaults = foundVaults.FindAll(vault => vault.IsPrivate == false || vault.CreatorId == userId)
 
     internal Vault GetById(int vaultId, string userId)
     {
-        // FIXME: this is preventing 2/7 tests to fail, giving same error as the edit vault when it doesn't work
-        // FIXME: add syntax to prevent someone from getting a vault that is marked private
         Vault foundVault = _repo.GetById(vaultId);
         if (foundVault == null) throw new Exception("No vault was found.");
         if (foundVault.IsPrivate) throw new Exception("Vault is private, access denied");
@@ -47,7 +37,8 @@ public class VaultsService
     // NOTE: this needs to be done in the vaultKeeps repo.
     internal List<VaultKeepViewModel> GetKeepsInVault(int vaultId, string userId)
     {
-        // FIXME: need to add syntax to make sure someone can't get keeps in a private vault
+        Vault foundVault = this.GetById(vaultId, userId);
+        if (foundVault.IsPrivate) throw new Exception("Vault is private, you do not have access.");
         List<VaultKeepViewModel> keepsInVault = _vaultKeepsRepo.GetKeepsInVault(vaultId, userId);
         return keepsInVault;
     }
@@ -58,10 +49,12 @@ public class VaultsService
         return myVaults;
     }
 
-    internal Vault Update(Vault updateData)
+    internal Vault Update(Vault updateData, string userId)
     {
-        // FIXME: add auth so that invalid user cannot edit vault. This issue is causing 2/7 tests not to pass
         Vault original = _repo.GetById(updateData.Id);
+
+        if (original.CreatorId != userId) throw new Exception("This is not your vault to edit!");
+
         original.Name = updateData.Name ?? original.Name;
         original.Description = updateData.Description ?? original.Description;
         original.Img = updateData.Img ?? original.Img;

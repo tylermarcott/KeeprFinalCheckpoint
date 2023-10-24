@@ -69,9 +69,6 @@ public class VaultsController : ControllerBase
     }
 
 
-
-    // FIXME: need to add syntax that prevents an unauthorized user from being able to edit the vault.
-
     [Authorize]
     [HttpPut("{vaultId}")]
     public async Task<ActionResult<Vault>> Update([FromBody] Vault updateData, int vaultId)
@@ -79,9 +76,9 @@ public class VaultsController : ControllerBase
         try
         {
             Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
-            updateData.CreatorId = userInfo.Id;
+            // updateData.CreatorId = userInfo.Id;
             updateData.Id = vaultId;
-            Vault updatedVault = _vaultsService.Update(updateData);
+            Vault updatedVault = _vaultsService.Update(updateData, userInfo.Id);
             return updateData;
         }
         catch (Exception e)

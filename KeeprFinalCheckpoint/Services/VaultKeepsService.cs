@@ -6,15 +6,18 @@ namespace KeeprFinalCheckpoint.Services;
 public class VaultKeepsService
 {
     private readonly VaultKeepsRepository _repo;
+    private readonly VaultsService _vaultsService;
 
-    public VaultKeepsService(VaultKeepsRepository repo)
+    public VaultKeepsService(VaultKeepsRepository repo, VaultsService vaultsService)
     {
         _repo = repo;
+        _vaultsService = vaultsService;
     }
 
-    internal VaultKeep Create(VaultKeep vaultKeepData)
+    internal VaultKeep Create(VaultKeep vaultKeepData, string userId)
     {
-        // FIXME: need to add in syntax here to check that the user is authorized in order to create a vaultKeep
+        Vault foundVault = _vaultsService.GetById(vaultKeepData.VaultId, userId);
+        if (foundVault.IsPrivate) throw new Exception("This vault is private, you cannot access this.");
         VaultKeep newVaultKeep = _repo.Create(vaultKeepData);
         return newVaultKeep;
     }
