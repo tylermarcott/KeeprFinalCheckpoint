@@ -12,3 +12,9 @@ export class Keep{
     this.creator = data.creator
   }
 }
+
+// export class VaultKeep extends Keep{
+//   constructor(){
+
+//   }
+// }

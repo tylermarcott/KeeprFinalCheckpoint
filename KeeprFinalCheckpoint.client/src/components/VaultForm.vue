@@ -1,4 +1,6 @@
 <template>
+
+  <!-- FIXME: add syntax to be able t mark as priavte (checkbox) -->
   <div class="container form-class">
     <form @submit.prevent="createVault">
       <div class="mb-3">
