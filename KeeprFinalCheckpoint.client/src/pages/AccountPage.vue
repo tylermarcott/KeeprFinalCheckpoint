@@ -34,7 +34,11 @@
     </div>
     <div class="row">
       <div class="col-8">
-        get vaults by account here
+        <div class="masonry-container">
+          <div v-for="vault in vaults" :key="vault.id">
+            <VaultCard :vault="vault"/>
+          </div>
+        </div>
       </div>
     </div>
     <div class="row">
@@ -55,20 +59,24 @@
 import { computed, watchEffect } from 'vue';
 import { AppState } from '../AppState';
 import { accountService } from "../services/AccountService.js";
+import { profilesService } from "../services/ProfilesService.js";
 export default {
   setup() {
     watchEffect(()=> {
       getUserKeeps()
       getMyVaults()
     });
-    async function getMyVaults(){
+    const userId = computed(()=> AppState.user.id)
+    async function getMyVaults(userId){
       await accountService.getMyVaults()
+      await profilesService.getProfileKeeps()
     }
     async function getUserKeeps(){
       
     }
     return {
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      vaults: computed(()=> AppState.activeVaults)
     }
   }
 }
@@ -77,5 +85,16 @@ export default {
 <style scoped>
 img {
   max-width: 100px;
+}
+
+.masonry-container{
+  gap: 1.25em;
+  columns: 200px;
+  column-gap: 1.25em;
+  img{
+    border-radius: 10px;
+    width: 100%;
+    margin-bottom: 1.25em;
+  }
 }
 </style>
