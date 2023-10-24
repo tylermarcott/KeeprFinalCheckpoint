@@ -48,7 +48,11 @@
     </div>
     <div class="row">
       <div class="col-8">
-        get keeps by account here
+        <div class="masonry-container">
+          <div v-for="keep in keeps" :key="keep.id">
+            <ProfileKeepCard :keep="keep"/>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -66,17 +70,18 @@ export default {
       getUserKeeps()
       getMyVaults()
     });
-    const userId = computed(()=> AppState.user.id)
-    async function getMyVaults(userId){
+    async function getMyVaults(){
       await accountService.getMyVaults()
-      await profilesService.getProfileKeeps()
+      const userId = AppState.user.id
+      await profilesService.getProfileKeeps(userId)
     }
     async function getUserKeeps(){
       
     }
     return {
       account: computed(() => AppState.account),
-      vaults: computed(()=> AppState.activeVaults)
+      vaults: computed(()=> AppState.activeVaults),
+      keeps: computed(()=> AppState.activeKeeps)
     }
   }
 }
