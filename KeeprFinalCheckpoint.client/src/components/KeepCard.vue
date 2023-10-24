@@ -52,6 +52,7 @@ setup() {
         Pop.error(error)
       }
     },
+    // FIXME: have to make this reactive and make sure the modal doesn't open when delete is clicked lol
     async deleteKeep(keepId){
       try {
         // FIXME: have to make this right, it doesn't wait for confirmation to delete as it stands.

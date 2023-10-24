@@ -3,7 +3,7 @@
     <router-link class="navbar-brand d-flex text-dark" :to="{ name: 'Home' }">
       Home
     </router-link>
-    <div class="me-4">
+    <div class="me-4" v-if="user.isAuthenticated">
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             create
