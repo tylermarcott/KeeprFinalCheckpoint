@@ -29,13 +29,6 @@
               <KeepDetails :keep="keep"/>
             </template>
           </ModalWrapper>
-
-          <!-- <button v-if="keep.creatorId == user.id" class="btn btn-danger">
-            <i class="mdi mdi-cancel"></i>
-          </button>
-          <img :src="keep.img">
-          {{ keep.name }}
-          {{ keep.creator.name }} -->
           
         </div> 
       </div>
@@ -54,6 +47,7 @@ setup() {
   return {
     vault: computed(()=> AppState.activeVault),
     keeps: computed(()=> AppState.activeKeeps),
+    user: computed(()=> AppState.user),
     keepLength: computed(()=> AppState.activeKeeps.length)
   };
 },

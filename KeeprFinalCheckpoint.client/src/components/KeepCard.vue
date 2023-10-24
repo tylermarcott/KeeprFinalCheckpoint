@@ -14,6 +14,7 @@
       <div class="col-8">
         {{ keep?.name }}   
       </div>
+      <!-- FIXME: see ProjectCard on ArtTerminal to see reference of how to set the background image of the card to the keep or vault image. -->
       <!-- FIXME: need to prevent the modal from opening when clicking on the user img for router link -->
       <!-- NOTE: put this router link into keep details modal!!!! -->
       <!-- NOTE: Jake says 'move your modal wrapper down man!''  -->

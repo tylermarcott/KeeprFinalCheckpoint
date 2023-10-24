@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12">
         <div @click="setActiveKeep(keep?.id)">
-          <button v-if="keep?.creatorId == user.id" class="btn btn-danger">
+          <button @click="deleteKeepFromVault()" v-if="activeVault?.creatorId == user.id" class="btn btn-danger">
             <i class="mdi mdi-cancel"></i>
           </button>
           <img :src="keep?.img">
@@ -14,7 +14,6 @@
       <div class="col-8">
         {{ keep?.name }}
       </div>
-      <!-- FIXME: need to prevent the modal from opening when clicking on the user img for router link -->
 
     </div>
   </section>
@@ -32,9 +31,19 @@ export default {
   setup() {
     return {
       user: computed(() => AppState.user),
+      activeVault: computed(()=> AppState.activeVault),
       async setActiveKeep(keepId) {
         try {
           keepsService.setActiveKeep(keepId)
+        } catch (error) {
+          Pop.error(error)
+        }
+      },
+      // TODO: finish this once you can create a vaultKeep first.
+      async deleteKeepFromVault(){
+        try {
+          const activeVaultId = AppState.activeVault.id
+          // await 
         } catch (error) {
           Pop.error(error)
         }
