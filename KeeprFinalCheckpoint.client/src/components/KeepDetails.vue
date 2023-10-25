@@ -28,7 +28,9 @@
               <VaultDropdown/>
           </div>
           <div class="col-2">
-            save button
+            <button @click="saveKeepToVault(activeKeep.id)" class="btn btn-dark">
+              Save
+            </button>
           </div>
           <div class="col-4">
             profile
@@ -50,7 +52,18 @@ export default {
   props: { keep: { type: Object || Keep, required: true } },
 setup() {
   return {
-    activeKeep: computed(() => AppState.activeKeep)
+    activeKeep: computed(() => AppState.activeKeep),
+    async saveKeepToVault(keepId){
+      try {
+        const vaultId = AppState.activeVault.id
+        const creatorId = AppState.user.id
+
+        const vaultKeepData = {creatorId, vaultId, keepId}
+
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
   };
 },
 };

@@ -18,6 +18,7 @@ public class VaultKeepsService
     }
 
     // FIXME: whenever a vault keep is created, have to increase keep count and update to corresponding keep.
+    // NOTE: so to create a vaultKeep, I need a vault id and a keep id, it seems like I need to be able to create an object that can hold the creatorId, keepId, and vaultId in order to pass this object in and treat it as a sort of automatic form submission.
     internal VaultKeep Create(VaultKeep vaultKeepData, string userId)
     {
         Vault foundVault = _vaultsService.GetById(vaultKeepData.VaultId, userId);
