@@ -37,6 +37,7 @@ public class KeepsService
     }
 
 
+
     internal Keep Update(Keep updateData, int keepId, string userId)
     {
         Keep original = _repo.GetById(keepId);
@@ -44,6 +45,7 @@ public class KeepsService
         original.Name = updateData.Name ?? original.Name;
         original.Description = updateData.Description ?? original.Description;
         original.Img = updateData.Img ?? original.Img;
+        original.Kept = updateData.Kept;
 
         _repo.Update(original);
 

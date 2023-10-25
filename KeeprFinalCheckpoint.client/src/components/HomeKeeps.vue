@@ -4,7 +4,7 @@
 
     <div class="col-12 col-md-8">
       <div class="masonry-container">
-        <div class="text-light" v-for="keep in keeps" :key="keep.id">
+        <div class="text-light mb-3" v-for="keep in keeps" :key="keep.id">
           <!-- <button v-if="keep.creatorId == user.id" class="btn btn-danger">
             <i class="mdi mdi-cancel"></i>
           </button> -->
@@ -50,7 +50,7 @@ export default {
   return { 
     keeps: computed(()=> AppState.keeps),
     user: computed(()=> AppState.user),
-    cardImg: computed(()=> `url(${props.keep.img})`),
+    // cardImg: computed(()=> `url(${props.keep.img})`),
       async getMyVaults() {
         try {
           await accountService.getMyVaults()
