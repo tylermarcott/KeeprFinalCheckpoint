@@ -14,8 +14,9 @@ class VaultKeepsService{
   }
 
   async deleteVaultKeep(vaultKeepId){
-    const res = await api.delete(`api/delete/${vaultKeepId}`)
-    logger.log('deleted the following vaultKeep:', res.data``)
+    logger.log('here is our id of our vaultKeep to delete in our service:', vaultKeepId)
+    const res = await api.delete(`api/vaultKeeps/${vaultKeepId}`)
+    logger.log('deleted the following vaultKeep:', res.data)
     const indexToRemove = AppState.vaultKeeps.findIndex(vaultKeep => vaultKeep.id == vaultKeepId)
     AppState.vaultKeeps.splice(indexToRemove, 1)
   }
