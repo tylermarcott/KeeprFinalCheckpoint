@@ -44,7 +44,9 @@ export default {
       async deleteKeepFromVault(keepId){
         try {
           const activeVaultId = AppState.activeVault.id
-          await vaultKeepsService.deleteKeepFromVault(activeVaultId, keepId)
+          if(await Pop.confirm('Are you sure you want to delete this keep?', 'confirm')){
+            await vaultKeepsService.deleteKeepFromVault(activeVaultId, keepId)
+          }
         } catch (error) {
           Pop.error(error)
         }

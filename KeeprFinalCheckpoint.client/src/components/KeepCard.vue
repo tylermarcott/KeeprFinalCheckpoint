@@ -56,7 +56,7 @@ setup() {
     async deleteKeep(keepId){
       try {
         // FIXME: have to make this right, it doesn't wait for confirmation to delete as it stands. maybe AWAIT something
-        if(Pop.confirm('Are you sure you want to delete this keep?', 'confirm')){
+        if(await Pop.confirm('Are you sure you want to delete this keep?', 'confirm')){
           await keepsService.deleteKeep(keepId)
         }
       } catch (error) {

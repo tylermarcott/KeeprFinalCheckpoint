@@ -40,12 +40,26 @@
 </template>
 
 <script>
-import { computed} from "vue";
+import { computed, onMounted, watchEffect} from "vue";
 import { AppState } from "../AppState.js";
+import { useRouter } from "vue-router";
+import { vaultsService } from "../services/VaultsService.js";
+import { logger } from "../utils/Logger.js";
 
 
 export default {
 setup() {
+
+
+  // FIXME: set active is not working, it's coming too late, need to somehow get route params sooner.
+  // const route = useRouter()
+  // onMounted(()=> {
+  //   setActiveVault()
+  // })
+  // async function setActiveVault(){
+  //   logger.log('setting active vault with the following route param:', route.params.vaultId)
+  //   await vaultsService.setActiveVault(route.params.vaultId)
+  // }
   return {
     vault: computed(()=> AppState.activeVault),
     keeps: computed(()=> AppState.activeKeeps),
