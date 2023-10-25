@@ -10,6 +10,8 @@
 
   <!-- NOTE: does Jake mean bringing ALL the modal wrappers into the app.vue when he said bring them out...? Maybe that would solve the modal issues... -->
 
+  <!-- FIXME: hide these somehow -->
+
   <ModalWrapper :id="'keep-create'">
     <template #body>
       <KeepForm/>
