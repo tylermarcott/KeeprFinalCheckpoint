@@ -40,6 +40,7 @@ export default {
           Pop.error(error)
         }
       },
+      // NOTE: for this delete, see if you can use vue tools and see if the vaultKeepId is actually populating on the keeps that are in the specific vault. If they are, you can use this Id.
       // TODO: finish this once you can create a vaultKeep first.
       async deleteKeepFromVault(keepId){
         try {
