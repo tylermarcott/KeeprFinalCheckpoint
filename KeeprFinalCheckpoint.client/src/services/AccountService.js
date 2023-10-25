@@ -19,6 +19,12 @@ class AccountService {
     AppState.activeVaults = res.data.map(vault => new Vault(vault))
     logger.log('here are myVaults:', AppState.activeVaults)
   }
+
+  async editAccount(accountData){
+    logger.log('Editing account:', accountData)
+    const res = await api.put('http://localhost:3000/account', accountData)
+    AppState.account = new Account(res.data)
+  }
 }
 
 export const accountService = new AccountService()

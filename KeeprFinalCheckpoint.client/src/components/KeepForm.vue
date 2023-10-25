@@ -10,10 +10,6 @@
         <label for="img" class="form-label">Keep Image URL</label>
         <input v-model="keepData.img" type="url" class="form-control" id="keepImg" placeholder="url" required="true">
       </div>
-      <!-- <div class="mb-3">
-        <label for="tags" class="form-label">Keep Tags</label>
-        <input v-model="keepData.tag" class="form-control" id="keepTag" placeholder="tag">
-      </div> -->
         <div class="mb-3">
           <label for="description" class="form-label">Keep Description</label>
           <textarea v-model="keepData.description" class="form-control" id="keepDescription" rows="3"></textarea>
