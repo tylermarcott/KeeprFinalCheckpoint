@@ -29,6 +29,7 @@ public class VaultKeepsService
         VaultKeep newVaultKeep = _repo.Create(vaultKeepData);
 
         Keep foundKeep = _keepsService.GetById(newVaultKeep.KeepId);
+        foundKeep.Views--;
         foundKeep.Kept++;
         _keepsService.Update(foundKeep);
 

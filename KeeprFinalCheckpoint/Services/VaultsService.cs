@@ -26,6 +26,8 @@ public class VaultsService
     // FIXME: SYNTAX for check:
     // foundVaults = foundVaults.FindAll(vault => vault.IsPrivate == false || vault.CreatorId == userId)
 
+    // FIXME: having an issue getting vault if the user is not logged in....... fix this when you get the chance
+
     internal Vault GetById(int vaultId, string userId)
     {
         Vault foundVault = _repo.GetById(vaultId);
@@ -38,7 +40,7 @@ public class VaultsService
     internal List<VaultKeepViewModel> GetKeepsInVault(int vaultId, string userId)
     {
         Vault foundVault = this.GetById(vaultId, userId);
-        if (foundVault.IsPrivate) throw new Exception("Vault is private, you do not have access.");
+        if (foundVault.IsPrivate && (foundVault.CreatorId != userId || userId == null)) throw new Exception("Vault is private, you do not have access.");
         List<VaultKeepViewModel> keepsInVault = _vaultKeepsRepo.GetKeepsInVault(vaultId, userId);
         return keepsInVault;
     }
