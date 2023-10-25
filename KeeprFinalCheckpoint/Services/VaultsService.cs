@@ -74,5 +74,4 @@ public class VaultsService
         if (rows < 1) throw new Exception("Something unexpected has happened, returned with < 1 rows deleted.");
         if (rows > 1) throw new Exception("Something unexpected has happened, returned with > 1 rows deleted.");
     }
-
 }

@@ -31,8 +31,6 @@ public class AccountController : ControllerBase
     }
   }
 
-  // FIXME: need to figure out how to fix this.
-
   [Authorize]
   [HttpGet("vaults")]
   public async Task<ActionResult<List<Vault>>> GetVaultsByAccount()
@@ -42,6 +40,22 @@ public class AccountController : ControllerBase
       Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
       List<Vault> myVaults = _vaultsService.GetVaultsByAccount(userInfo.Id);
       return Ok(myVaults);
+    }
+    catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
+
+  [Authorize]
+  [HttpPut]
+  public async Task<ActionResult<Account>> EditAccount([FromBody] Account updateData)
+  {
+    try
+    {
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      Account updatedAccount = _accountService.EditAccount(updateData, userInfo.Id);
+      return updatedAccount;
     }
     catch (Exception e)
     {

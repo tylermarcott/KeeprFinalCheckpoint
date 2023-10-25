@@ -1,6 +1,4 @@
 <template>
-
-  <!-- FIXME: add syntax to be able t mark as priavte (checkbox) -->
   <div class="container form-class">
     <form @submit.prevent="createVault">
       <div class="mb-3">
@@ -15,6 +13,12 @@
       <div class="mb-3">
         <label for="description" class="form-label">Vault Description</label>
         <textarea v-model="vaultData.description" class="form-control" id="keepDescription" rows="3"></textarea>
+      </div>
+      <div class="form-check mb-3">
+        <input v-model="vaultData.isPrivate" class="form-check-input" type="checkbox" value="" id="isPrivate">
+        <label class="form-check-label" for="flexCheckDefault">
+          Set vault to private?
+        </label>
       </div>
       <button class="btn btn-dark">Submit</button>
     </form>

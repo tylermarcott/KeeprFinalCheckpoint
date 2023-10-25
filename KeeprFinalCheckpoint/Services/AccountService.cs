@@ -1,3 +1,4 @@
+
 namespace KeeprFinalCheckpoint.Services;
 
 public class AccountService
@@ -29,11 +30,12 @@ public class AccountService
     return profile;
   }
 
-  internal Account Edit(Account editData, string userEmail)
+  internal Account EditAccount(Account editData, string userId)
   {
-    Account original = GetProfileByEmail(userEmail);
-    original.Name = editData.Name?.Length > 0 ? editData.Name : original.Name;
-    original.Picture = editData.Picture?.Length > 0 ? editData.Picture : original.Picture;
-    return _repo.Edit(original);
+    Account profile = _repo.GetById(userId);
+    profile.Name = editData.Name?.Length > 0 ? editData.Name : profile.Name;
+    profile.Picture = editData.Picture?.Length > 0 ? editData.Picture : profile.Picture;
+    profile.CoverImg = editData.CoverImg?.Length > 0 ? editData.CoverImg : profile.CoverImg;
+    return _repo.Edit(profile);
   }
 }
