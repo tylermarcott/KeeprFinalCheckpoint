@@ -22,12 +22,25 @@
 
 <script>
 import { ref } from "vue";
+import Pop from "../utils/Pop.js";
+import { accountService } from "../services/AccountService.js";
 
 export default {
 setup() {
   const accountData = ref({})
+  function resetForm() {
+    accountData.value = { type: '' }
+  }
   return {
-    accountData
+    accountData,
+    async editAccount(){
+      try {
+        await accountService.editAccount(accountData.value)
+        resetForm()
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
   };
 },
 };

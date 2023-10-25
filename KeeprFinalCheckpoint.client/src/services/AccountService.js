@@ -20,6 +20,7 @@ class AccountService {
     logger.log('here are myVaults:', AppState.activeVaults)
   }
 
+  // FIXME: this does not work because there is no backend supporting it. Make sure you add the backend or do what you need to do in order to be able to do the edit.
   async editAccount(accountData){
     logger.log('Editing account:', accountData)
     const res = await api.put('http://localhost:3000/account', accountData)
