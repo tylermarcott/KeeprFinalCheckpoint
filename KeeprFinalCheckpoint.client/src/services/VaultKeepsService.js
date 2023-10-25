@@ -13,7 +13,7 @@ class VaultKeepsService{
     AppState.vaultKeeps.push(new VaultKeep(res.data))
     logger.log('here are our list of vaultKeeps:', AppState.vaultKeeps)
 
-    // FIXME: THIS IS NOT WORKING!!!!!!!!!!!! This is fucking dumb code don't do this
+    // FIXME: got kept to work in backend, but it's not reactive yet. Add syntax so it's reactive.
     const foundKeep = await keepsService.getKeepById(res.data.keepId)
     logger.log('got the following keep that is kept:', foundKeep)
     foundKeep.kept++
