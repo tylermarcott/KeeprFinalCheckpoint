@@ -1,4 +1,7 @@
 <template>
+
+
+<!-- FIXME: need to find a way to hide this button or something, this button color is what's causing the stupid gray shit -->
   <button v-if="showButton" type="button" :class="`btn btn-${btnColor}`" data-bs-toggle="modal"
     :data-bs-target="`#${id}`">
     <slot name="button">

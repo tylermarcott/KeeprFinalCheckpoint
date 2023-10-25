@@ -1,13 +1,10 @@
 <template>
   <!-- FIXME: need to make the home page look better -->
-  <div class="row">
+  <div class="row justify-content-center">
 
     <div class="col-12 col-md-8">
       <div class="masonry-container">
         <div class="text-light mb-3" v-for="keep in keeps" :key="keep.id">
-          <!-- <button v-if="keep.creatorId == user.id" class="btn btn-danger">
-            <i class="mdi mdi-cancel"></i>
-          </button> -->
           <ModalWrapper id="show-keep-details">
             <template #button>
               <div @click="getMyVaults">
