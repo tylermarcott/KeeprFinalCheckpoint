@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12">
         <div @click="setActiveKeep(keep?.id)">
-          <button @click="deleteKeepFromVault()" v-if="activeVault?.creatorId == user.id" class="btn btn-danger">
+          <button @click="deleteKeepFromVault(keep.id)" v-if="activeVault?.creatorId == user.id" class="btn btn-danger">
             <i class="mdi mdi-cancel"></i>
           </button>
           <img :src="keep?.img">
@@ -25,6 +25,7 @@ import { AppState } from "../AppState.js";
 import { Keep } from "../models/Keep.js";
 import { keepsService } from "../services/KeepsService.js";
 import Pop from "../utils/Pop.js";
+import { vaultKeepsService } from "../services/VaultKeepsService.js";
 
 export default {
   props: { keep: { type: Object || Keep, required: true } },
@@ -40,10 +41,10 @@ export default {
         }
       },
       // TODO: finish this once you can create a vaultKeep first.
-      async deleteKeepFromVault(){
+      async deleteKeepFromVault(keepId){
         try {
           const activeVaultId = AppState.activeVault.id
-          // await 
+          await vaultKeepsService.deleteKeepFromVault(activeVaultId, keepId)
         } catch (error) {
           Pop.error(error)
         }

@@ -8,6 +8,10 @@ class VaultKeepsService{
     const res = await api.post('api/vaultKeeps', vaultKeepData)
     logger.log('created the following vault keep:', res.data)
   }
+
+  async deleteVaultKeep(){
+    
+  }
 }
 
 export const vaultKeepsService = new VaultKeepsService
