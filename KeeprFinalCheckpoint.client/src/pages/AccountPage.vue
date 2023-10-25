@@ -21,7 +21,7 @@
         <!-- FIXME: ok, so display form works now, but the modal is on top of the form (everything is grayed out), and it won't go away. Need to fix this next. -->
         <ul class="dropdown-menu">
           <li>    
-            <a class="dropdown-item" data-bs-target="#keep-create" data-bs-toggle="modal" href="#" @click.stop>
+            <a class="dropdown-item" data-bs-target="#account-edit" data-bs-toggle="modal" href="#" @click.stop>
               Edit Account
             </a>
           </li>

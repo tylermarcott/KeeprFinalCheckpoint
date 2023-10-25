@@ -55,7 +55,6 @@ setup() {
     // FIXME: have to make this reactive and make sure the modal doesn't open when delete is clicked lol
     async deleteKeep(keepId){
       try {
-        // FIXME: have to make this right, it doesn't wait for confirmation to delete as it stands. maybe AWAIT something
         if(await Pop.confirm('Are you sure you want to delete this keep?', 'confirm')){
           await keepsService.deleteKeep(keepId)
         }

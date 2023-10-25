@@ -26,8 +26,6 @@
 <script>
 import { ref } from "vue";
 import Pop from "../utils/Pop.js";
-import { useRouter } from "vue-router";
-import { Modal } from "bootstrap";
 import { keepsService } from "../services/KeepsService.js";
 
 export default {
