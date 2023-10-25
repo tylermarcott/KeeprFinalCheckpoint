@@ -1,22 +1,22 @@
 <template>
 <div class="container">
   <section>
-    <div class="row">
-      <div class="col-8">
-        account cover image here
+    <div class="row justify-content-center">
+      <div class="col-8 text-center">
+        <img :src="account.coverImg" alt="">
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-8">
+    <div class="row justify-content-center">
+      <div class="col-8 text-center">
         <img :src="account.picture" :alt="account.name">
       </div>
     </div>
     <!-- STUB: edit account -->
-    <div>
-      <div class="col-8">
+    <div class="row justify-content-center">
+      <div class="col-8 text-center">
         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Edit Account <i class="mdi mdi-dots-horizontal"></i>
+          <i title="Edit your account" class="mdi mdi-dots-horizontal"></i>
         </button>
         <!-- FIXME: ok, so display form works now, but the modal is on top of the form (everything is grayed out), and it won't go away. Need to fix this next. -->
         <ul class="dropdown-menu">
@@ -28,8 +28,8 @@
         </ul>
       </div>
     </div>
-    <div class="row">
-      <div class="col-8">
+    <div class="row justify-content-center">
+      <div class="col-8 text-center my-2">
         <h3>
           {{ account.name }}
         </h3>
@@ -43,7 +43,7 @@
         <h1>Vaults</h1>
       </div>
     </div>
-    <div class="row">
+    <div class="row justify-content-center">
       <div class="col-8">
         <div class="masonry-container">
           <div v-for="vault in vaults" :key="vault.id">
@@ -57,7 +57,7 @@
         <h1>Keeps</h1>
       </div>
     </div>
-    <div class="row">
+    <div class="row justify-content-center">
       <div class="col-8">
         <div class="masonry-container">
           <div v-for="keep in keeps" :key="keep.id">
