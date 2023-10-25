@@ -16,6 +16,8 @@
       </div>
     </section>
     <section>
+
+      <!-- FIXME: having 2 issues. First, I need to get the vaultId in the URL, and set the active vault by the vaultId in the URL. Second, I need to somehow be able to get the vaultKeepId so that I can delete the corresponding keep out of a vault. I extended the model on the frontend, it should append the vaultKeepCreatorId and the vaultKeepId on a keep that is kept.... But it is not working. Ask a teacher. -->
       
       <div class="col-12 col-md-7 col-lg-9">
         <div class="masonry-container">
