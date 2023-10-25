@@ -2,6 +2,7 @@ import { AppState } from "../AppState.js"
 import { VaultKeep } from "../models/Keep.js"
 import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
+import { keepsService } from "./KeepsService.js"
 
 
 
@@ -11,6 +12,12 @@ class VaultKeepsService{
     logger.log('created the following vault keep:', res.data)
     AppState.vaultKeeps.push(new VaultKeep(res.data))
     logger.log('here are our list of vaultKeeps:', AppState.vaultKeeps)
+
+    // FIXME: THIS IS NOT WORKING!!!!!!!!!!!! This is fucking dumb code don't do this
+    const foundKeep = await keepsService.getKeepById(res.data.keepId)
+    logger.log('got the following keep that is kept:', foundKeep)
+    foundKeep.kept++
+    logger.log('kept is now:', foundKeep.kept)
   }
 
   async deleteVaultKeep(vaultKeepId){
