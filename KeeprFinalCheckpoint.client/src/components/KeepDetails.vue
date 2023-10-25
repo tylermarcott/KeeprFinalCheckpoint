@@ -27,6 +27,7 @@
           <div class="col-3">
               <VaultDropdown/>
           </div>
+          <!-- TODO: ok so this works in creating a vault keep. NOW, I just have to make sure that I am displaying the vaultKeeps in each vault that I look in, NOT just random keeps themselves. It needs to be a vault, then all of the vaultKeeps that have the vaultId. Call the corresponding keeps with vaultKeep.keepId, use getById to get each of these keeps and display them. -->
           <div class="col-2">
             <button @click="saveKeepToVault(activeKeep.id)" class="btn btn-dark">
               Save

@@ -44,10 +44,6 @@ public class KeepsController : ControllerBase
         }
     }
 
-
-    // FIXME: see example on HelpReviews, go to restaurantsController, see GetById example for how to increase views
-    // TODO: check and make sure this works, have to be able to add vaultKeeps first
-
     [HttpGet("{keepId}")]
 
     public async Task<ActionResult<Keep>> GetById(int keepId)
