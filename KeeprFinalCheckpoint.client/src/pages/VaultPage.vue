@@ -31,7 +31,6 @@
               <KeepDetails :keep="keep"/>
             </template>
           </ModalWrapper>
-          
         </div> 
       </div>
     </div>
@@ -40,26 +39,40 @@
 </template>
 
 <script>
-import { computed, onMounted, watchEffect} from "vue";
+import { computed, onMounted } from "vue";
 import { AppState } from "../AppState.js";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
+import Pop from "../utils/Pop.js";
 import { vaultsService } from "../services/VaultsService.js";
 import { logger } from "../utils/Logger.js";
+import { router } from "../router.js";
 
 
 export default {
 setup() {
-
-
-  // FIXME: set active is not working, it's coming too late, need to somehow get route params sooner.
-  // const route = useRouter()
-  // onMounted(()=> {
-  //   setActiveVault()
-  // })
-  // async function setActiveVault(){
-  //   logger.log('setting active vault with the following route param:', route.params.vaultId)
-  //   await vaultsService.setActiveVault(route.params.vaultId)
-  // }
+  const route = useRoute()
+  onMounted(()=> {
+    getVaultById()
+  })
+  async function getVaultById(){
+    try {
+      const vaultId = route.params.vaultId
+      logger.log('here is the vaultId we get from params:', vaultId)
+      await vaultsService.getVaultById(vaultId)
+      getKeepsInVault(vaultId)
+    } catch (error) {
+      router.push({ name: 'Home' })
+      logger.error(error)
+      Pop.toast('You do not have access to this!', 'error', 'center')
+    }
+  }
+    async function getKeepsInVault(vaultId){
+      try {
+        await vaultsService.getKeepsInVault(vaultId)
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
   return {
     vault: computed(()=> AppState.activeVault),
     keeps: computed(()=> AppState.activeKeeps),
