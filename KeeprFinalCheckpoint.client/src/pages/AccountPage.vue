@@ -63,7 +63,7 @@
           <div v-for="keep in keeps" :key="keep.id">
             <ModalWrapper id="show-keep-details">
               <template #button>
-                <ProfileKeepCard :keep="keep"/>
+                <KeepCard :keep="keep"/>
               </template>
               <template #body>
                 <KeepDetails :keep="keep"/>
