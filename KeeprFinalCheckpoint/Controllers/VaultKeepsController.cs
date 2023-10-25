@@ -19,7 +19,6 @@ public class VaultKeepsController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<VaultKeep>> Create([FromBody] VaultKeep vaultKeepData)
     {
-        // FIXME: last bad-auth issue. Needs to throw an error when someone with the wrong auth is trying to make a vaultKeep.
         try
         {
             Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);

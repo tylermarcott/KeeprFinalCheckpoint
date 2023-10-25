@@ -42,11 +42,11 @@
 </template>
 
 <script>
-import { computed, onMounted } from "vue";
+import { computed } from "vue";
 import { Keep } from "../models/Keep.js";
 import { AppState } from "../AppState.js";
-import { accountService } from "../services/AccountService.js";
 import Pop from "../utils/Pop.js";
+import { vaultKeepsService } from "../services/VaultKeepsService.js";
 
 export default {
   props: { keep: { type: Object || Keep, required: true } },
@@ -57,8 +57,8 @@ setup() {
       try {
         const vaultId = AppState.activeVault.id
         const creatorId = AppState.user.id
-
         const vaultKeepData = {creatorId, vaultId, keepId}
+        await vaultKeepsService.createVaultKeep(vaultKeepData)
 
       } catch (error) {
         Pop.error(error)
