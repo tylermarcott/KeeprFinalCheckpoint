@@ -1,34 +1,38 @@
 <template>
-  <div class="col-12 col-md-7 col-lg-9">
-    <div class="masonry-container">
-      <div class="bg-dark text-light" v-for="keep in keeps" :key="keep.id">
+  <!-- FIXME: need to make the home page look better -->
+  <div class="row">
 
-      <ModalWrapper id="show-keep-details">
-        <template #button>
-          <KeepCard :keep="keep"/>
-        </template>
+    <div class="col-12 col-md-8">
+      <div class="masonry-container">
+        <div class="bg-dark text-light" v-for="keep in keeps" :key="keep.id">
+          
+          <ModalWrapper id="show-keep-details">
+            <template #button>
+              <KeepCard :keep="keep"/>
+            </template>
         <template #body>
           <KeepDetails :keep="keep"/>
         </template>
       </ModalWrapper>
-
-
-
-        <!-- <button v-if="keep.creatorId == user.id" class="btn btn-danger">
-          <i class="mdi mdi-cancel"></i>
-        </button>
-        <img :src="keep.img">
-        {{ keep.name }}
-        {{ keep.creator.name }} -->
-
-
-
-
-      </div>
-
-
+      
+      
+      
+      <!-- <button v-if="keep.creatorId == user.id" class="btn btn-danger">
+        <i class="mdi mdi-cancel"></i>
+      </button>
+      <img :src="keep.img">
+      {{ keep.name }}
+      {{ keep.creator.name }} -->
+      
+      
+      
+      
     </div>
+    
+    
   </div>
+</div>
+</div>
 </template>
 
 

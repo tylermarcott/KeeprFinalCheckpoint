@@ -61,7 +61,14 @@
       <div class="col-8">
         <div class="masonry-container">
           <div v-for="keep in keeps" :key="keep.id">
-            <ProfileKeepCard :keep="keep"/>
+            <ModalWrapper id="show-keep-details">
+              <template #button>
+                <ProfileKeepCard :keep="keep"/>
+              </template>
+              <template #body>
+                <KeepDetails :keep="keep"/>
+              </template>
+            </ModalWrapper>
           </div>
         </div>
       </div>

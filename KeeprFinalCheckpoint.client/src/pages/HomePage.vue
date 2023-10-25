@@ -1,7 +1,9 @@
 <template>
   <div class="container-fluid">
-    <section class="row">
-      <HomeKeeps/>
+    <section class="row justify-content-center">
+      <div class="col-12">
+        <HomeKeeps/>
+      </div>
     </section>
   </div>
 </template>
