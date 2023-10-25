@@ -25,7 +25,7 @@
         </div>
         <div class="row">
           <div class="col-3">
-            dropdown
+              <VaultDropdown/>
           </div>
           <div class="col-2">
             save button
@@ -40,9 +40,11 @@
 </template>
 
 <script>
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import { Keep } from "../models/Keep.js";
 import { AppState } from "../AppState.js";
+import { accountService } from "../services/AccountService.js";
+import Pop from "../utils/Pop.js";
 
 export default {
   props: { keep: { type: Object || Keep, required: true } },

@@ -8,7 +8,9 @@
           
           <ModalWrapper id="show-keep-details">
             <template #button>
-              <KeepCard :keep="keep"/>
+              <div @click="getMyVaults">
+                <KeepCard :keep="keep"/>
+              </div>
             </template>
         <template #body>
           <KeepDetails :keep="keep"/>
@@ -41,6 +43,7 @@ import { AppState } from '../AppState';
 import { computed, watchEffect } from 'vue';
 import {keepsService} from '../services/KeepsService.js'
 import Pop from "../utils/Pop.js";
+import { accountService } from "../services/AccountService.js";
 export default {
   setup(){
     watchEffect(() => {
@@ -56,7 +59,14 @@ export default {
     }
   return { 
     keeps: computed(()=> AppState.keeps),
-    user: computed(()=> AppState.user)
+    user: computed(()=> AppState.user),
+      async getMyVaults() {
+        try {
+          await accountService.getMyVaults()
+        } catch (error) {
+          Pop.error(error)
+        }
+      }
    }
   }
 };
