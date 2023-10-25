@@ -30,7 +30,7 @@ public class VaultsService
     {
         Vault foundVault = _repo.GetById(vaultId);
         if (foundVault == null) throw new Exception("No vault was found.");
-        if (foundVault.IsPrivate) throw new Exception("Vault is private, access denied");
+        if (foundVault.IsPrivate && foundVault.CreatorId != userId) throw new Exception("Vault is private, access denied");
         return foundVault;
     }
 

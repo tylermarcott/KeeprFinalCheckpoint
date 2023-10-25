@@ -43,7 +43,6 @@ public class VaultsController : ControllerBase
         try
         {
             Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
-            // NOTE: fix for compensating for a person that is logged in or not is putting the elvis operator
             Vault foundVault = _vaultsService.GetById(vaultId, userInfo?.Id);
             return foundVault;
         }
