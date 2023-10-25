@@ -4,8 +4,10 @@
 
     <div class="col-12 col-md-8">
       <div class="masonry-container">
-        <div class="bg-dark text-light" v-for="keep in keeps" :key="keep.id">
-          
+        <div class="text-light" v-for="keep in keeps" :key="keep.id">
+          <!-- <button v-if="keep.creatorId == user.id" class="btn btn-danger">
+            <i class="mdi mdi-cancel"></i>
+          </button> -->
           <ModalWrapper id="show-keep-details">
             <template #button>
               <div @click="getMyVaults">
@@ -16,22 +18,7 @@
           <KeepDetails :keep="keep"/>
         </template>
       </ModalWrapper>
-      
-      
-      
-      <!-- <button v-if="keep.creatorId == user.id" class="btn btn-danger">
-        <i class="mdi mdi-cancel"></i>
-      </button>
-      <img :src="keep.img">
-      {{ keep.name }}
-      {{ keep.creator.name }} -->
-      
-      
-      
-      
     </div>
-    
-    
   </div>
 </div>
 </div>
@@ -44,8 +31,11 @@ import { computed, watchEffect } from 'vue';
 import {keepsService} from '../services/KeepsService.js'
 import Pop from "../utils/Pop.js";
 import { accountService } from "../services/AccountService.js";
+import { Keep } from "../models/Keep.js";
 export default {
-  setup(){
+  // FIXME: need to try and figure out how I can set the backgrounds of the keep cards to the keep img. Couldn't get it from the artTerminal example....
+  // props: {keep: {type: Keep, required: true}},
+  setup(props){
     watchEffect(() => {
       getKeeps();
     });
@@ -60,6 +50,7 @@ export default {
   return { 
     keeps: computed(()=> AppState.keeps),
     user: computed(()=> AppState.user),
+    cardImg: computed(()=> `url(${props.keep.img})`),
       async getMyVaults() {
         try {
           await accountService.getMyVaults()
@@ -84,4 +75,8 @@ export default {
     margin-bottom: 1.25em;
   }
 }
+
+// .background-img{
+//   background-image: v-bind(cardImg);
+// }
 </style>
