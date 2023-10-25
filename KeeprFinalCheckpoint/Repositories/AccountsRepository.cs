@@ -25,9 +25,9 @@ public class AccountsRepository
   {
     string sql = @"
             INSERT INTO accounts
-              (name, picture, email, id)
+              (name, picture, email, id, coverImg)
             VALUES
-              (@Name, @Picture, @Email, @Id)";
+              (@Name, @Picture, @Email, @Id, @coverImg)";
     _db.Execute(sql, newAccount);
     return newAccount;
   }
@@ -38,7 +38,7 @@ public class AccountsRepository
             UPDATE accounts
             SET 
               name = @Name,
-              picture = @Picture
+              picture = @Picture,
               coverImg = @CoverImg
             WHERE id = @Id;";
     _db.Execute(sql, update);

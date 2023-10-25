@@ -5,7 +5,8 @@ CREATE TABLE
         updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
         name varchar(255) COMMENT 'User Name',
         email varchar(255) COMMENT 'User Email',
-        picture varchar(255) COMMENT 'User Picture'
+        picture varchar(255) COMMENT 'User Picture',
+        coverImg varchar(255) COMMENT 'User Cover Image'
     ) default charset utf8 COMMENT '';
 
 CREATE TABLE
@@ -178,3 +179,10 @@ FROM keeps
 WHERE vaultKeeps.vaultId = 1
 
 SELECT vaultKeeps.* FROM vaultKeeps WHERE vaultKeeps.Id = 2 
+
+UPDATE accounts
+SET
+    name = 'catman',
+    picture = 'https://images.unsplash.com/photo-1519052537078-e6302a4968d4?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGNhdHxlbnwwfHwwfHx8MA%3D%3D',
+    coverImg = 'https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGNhdHxlbnwwfHwwfHx8MA%3D%3D'
+WHERE id = '65271b81e57f826489d44109 '
