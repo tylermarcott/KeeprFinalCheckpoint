@@ -12,9 +12,10 @@
 </template>
 
 <script>
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import { AppState } from "../AppState.js";
 import { vaultsService } from "../services/VaultsService.js";
+import { accountService } from "../services/AccountService.js";
 
 export default {
 setup() {
