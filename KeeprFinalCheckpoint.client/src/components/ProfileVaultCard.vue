@@ -3,7 +3,7 @@
   <button @click="deleteVault(vault?.id)" v-if="vault?.creatorId == user.id" class="btn btn-danger">
     <i class="mdi mdi-cancel"></i>
   </button>
-  <router-link :to="{ path: `profile/vault/${vault?.id}` }">
+  <router-link :to="{ path: `/vault/${vault?.id}` }">
     <section class="container">
       <div class="row">
         <div class="col-12">
