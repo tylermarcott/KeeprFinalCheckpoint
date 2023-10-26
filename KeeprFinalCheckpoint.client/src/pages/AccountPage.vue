@@ -47,7 +47,9 @@
       <div class="col-8">
         <div class="masonry-container">
           <div v-for="vault in vaults" :key="vault.id">
-            <VaultCard :vault="vault"/>
+            <div onclick="setActiveVault(vault.id)">
+              <VaultCard :vault="vault"/>
+            </div>
           </div>
         </div>
       </div>
@@ -86,6 +88,7 @@ import { accountService } from "../services/AccountService.js";
 import { profilesService } from "../services/ProfilesService.js";
 import Pop from "../utils/Pop.js";
 import { keepsService } from "../services/KeepsService.js";
+import { vaultsService } from "../services/VaultsService.js";
 export default {
   setup() {
     watchEffect(()=> {
@@ -107,6 +110,13 @@ export default {
       async setActiveKeep(keepId){
         try {
           await keepsService.setActiveKeep(keepId)
+        } catch (error) {
+          Pop.error(error)
+        }
+      },
+      async setActiveVault(vaultId){
+        try {
+          await vaultsService.setActiveVault(vaultId)
         } catch (error) {
           Pop.error(error)
         }

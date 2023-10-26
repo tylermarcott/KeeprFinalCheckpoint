@@ -27,9 +27,15 @@ const routes = [
     name: 'Profile',
     component: loadPage('ProfilePage')
   },
-  // NOTE: changed this to work better but not sure if it's right yet.
+  // NOTE: we can create 2 different paths to the SAME page, that is awesome for certain cases, such as the one we deal with here, which is getting to the same page with 2 different URLs, one for account, one for profile.
   {
     path: '/profile/vault/:vaultId',
+    name: 'Vault',
+    component: loadPage('VaultPage')
+  },
+
+  {
+    path: '/vault/:vaultId',
     name: 'Vault',
     component: loadPage('VaultPage')
   }

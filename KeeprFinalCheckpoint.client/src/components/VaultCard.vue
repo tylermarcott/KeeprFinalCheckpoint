@@ -1,4 +1,6 @@
 <template>
+
+  <!-- FIXME: issue is arising because of the difference in URLS between the profile and account. This router link only caters to profile, not account. i need to either fix this one to work with both, or make a copy that can accomadate for account -->
   <router-link :to="{ path: `vault/${vault?.id}` }">
     <section class="container">
         <div class="row">
