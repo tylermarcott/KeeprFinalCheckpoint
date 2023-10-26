@@ -24,7 +24,8 @@ public class VaultKeepsService
     internal VaultKeep Create(VaultKeep vaultKeepData, string userId)
     {
         Vault foundVault = _vaultsService.GetById(vaultKeepData.VaultId, userId);
-        if (foundVault.IsPrivate) throw new Exception("This vault is private, you cannot access this.");
+        // NOTE: changed syntax on this, be wary
+        if (foundVault.IsPrivate && foundVault.CreatorId != userId) throw new Exception("This vault is private, you cannot access this.");
         if (foundVault.CreatorId != userId) throw new Exception("You are not allowed to create this vault keep.");
         VaultKeep newVaultKeep = _repo.Create(vaultKeepData);
 

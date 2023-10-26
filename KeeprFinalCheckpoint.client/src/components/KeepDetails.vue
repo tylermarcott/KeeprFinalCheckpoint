@@ -49,6 +49,7 @@ import { Keep } from "../models/Keep.js";
 import { AppState } from "../AppState.js";
 import Pop from "../utils/Pop.js";
 import { vaultKeepsService } from "../services/VaultKeepsService.js";
+import { logger } from "../utils/Logger.js";
 
 export default {
   props: { keep: { type: Object || Keep, required: true } },
@@ -59,6 +60,7 @@ setup() {
       try {
         const vaultId = AppState.activeVault.id
         const creatorId = AppState.user.id
+        logger.log('double check on creatorId for save keep to vault:', creatorId)
         const vaultKeepData = {creatorId, vaultId, keepId}
         await vaultKeepsService.createVaultKeep(vaultKeepData)
 

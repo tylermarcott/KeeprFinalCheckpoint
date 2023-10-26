@@ -8,6 +8,7 @@ import { keepsService } from "./KeepsService.js"
 
 class VaultKeepsService{
   async createVaultKeep(vaultKeepData){
+    logger.log('passing the following data to create a vaultKeep:', vaultKeepData)
     const res = await api.post('api/vaultKeeps', vaultKeepData)
     logger.log('created the following vault keep:', res.data)
     AppState.vaultKeeps.push(new VaultKeep(res.data))
