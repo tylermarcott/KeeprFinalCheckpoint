@@ -50,7 +50,6 @@ setup() {
         Pop.error(error)
       }
     },
-// FIXME: this deletes, but I get errors because it still pushes to the vault page on-click
     async deleteVault(vaultId){
       try {
         if(await Pop.confirm('Are you sure you want to delete this vault?')){

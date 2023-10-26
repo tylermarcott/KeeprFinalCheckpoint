@@ -18,7 +18,6 @@
         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           <i title="Edit your account" class="mdi mdi-dots-horizontal"></i>
         </button>
-        <!-- FIXME: ok, so display form works now, but the modal is on top of the form (everything is grayed out), and it won't go away. Need to fix this next. -->
         <ul class="dropdown-menu">
           <li>    
             <a class="dropdown-item" data-bs-target="#account-edit" data-bs-toggle="modal" href="#" @click.stop>
@@ -46,11 +45,8 @@
     <div class="row justify-content-center">
       <div class="col-8">
         <div class="masonry-container">
-          <!-- FIXME: this setActive fxn is causing an issue when hitting the delete button on the VaultCard -->
           <div v-for="vault in vaults" :key="vault.id">
-            <div onclick="setActiveVault(vault.id)">
-              <VaultCard :vault="vault"/>
-            </div>
+            <VaultCard :vault="vault"/>
           </div>
         </div>
       </div>
@@ -111,13 +107,6 @@ export default {
       async setActiveKeep(keepId){
         try {
           await keepsService.setActiveKeep(keepId)
-        } catch (error) {
-          Pop.error(error)
-        }
-      },
-      async setActiveVault(vaultId){
-        try {
-          await vaultsService.setActiveVault(vaultId)
         } catch (error) {
           Pop.error(error)
         }
