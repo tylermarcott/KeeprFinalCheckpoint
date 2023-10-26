@@ -16,8 +16,7 @@ class VaultKeepsService{
     // FIXME: got kept to work in backend, but it's not reactive yet. Add syntax so it's reactive.
     const foundKeep = await keepsService.getKeepById(res.data.keepId)
     logger.log('got the following keep that is kept:', foundKeep)
-    foundKeep.kept++
-    logger.log('kept is now:', foundKeep.kept)
+    AppState.activeKeep = foundKeep
   }
 
   async deleteVaultKeep(vaultKeepId){
