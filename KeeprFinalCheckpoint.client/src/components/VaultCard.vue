@@ -1,14 +1,14 @@
 <template>
 
-  <!-- FIXME: issue is arising because of the difference in URLS between the profile and account. This router link only caters to profile, not account. i need to either fix this one to work with both, or make a copy that can accomadate for account -->
+  <!-- FIXME: pull delete button back into card when you get it working again. -->
+  <button @click="deleteVault(vault?.id)" v-if="vault?.creatorId == user.id" class="btn btn-danger">
+    <i class="mdi mdi-cancel"></i>
+  </button>
   <router-link :to="{ path: `vault/${vault?.id}` }">
     <section class="container">
         <div class="row">
           <div class="col-12">
             <div @click="getVaultById(vault?.id)">
-              <button @click="deleteVault(vault?.id)" v-if="vault?.creatorId == user.id" class="btn btn-danger">
-                <i class="mdi mdi-cancel"></i>
-              </button>
               <img :src="vault?.img">
             </div>
           </div>
@@ -53,7 +53,7 @@ setup() {
 // FIXME: this deletes, but I get errors because it still pushes to the vault page on-click
     async deleteVault(vaultId){
       try {
-        if(Pop.confirm('Are you sure you want to delete this vault?', 'confirm')){
+        if(await Pop.confirm('Are you sure you want to delete this vault?')){
           await vaultsService.deleteVault(vaultId)
         }
       } catch (error) {

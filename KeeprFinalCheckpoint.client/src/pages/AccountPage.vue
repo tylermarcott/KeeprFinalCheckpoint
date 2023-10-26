@@ -46,6 +46,7 @@
     <div class="row justify-content-center">
       <div class="col-8">
         <div class="masonry-container">
+          <!-- FIXME: this setActive fxn is causing an issue when hitting the delete button on the VaultCard -->
           <div v-for="vault in vaults" :key="vault.id">
             <div onclick="setActiveVault(vault.id)">
               <VaultCard :vault="vault"/>
