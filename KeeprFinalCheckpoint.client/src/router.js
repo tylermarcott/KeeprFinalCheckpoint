@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import { authGuard } from '@bcwdev/auth0provider-client'
+import { authGuard, authSettled } from '@bcwdev/auth0provider-client'
 
 function loadPage(page) {
   return () => import(`./pages/${page}.vue`)
@@ -34,10 +34,13 @@ const routes = [
   //   component: loadPage('VaultPage')
   // },
 
+  // NOTE: this is the required syntax to fix the issue where refreshing on a private vault will kick you out of your own vault.
+
   {
     path: '/vault/:vaultId',
     name: 'Vault',
-    component: loadPage('VaultPage')
+    component: loadPage('VaultPage'),
+    beforeEnter: authSettled
   }
 ]
 
