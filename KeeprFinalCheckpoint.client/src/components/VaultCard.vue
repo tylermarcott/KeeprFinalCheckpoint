@@ -1,12 +1,10 @@
 <template>
-  <!-- TODO: add syntax to where the user is pushed to the homepage if they try to open a vault that is set to private. -->
-  <!-- NOTE: there is an example of a router push in the keep form -->
-  <router-link :to="{ path: `vault/${vault.id}` }">
+  <router-link :to="{ path: `vault/${vault?.id}` }">
     <section class="container">
         <div class="row">
           <div class="col-12">
             <div @click="getVaultById(vault?.id)">
-              <button @click="deleteVault(vault.id)" v-if="vault?.creatorId == user.id" class="btn btn-danger">
+              <button @click="deleteVault(vault?.id)" v-if="vault?.creatorId == user.id" class="btn btn-danger">
                 <i class="mdi mdi-cancel"></i>
               </button>
               <img :src="vault?.img">
