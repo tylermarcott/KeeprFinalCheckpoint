@@ -91,8 +91,9 @@ export default {
         Pop.error(error)
       }
     }
+    // FIXME: working prototype for closing modal lol
     function closeModal(){
-      document.getElementById('')
+      const detailsModal = document.getElementById('show-keep-details')
     }
   return {
     profile: computed(()=> AppState.activeProfile),
