@@ -24,6 +24,12 @@
       </template>
     </ModalWrapper>
 
+    <!-- <ModalWrapper id="show-keep-details">
+    <template #body>
+      <KeepDetails/>
+    </template>
+  </ModalWrapper> -->
+
 
   <ModalWrapper :id="'vault-create'">
     <template #body>
