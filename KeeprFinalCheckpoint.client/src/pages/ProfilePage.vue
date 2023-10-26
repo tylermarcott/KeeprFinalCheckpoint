@@ -1,27 +1,28 @@
 <template>
   <div class="container">
     <section>
-      <div class="row">
+      <div class="row justify-content-center">
         <div class="col-8">
-          put user profile cover img here
+          <!-- FIXME: fix this stretched image -->
+          <img class="cover-img" :src="profile?.coverImg" alt="https://plus.unsplash.com/premium_photo-1673264933056-8f2f9c87742f?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dHJlZXN8ZW58MHx8MHx8fDA%3D">
         </div>
       </div>
-      <div class="row">
+      <div class="row justify-content-center">
         <div class="col-1">
           <img class="profile-img" :src="profile?.picture" :alt="profile?.name">
         </div>
-        <div class="col-12">
+        <div class="col-12 text-center">
           <h3>
             {{ profile?.name }}
           </h3>
         </div>
-        <div class="col-12">
-          vault number | keep number
+        <div class="col-12 text-center">
+          {{ vaultSize }} Vaults | {{ keepSize }} Keeps
         </div>
       </div>
     </section>
     <section>
-      <div class="row">
+      <div class="row justify-content-center">
         <div class="col-8">
           <h1>
             Vaults
@@ -34,7 +35,7 @@
         </div>
       </div>
     </section>
-      <div class="row">
+      <div class="row justify-content-center">
         <div class="col-8">
           <h1>
             Keeps
@@ -99,6 +100,8 @@ export default {
     profile: computed(()=> AppState.activeProfile),
     keeps: computed(() => AppState.activeKeeps),
     vaults: computed(() => AppState.activeVaults),
+    vaultSize: computed(()=> AppState.activeVaults.length),
+    keepSize: computed(()=> AppState.activeKeeps.length),
     async setActiveKeep(keepId) {
       try {
         await keepsService.setActiveKeep(keepId)
@@ -130,5 +133,9 @@ export default {
     width: 100%;
     margin-bottom: 1.25em;
   }
+}
+
+.cover-img{
+  max-height: 20vh;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <section class="container background-img">
     <div class="row justify-content-end">
-      <div class="col-2 text-end">
+      <div class="col-2 text-end" data-bs-dismiss="modal">
         <div @click="setActiveKeep(keep?.id)">
           <div class="delete-button" @click="deleteKeep(keep.id)" v-if="keep?.creatorId == user.id">
             <i class="mdi mdi-cancel"></i>
@@ -14,8 +14,7 @@
         {{ keep?.name }}
       </div>
       <div class="col-4" data-bs-dismiss="modal">
-      <router-link :to="{ path: `profile/${keep?.creatorId}` }"
-        @click.stop.prevent="modal.getOrCreateInstance('#show-keep-details').hide()">
+      <router-link :to="{ path: `profile/${keep?.creatorId}` }">
           <img :src="keep?.creator.picture">
         </router-link>
       </div>
