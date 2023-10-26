@@ -1,6 +1,7 @@
 <template>
   <div class="container-fluid">
-    {{ keep.name }} {{ activeKeep.name }}
+    <!-- NOTE: Mick put this in and it crashed -->
+    <!-- {{ keep.name }} {{ activeKeep.name }} -->
     <section class="row">
       <div class="col-6">
         <img :src="activeKeep?.img" :alt="activeKeep?.name">

@@ -9,7 +9,7 @@
         </div>
         <div class="mb-3">
           <label for="img" class="form-label">Picture URL</label>
-          <input v-model="accountData.img" type="url" class="form-control" id="account" placeholder="url" required="true">
+          <input v-model="accountData.picture" type="url" class="form-control" id="account" placeholder="url" required="true">
         </div>
         <div class="mb-3">
           <label for="img" class="form-label">Cover Image URL</label>
