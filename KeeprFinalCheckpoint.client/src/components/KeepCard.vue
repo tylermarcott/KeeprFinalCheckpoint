@@ -9,14 +9,10 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row keep-details">
       <div class="col-8">
         {{ keep?.name }}
       </div>
-      <!-- FIXME: see ProjectCard on ArtTerminal to see reference of how to set the background image of the card to the keep or vault image. -->
-      <!-- FIXME: need to prevent the modal from opening when clicking on the user img for router link -->
-      <!-- NOTE: put this router link into keep details modal!!!! -->
-      <!-- NOTE: Jake says 'move your modal wrapper down man!''  -->
       <div class="col-4">
       <router-link :to="{ path: `profile/${keep?.creatorId}` }"
         @click.stop.prevent="modal.getOrCreateInstance('#show-keep-details').hide()">
@@ -70,12 +66,6 @@ export default {
 
 
 <style>
-/* NOTE: had to pull this out of the masonry styling on HomeKeeps comp. Be wary. */
-img {
-  border-radius: 10px;
-  width: 100%;
-  margin-bottom: 1.25em;
-}
 
 .creator-img {
   border-radius: 50%;
@@ -89,11 +79,20 @@ img {
   background-position: center;
   object-fit: cover;
   border-radius: 10px;
+
+  /* FIXME: created set height for ease of testing. Go back and try to fix masonry container later */
+  min-height: 20vh;
   width: 100%;
   margin-bottom: 1.25em;
 }
 
 .delete-button{
   color: red;
+  font-size: 20px;
+}
+
+.keep-details{
+  margin-top: 20vh;
+  font-weight: 800;
 }
 </style>
