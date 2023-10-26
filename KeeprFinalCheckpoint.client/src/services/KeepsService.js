@@ -10,12 +10,12 @@ class KeepsService{
     const res = await api.post('api/keeps', data)
     logger.log('just created the following keep:', res.data)
     AppState.keeps.push(new Keep(res.data))
-    // FIXME: throws a backdrop error for modal once the form is submitted
   }
 
   async getKeeps(){
     const res = await api.get('api/keeps')
     AppState.keeps = res.data.map(keep => new Keep(keep))
+    AppState.activeKeeps = res.data.map(keep => new Keep(keep))
     logger.log('got the following keeps in the appstate:', AppState.keeps)
   }
 

@@ -28,7 +28,7 @@
           </h1>
           <div class="masonry-container">
             <div v-for="vault in vaults" :key="vault.id">
-              <VaultCard :vault="vault"/>
+              <ProfileVaultCard :vault="vault"/>
             </div>
           </div>
         </div>

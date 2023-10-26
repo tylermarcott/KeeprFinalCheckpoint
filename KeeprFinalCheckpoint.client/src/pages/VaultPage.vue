@@ -41,7 +41,7 @@
 <script>
 import { computed, onMounted } from "vue";
 import { AppState } from "../AppState.js";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import Pop from "../utils/Pop.js";
 import { vaultsService } from "../services/VaultsService.js";
 import { logger } from "../utils/Logger.js";
