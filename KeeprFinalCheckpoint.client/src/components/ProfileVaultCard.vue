@@ -1,8 +1,8 @@
 <template>
   <!-- FIXME: pull delete button back into card when you get it working again. -->
-  <button @click="deleteVault(vault?.id)" v-if="vault?.creatorId == user.id" class="btn btn-danger">
+  <!-- <button @click="deleteVault(vault?.id)" v-if="vault?.creatorId == user.id" class="btn btn-danger">
     <i class="mdi mdi-cancel"></i>
-  </button>
+  </button> -->
   <router-link :to="{ path: `/vault/${vault?.id}` }">
     <section class="container">
       <div class="row">

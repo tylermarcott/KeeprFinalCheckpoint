@@ -3,9 +3,9 @@
     <div class="row">
       <div class="col-12">
         <div @click="setActiveKeep(keep?.id)">
-          <button @click="deleteVaultKeep(keep.id)" v-if="activeVault?.creatorId == user.id" class="btn btn-danger">
+          <!-- <button @click="deleteVaultKeep(keep.id)" v-if="activeVault?.creatorId == user.id" class="btn btn-danger">
             <i class="mdi mdi-cancel"></i>
-          </button>
+          </button> -->
           <img :src="keep?.img">
         </div>
       </div>

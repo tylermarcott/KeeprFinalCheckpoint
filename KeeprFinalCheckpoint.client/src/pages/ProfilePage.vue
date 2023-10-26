@@ -46,7 +46,7 @@
             <ModalWrapper id="show-keep-details">
                 <template #button>
                   <div @click="setActiveKeep(keep.id)">
-                    <KeepCard :keep="keep"/>
+                    <ProfileKeepCard :keep="keep"/>
                   </div>
                 </template>
               <template #body>
