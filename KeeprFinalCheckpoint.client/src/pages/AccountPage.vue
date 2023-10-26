@@ -63,7 +63,9 @@
           <div v-for="keep in keeps" :key="keep.id">
             <ModalWrapper id="show-keep-details">
               <template #button>
-                <KeepCard :keep="keep"/>
+                <div @click="setActiveKeep(keep.id)">
+                  <KeepCard :keep="keep"/>
+                </div>
               </template>
               <template #body>
                 <KeepDetails :keep="keep"/>
@@ -82,6 +84,8 @@ import { computed, watchEffect } from 'vue';
 import { AppState } from '../AppState';
 import { accountService } from "../services/AccountService.js";
 import { profilesService } from "../services/ProfilesService.js";
+import Pop from "../utils/Pop.js";
+import { keepsService } from "../services/KeepsService.js";
 export default {
   setup() {
     watchEffect(()=> {
@@ -99,7 +103,14 @@ export default {
     return {
       account: computed(() => AppState.account),
       vaults: computed(()=> AppState.activeVaults),
-      keeps: computed(()=> AppState.activeKeeps)
+      keeps: computed(()=> AppState.activeKeeps),
+      async setActiveKeep(keepId){
+        try {
+          await keepsService.setActiveKeep(keepId)
+        } catch (error) {
+          Pop.error(error)
+        }
+      }
     }
   }
 }

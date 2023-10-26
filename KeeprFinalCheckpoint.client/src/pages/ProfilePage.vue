@@ -44,7 +44,9 @@
           <div v-for="keep in keeps" :key="keep.id">
             <ModalWrapper id="show-keep-details">
                 <template #button>
-                  <KeepCard :keep="keep"/>
+                  <div @click="setActiveKeep(keep.id)">
+                    <KeepCard :keep="keep"/>
+                  </div>
                 </template>
               <template #body>
                 <KeepDetails :keep="keep"/>
@@ -70,6 +72,7 @@ import { profilesService } from "../services/ProfilesService.js";
 import { AppState } from "../AppState.js";
 import { logger } from "../utils/Logger.js";
 import { useRoute } from "vue-router";
+import { keepsService } from "../services/KeepsService.js";
 
 // TODO: to fix this, I need to fix the router.js so the route.params can be used, I need the profile ID in the route. When the id is in the route, I can pull that route id, get my profile by id, then get the keeps and vaults by the profile. Everything needs to be done on this page, not on the keep card****
 
@@ -112,6 +115,13 @@ export default {
     profile: computed(()=> AppState.activeProfile),
     keeps: computed(() => AppState.activeKeeps),
     vaults: computed(() => AppState.activeVaults),
+    async setActiveKeep(keepId) {
+      try {
+        await keepsService.setActiveKeep(keepId)
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
   };
 },
 };
