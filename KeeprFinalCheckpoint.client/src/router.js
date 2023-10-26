@@ -27,9 +27,9 @@ const routes = [
     name: 'Profile',
     component: loadPage('ProfilePage')
   },
-  // FIXME; need to add vaultId onto the path, but adding it is causing an error.
+  // NOTE: changed this to work better but not sure if it's right yet.
   {
-    path: '/vault/:vaultId',
+    path: '/profile/vault/:vaultId',
     name: 'Vault',
     component: loadPage('VaultPage')
   }

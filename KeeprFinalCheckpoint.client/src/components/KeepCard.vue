@@ -1,12 +1,11 @@
 <template>
   <section class="container background-img">
-    <div class="row">
-      <div class="col-12">
+    <div class="row justify-content-end">
+      <div class="col-2 text-end">
         <div @click="setActiveKeep(keep?.id)">
-          <button @click="deleteKeep(keep.id)" v-if="keep?.creatorId == user.id" class="btn btn-danger">
+          <div class="delete-button" @click="deleteKeep(keep.id)" v-if="keep?.creatorId == user.id">
             <i class="mdi mdi-cancel"></i>
-          </button>
-          <!-- <img :src="keep?.img"> -->
+          </div>
         </div>
       </div>
     </div>
@@ -18,12 +17,12 @@
       <!-- FIXME: need to prevent the modal from opening when clicking on the user img for router link -->
       <!-- NOTE: put this router link into keep details modal!!!! -->
       <!-- NOTE: Jake says 'move your modal wrapper down man!''  -->
+      <div class="col-4">
       <router-link :to="{ path: `profile/${keep?.creatorId}` }"
         @click.stop.prevent="modal.getOrCreateInstance('#show-keep-details').hide()">
-        <div class="col-4">
           <img :src="keep?.creator.picture">
-        </div>
-      </router-link>
+        </router-link>
+      </div>
     </div>
   </section>
 </template>
@@ -35,6 +34,7 @@ import { Keep } from "../models/Keep.js";
 import Pop from "../utils/Pop.js";
 import { keepsService } from "../services/KeepsService.js";
 import { Modal } from "bootstrap";
+import { logger } from "../utils/Logger.js";
 
 
 
@@ -49,7 +49,6 @@ export default {
       async setActiveKeep(keepId) {
         try {
           keepsService.setActiveKeep(keepId)
-          // Modal.getOrCreateInstance('#show-keep-details').hide()
         } catch (error) {
           Pop.error(error)
         }
@@ -92,5 +91,9 @@ img {
   border-radius: 10px;
   width: 100%;
   margin-bottom: 1.25em;
+}
+
+.delete-button{
+  color: red;
 }
 </style>

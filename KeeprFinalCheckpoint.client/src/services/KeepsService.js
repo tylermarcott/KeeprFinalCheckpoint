@@ -16,6 +16,7 @@ class KeepsService{
   async getKeeps(){
     const res = await api.get('api/keeps')
     AppState.keeps = res.data.map(keep => new Keep(keep))
+    logger.log('got the following keeps in the appstate:', AppState.keeps)
   }
 
   async getKeepById(keepId){
@@ -26,6 +27,7 @@ class KeepsService{
   async setActiveKeep(keepId){
     const foundKeep = await this.getKeepById(keepId)
     AppState.activeKeep = foundKeep
+    logger.log('set the following keep as the active keep:', AppState.activeKeep)
     return AppState.activeKeep
   }
 
