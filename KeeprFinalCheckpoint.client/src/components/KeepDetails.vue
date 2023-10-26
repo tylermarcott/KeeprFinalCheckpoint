@@ -32,9 +32,8 @@
               Save
             </button>
           </div>
-          <div class="col-2">
-            <router-link :to="{ path: `profile/${keep?.creatorId}` }"
-            @click.stop.prevent="modal.getOrCreateInstance('#show-keep-details').hide()">
+          <div class="col-2" data-bs-dismiss="modal">
+            <router-link :to="{ path: `profile/${keep?.creatorId}` }">
               <img class="creator-img" :src="activeKeep?.creator.picture">
             </router-link>
           </div>

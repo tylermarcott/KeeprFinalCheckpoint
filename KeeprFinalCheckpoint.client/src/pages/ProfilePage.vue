@@ -59,14 +59,10 @@
 
     </section>
   </div>
-
-
-
 </template>
-<!-- TODO: onclick, active profile is set. Now I just need to compute and populate keeps and vaults -->
 
 <script>
-import { computed, onMounted, watchEffect } from "vue";
+import { computed, onMounted } from "vue";
 import Pop from "../utils/Pop.js";
 import { profilesService } from "../services/ProfilesService.js";
 import { AppState } from "../AppState.js";
@@ -80,6 +76,7 @@ export default {
   setup() {
     const route = useRoute()
     onMounted(()=> {
+      closeModal()
       getActiveProfile()
     })
 
@@ -94,23 +91,9 @@ export default {
         Pop.error(error)
       }
     }
-    // async function getProfileKeeps(profileId) {
-    //   try {
-    //     const profileId = this.getProfileById.id
-    //     await profilesService.getProfileKeeps(profileId)
-    //   } catch (error) {
-    //     Pop.error(error)
-    //   }
-    // }
-
-    // async function getProfileVaults() {
-    //   try {
-    //     const profileId = this.getProfileById.id
-    //     await profilesService.getProfileVaults(profileId)
-    //   } catch (error) {
-    //     Pop.error(error)
-    //   }
-    // }
+    function closeModal(){
+      document.getElementById('')
+    }
   return {
     profile: computed(()=> AppState.activeProfile),
     keeps: computed(() => AppState.activeKeeps),

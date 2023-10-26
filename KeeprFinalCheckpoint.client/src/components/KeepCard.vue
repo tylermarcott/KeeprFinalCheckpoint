@@ -13,7 +13,7 @@
       <div class="col-8">
         {{ keep?.name }}
       </div>
-      <div class="col-4">
+      <div class="col-4" data-bs-dismiss="modal">
       <router-link :to="{ path: `profile/${keep?.creatorId}` }"
         @click.stop.prevent="modal.getOrCreateInstance('#show-keep-details').hide()">
           <img :src="keep?.creator.picture">
