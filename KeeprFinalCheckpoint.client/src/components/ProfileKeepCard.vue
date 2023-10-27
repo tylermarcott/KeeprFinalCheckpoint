@@ -2,12 +2,12 @@
   <section class="container">
     <div class="row">
       <div class="col-12">
-        <div @click="setActiveKeep(keep?.id)">
-          <button @click="deleteVaultKeep(keep.id)" v-if="activeVault?.creatorId == user.id" class="btn btn-danger">
-            <i class="mdi mdi-cancel"></i>
-          </button>
-          <img :src="keep?.img">
-        </div>
+        <button @click="deleteVaultKeep(keep.vaultKeepId)" v-if="activeVault?.creatorId == user.id" class="btn btn-danger">
+          <i class="mdi mdi-cancel"></i>
+        </button>
+        <img :src="keep?.img">
+        <!-- <div @click="setActiveKeep(keep?.id)">
+        </div> -->
       </div>
     </div>
     <div class="row">
@@ -44,17 +44,23 @@ export default {
       },
       // NOTE: for this delete, see if you can use vue tools and see if the vaultKeepId is actually populating on the keeps that are in the specific vault. If they are, you can use this Id.
       // TODO: finish this once you can create a vaultKeep first.
-      async deleteVaultKeep(keepId){
+      async deleteVaultKeep(vaultKeepId){
         try {
-          const activeVaultId = AppState.activeVault.id
-          logger.log('here is our vaultId:', activeVaultId)
-          logger.log('here is our keepId:', keepId)
-          this.getKeepsInVault(activeVaultId)
-          logger.log('here is a list of our vaultKeeps:', AppState.vaultKeeps)
-          const foundVaultKeep = AppState.vaultKeeps.find(vaultKeep => vaultKeep.keepId == keepId && vaultKeep.vaultId == activeVaultId)
-          logger.log('found the following vaultKeep in Appstate:', foundVaultKeep)
+          // const activeVaultId = AppState.activeVault.id
+          // logger.log('here is our vaultId:', activeVaultId)
+          // logger.log('here is our keepId:', keepId)
+          // this.getKeepsInVault(activeVaultId)
+          // logger.log('here is a list of our vaultKeeps:', AppState.vaultKeeps)
+          // const foundVaultKeep = AppState.vaultKeeps.find(vaultKeep => vaultKeep.keepId == keepId && vaultKeep.vaultId == activeVaultId)
+          // logger.log('found the following vaultKeep in Appstate:', foundVaultKeep)
+          // logger.log('here is our active keep:', AppState.activeKeep)
+
+          // logger.log('here is the id of the vaultKeep we want to delete:', vaultKeepId)
+
+          logger.log('here are our vaultKeeps:', AppState.vaultKeeps)
+
           if(await Pop.confirm('Are you sure you want to delete this keep?', 'confirm')){
-            await vaultKeepsService.deleteVaultKeep(foundVaultKeep.id)
+            await vaultKeepsService.deleteVaultKeep(vaultKeepId)
           }
         } catch (error) {
           Pop.error(error)

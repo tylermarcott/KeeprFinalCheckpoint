@@ -55,10 +55,7 @@ setup() {
   })
   async function getVaultById(){
     try {
-      logger.log('we are in getVaultById in vaultpage')
       const vaultId = route.params.vaultId
-      logger.log('here is the vaultId we get from params:', vaultId)
-      logger.log('here is out active vault info:', AppState.activeVault)
       await vaultsService.getVaultById(vaultId)
       getKeepsInVault(vaultId)
     } catch (error) {
