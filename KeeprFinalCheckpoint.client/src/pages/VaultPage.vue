@@ -51,8 +51,10 @@ setup() {
   const route = useRoute()
   onMounted(()=> {
     getVaultById()
-    // getKeepsInVault()
   })
+  // watchEffect(()=>{
+  //   getKeepsInVault()
+  // })
   async function getVaultById(){
     try {
       const vaultId = route.params.vaultId
