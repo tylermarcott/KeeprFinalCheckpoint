@@ -42,21 +42,8 @@ export default {
           Pop.error(error)
         }
       },
-      // NOTE: for this delete, see if you can use vue tools and see if the vaultKeepId is actually populating on the keeps that are in the specific vault. If they are, you can use this Id.
-      // TODO: finish this once you can create a vaultKeep first.
       async deleteVaultKeep(vaultKeepId){
         try {
-          // const activeVaultId = AppState.activeVault.id
-          // logger.log('here is our vaultId:', activeVaultId)
-          // logger.log('here is our keepId:', keepId)
-          // this.getKeepsInVault(activeVaultId)
-          // logger.log('here is a list of our vaultKeeps:', AppState.vaultKeeps)
-          // const foundVaultKeep = AppState.vaultKeeps.find(vaultKeep => vaultKeep.keepId == keepId && vaultKeep.vaultId == activeVaultId)
-          // logger.log('found the following vaultKeep in Appstate:', foundVaultKeep)
-          // logger.log('here is our active keep:', AppState.activeKeep)
-
-          // logger.log('here is the id of the vaultKeep we want to delete:', vaultKeepId)
-
           logger.log('here are our vaultKeeps:', AppState.vaultKeeps)
 
           if(await Pop.confirm('Are you sure you want to delete this keep?', 'confirm')){

@@ -1,5 +1,4 @@
 <template>
-  <!-- FIXME: having issue with identifying form stuff lol -->
   <div class="container form-class">
       <form @submit.prevent="editAccount">
         <div class="mb-3">
