@@ -2,10 +2,9 @@
 
 
 <!-- FIXME: need to find a way to hide this button or something, this button color is what's causing the stupid gray shit -->
-  <button v-if="showButton" type="button" :class="`btn btn-${btnColor}`" class="mb-2" data-bs-toggle="modal"
+  <button v-if="showButton" type="button" :class="`btn btn-${btnColor}`" class="mb-2 text-light" data-bs-toggle="modal"
     :data-bs-target="`#${id}`">
     <slot name="button">
-      open {{ id }} modal
     </slot>
   </button>
 
@@ -32,7 +31,7 @@
 
 <script>
 export default {
-  props: { id: { type: String, required: true }, showButton: { type: Boolean, default: true }, btnColor: { type: String, default: 'dark' } },
+  props: { id: { type: String, required: true }, showButton: { type: Boolean, default: true }, btnColor: { type: String, default: 'off-white' } },
   setup() {
     return {};
   },

@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid elevation-2">
     <!-- NOTE: Mick put this in and it crashed -->
     <!-- {{ keep.name }} {{ activeKeep.name }} -->
     <section class="row">

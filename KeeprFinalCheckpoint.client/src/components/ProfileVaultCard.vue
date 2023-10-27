@@ -1,24 +1,22 @@
 <template>
-  <!-- FIXME: pull delete button back into card when you get it working again. -->
-  <!-- <button @click="deleteVault(vault?.id)" v-if="vault?.creatorId == user.id" class="btn btn-danger">
-    <i class="mdi mdi-cancel"></i>
-  </button> -->
-  <router-link :to="{ path: `/vault/${vault?.id}` }">
-    <section class="container">
-      <div class="row">
-        <div class="col-12">
-          <div @click="getVaultById(vault?.id)">
-            <img :src="vault?.img">
+  <section class="elevation-2">
+    <router-link :to="{ path: `/vault/${vault?.id}` }">
+      <section class="container">
+        <div class="row">
+          <div class="col-12">
+            <div @click="getVaultById(vault?.id)">
+              <img :src="vault?.img">
+            </div>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-8">
-          {{ vault?.name }}
+        <div class="row">
+          <div class="col-8">
+            {{ vault?.name }}
+          </div>
         </div>
-      </div>
-    </section>
-  </router-link>
+      </section>
+    </router-link>
+  </section>
 </template>
 
 <script>

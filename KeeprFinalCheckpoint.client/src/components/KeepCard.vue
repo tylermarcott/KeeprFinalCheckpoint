@@ -1,5 +1,5 @@
 <template>
-  <section class="container background-img">
+  <section class="container background-img text-light elevation-2">
     <div class="row justify-content-end">
       <div class="col-2 text-end" data-bs-dismiss="modal">
         <div @click="setActiveKeep(keep?.id)">
