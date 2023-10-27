@@ -28,6 +28,9 @@ class VaultsService{
 
   async getKeepsInVault(vaultId){
     const res = await api.get(`api/vaults/${vaultId}/keeps`)
+    logger.log('here is what we get back when we get keeps in our vault(res.data):', res.data)
+
+    // FIXME: found the issue with my keeps. I need don't have the proper data spot on my model that will hold vaultKeepId, as can be seen when we get the vaults above from the backend. I need to extend the keeps model so that I can intake the vaultKeepId. This will allow me to use this ID in order to do a proper vaultKeep delete.
     AppState.activeKeeps = res.data.map(keep => new Keep(keep))
     logger.log('we have the following keeps in our vault now:', AppState.activeKeeps)
   }

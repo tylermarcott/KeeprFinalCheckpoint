@@ -51,6 +51,7 @@ setup() {
   const route = useRoute()
   onMounted(()=> {
     getVaultById()
+    // getKeepsInVault()
   })
   async function getVaultById(){
     try {

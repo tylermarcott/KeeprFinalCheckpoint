@@ -16,7 +16,7 @@ export class Keep{
 export class VaultKeep extends Keep{
   constructor(data){
     super(data)
-    this.id = data.id
+    this.vaultKeepId = data.id
     this.creatorId = data.creatorId
     this.keepId = data.keepId
     this.vaultId = data.vaultId

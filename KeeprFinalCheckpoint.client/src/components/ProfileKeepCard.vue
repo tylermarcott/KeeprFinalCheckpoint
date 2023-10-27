@@ -27,6 +27,7 @@ import { keepsService } from "../services/KeepsService.js";
 import Pop from "../utils/Pop.js";
 import { vaultKeepsService } from "../services/VaultKeepsService.js";
 import { logger } from "../utils/Logger.js";
+import { vaultsService } from "../services/VaultsService.js";
 
 export default {
   props: { keep: { type: Object || Keep, required: true } },
@@ -48,6 +49,7 @@ export default {
           const activeVaultId = AppState.activeVault.id
           logger.log('here is our vaultId:', activeVaultId)
           logger.log('here is our keepId:', keepId)
+          this.getKeepsInVault(activeVaultId)
           logger.log('here is a list of our vaultKeeps:', AppState.vaultKeeps)
           const foundVaultKeep = AppState.vaultKeeps.find(vaultKeep => vaultKeep.keepId == keepId && vaultKeep.vaultId == activeVaultId)
           logger.log('found the following vaultKeep in Appstate:', foundVaultKeep)
@@ -57,7 +59,14 @@ export default {
         } catch (error) {
           Pop.error(error)
         }
+      },
+      async getKeepsInVault(vaultId){
+      try {
+        await vaultsService.getKeepsInVault(vaultId)
+      } catch (error) {
+        Pop.error(error)
       }
+    }
     };
   },
 };
