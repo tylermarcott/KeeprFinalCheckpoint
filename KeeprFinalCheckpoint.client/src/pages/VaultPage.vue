@@ -19,7 +19,7 @@
       
       <div class="col-12 col-md-7 col-lg-9">
         <div class="masonry-container">
-          <div class="bg-dark text-light" v-for="keep in keeps" :key="keep.id">
+          <div class="elevation-2 rounded bg-dark text-light" v-for="keep in keeps" :key="keep.id">
             
             <ModalWrapper id="show-keep-details">
               <template #button>
