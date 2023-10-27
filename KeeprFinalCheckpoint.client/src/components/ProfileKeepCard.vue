@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <section class="container text-dark">
     <div class="row">
       <div class="col-12">
         <button @click="deleteVaultKeep(keep.vaultKeepId)" v-if="activeVault?.creatorId == user.id" class="btn btn-danger">

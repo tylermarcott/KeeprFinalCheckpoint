@@ -84,6 +84,10 @@ export default {
   margin-bottom: 1.25em;
 }
 
+.background-img:hover{
+  transform: scale(1.05);
+}
+
 .delete-button{
   color: red;
   font-size: 20px;

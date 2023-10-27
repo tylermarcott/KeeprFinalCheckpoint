@@ -3,7 +3,7 @@
   <section>
     <div class="row justify-content-center">
       <div class="col-8 text-center">
-        <img :src="account.coverImg" alt="">
+        <img class="cover-img" :src="account.coverImg" alt="">
       </div>
     </div>
 
@@ -130,5 +130,9 @@ img {
     width: 100%;
     margin-bottom: 1.25em;
   }
+}
+
+.cover-img{
+  /* height: 20; */
 }
 </style>

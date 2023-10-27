@@ -1,5 +1,4 @@
 <template>
-  <!-- TODO: put title tags on everything!!!!! title="something" -->
   <div class="container-fluid">
     <section class="row justify-content-center">
       <div class="col-12 m-2">

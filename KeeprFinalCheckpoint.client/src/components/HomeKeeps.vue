@@ -69,4 +69,8 @@ export default {
     margin-bottom: 1.25em;
   }
 }
+
+// .keep:hover{
+//   transform: 1.1;
+// }
 </style>

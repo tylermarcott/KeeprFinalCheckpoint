@@ -1,16 +1,11 @@
 <template>
-  <section class="elevation-2">
-    <button @click="deleteVault(vault?.id)" v-if="vault?.creatorId == user.id" class="btn btn-danger">
-      <i class="mdi mdi-cancel"></i>
-    </button>
-    <router-link :to="{ path: `vault/${vault?.id}` }">
-      <section class="container">
+  <button @click="deleteVault(vault?.id)" v-if="vault?.creatorId == user.id" class="btn btn-danger">
+    <i class="mdi mdi-cancel"></i>
+  </button>
+  <router-link :to="{ path: `vault/${vault?.id}` }">
+  <section class="container background text-light elevation-2">
+      <section class="container" @click="getVaultById(vault?.id)">
         <div class="row">
-          <div class="col-12">
-            <div @click="getVaultById(vault?.id)">
-              <img :src="vault?.img">
-            </div>
-          </div>
         </div>
         <div class="row">
           <div class="col-8">
@@ -18,8 +13,8 @@
           </div>
         </div>
       </section>
-    </router-link>
-  </section>
+    </section>
+  </router-link>
   </template>
 
 <script>
@@ -31,9 +26,10 @@ import Pop from "../utils/Pop.js";
 
 export default {
   props: {vault: {type: Vault || Object, required: true}},
-setup() {
+setup(props) {
   return {
     user: computed(()=> AppState.user),
+    cardImg: computed(() => `url(${props.vault.img})`),
     async getVaultById(vaultId){
       try {
         await vaultsService.getVaultById(vaultId)
@@ -66,4 +62,15 @@ setup() {
 
 
 <style>
+.background {
+  background-image: v-bind(cardImg);
+  background-position: center;
+  object-fit: cover;
+  border-radius: 10px;
+
+  /* FIXME: created set height for ease of testing. Go back and try to fix masonry container later */
+  min-height: 20vh;
+  width: 100%;
+  margin-bottom: 1.25em;
+}
 </style>

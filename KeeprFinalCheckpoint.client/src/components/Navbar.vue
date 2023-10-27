@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark px-3">
+  <nav class="navbar navbar-expand-lg navbar-dark px-3 mb-3 mt-4">
     <router-link class="navbar-brand d-flex text-dark" :to="{ name: 'Home' }">
       Home
     </router-link>
@@ -23,7 +23,9 @@
           </ul>
         </div>
     </div>
-    <h3>the keepr co.</h3>
+    <div class="background-card elevation-2">
+      <h3 class="title">the keepr co.</h3>
+    </div>
     
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -80,5 +82,16 @@ a:hover {
   nav {
     height: 64px;
   }
+}
+.title{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 40px;
+  padding: 0.3em;
+}
+
+.background-card{
+  background-color: rgba(255, 235, 205, 0.256);
+  border-radius: 10px;
+  margin-left: 36vh;
 }
 </style>
