@@ -1,4 +1,9 @@
 <template>
+
+<!-- NOTE: to fix modals, have to use a combination of .stop on the delete button, and modal getOrCreateInstance syntax on the actual modal I think? Need to fix this up, because it can be put on our portfolio. -->
+
+
+
   <section class="container background-img text-light elevation-2">
     <div class="row justify-content-end">
       <div class="col-2 text-end" data-bs-dismiss="modal">
