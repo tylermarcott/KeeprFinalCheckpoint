@@ -15,12 +15,12 @@
       </div>
     </div>
     <div class="row keep-details">
-      <div class="col-8">
+      <div class="col-8 name-background">
         {{ keep?.name }}
       </div>
       <div class="col-4" data-bs-dismiss="modal">
       <router-link :to="{ path: `profile/${keep?.creatorId}` }">
-          <img :src="keep?.creator.picture">
+          <img class="creator-img" :src="keep?.creator.picture">
         </router-link>
       </div>
     </div>
@@ -86,11 +86,15 @@ export default {
   /* FIXME: created set height for ease of testing. Go back and try to fix masonry container later */
   min-height: 20vh;
   width: 100%;
-  margin-bottom: 1.25em;
 }
 
 .background-img:hover{
   transform: scale(1.05);
+}
+
+.name-background{
+  background-color: rgba(40, 39, 39, 0.621);
+  border-radius: 10px;
 }
 
 .delete-button{
