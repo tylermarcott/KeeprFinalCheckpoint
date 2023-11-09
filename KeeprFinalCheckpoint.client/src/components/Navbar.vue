@@ -1,7 +1,9 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark px-3 mb-3 mt-4">
     <router-link class="navbar-brand d-flex text-dark" :to="{ name: 'Home' }">
-      Home
+      <div title="Go back to the home page." class="home-button elevation-2">
+        Home
+      </div>
     </router-link>
     <div class="me-4" v-if="user.isAuthenticated">
         <div class="dropdown">
@@ -93,5 +95,18 @@ a:hover {
   background-color: rgba(255, 235, 205, 0.256);
   border-radius: 10px;
   margin-left: 50vh;
+}
+
+.home-button{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 30px;
+  transition: ease-in-out 0.3s;
+  background-color: rgba(255, 235, 205, 0.256);
+  border-radius: 10px;
+  padding: 0.2em;
+}
+
+.home-button:hover{
+  transform: scale(1.1);
 }
 </style>

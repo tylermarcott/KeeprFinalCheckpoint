@@ -80,12 +80,12 @@ export default {
 .background-img {
   background-image: v-bind(cardImg);
   background-position: center;
-  object-fit: cover;
+  background-size: cover;
   border-radius: 10px;
 
   /* FIXME: created set height for ease of testing. Go back and try to fix masonry container later */
-  min-height: 20vh;
-  width: 100%;
+  /* min-height: 20vh;
+  width: 100%; */
 }
 
 .background-img:hover{
@@ -104,6 +104,6 @@ export default {
 
 .keep-details{
   margin-top: 20vh;
-  font-weight: 800;
+  font-weight: 500;
 }
 </style>
