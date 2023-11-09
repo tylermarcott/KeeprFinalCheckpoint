@@ -49,11 +49,14 @@ export default {
 }
 
 header{
-  background-color: #f9f9f9;
+  // background-color: #f9f9f9;
+    background-color: rgb(31, 30, 30);
+
 }
 
 main{
-    background-color: #f9f9f9;
+    // background-color: #f9f9f9;
+    background-color: rgb(31, 30, 30);
 }
 
 

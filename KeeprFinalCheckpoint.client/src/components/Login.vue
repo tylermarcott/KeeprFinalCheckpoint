@@ -54,10 +54,11 @@ export default {
 .login-img{
   height: 8vh;
   transition: ease-in-out 0.5s;
+  border: solid 3px #acacacbd;
 }
 
 .login-img:hover{
-  transform: scale(1.1);
+  transform: scale(1.15);
 }
 
 .dropdown-class{

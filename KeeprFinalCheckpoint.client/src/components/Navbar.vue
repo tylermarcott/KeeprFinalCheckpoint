@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark px-3 mb-3 mt-4">
+  <nav class="navbar navbar-expand-lg navbar-dark px-3 mb-5 mt-4">
     <router-link class="navbar-brand d-flex text-dark" :to="{ name: 'Home' }">
       <div title="Go back to the home page." class="home-button elevation-2">
         Home
@@ -92,7 +92,8 @@ a:hover {
 }
 
 .background-card{
-  background-color: #ffebcd41;
+  border: solid 3px #acacacbd;
+  background-color: whitesmoke;
   border-radius: 10px;
   margin-left: 50vh;
 }
@@ -100,8 +101,9 @@ a:hover {
 .home-button{
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 30px;
-  transition: ease-in-out 0.3s;
-  background-color: #ffebcd41;
+  transition: ease-in-out 0.5s;
+  background-color: whitesmoke;
+  border: solid 3px #acacacbd;
   border-radius: 10px;
   padding: 0.2em;
 }

@@ -68,10 +68,17 @@ export default {
 <style>
 
 .creator-img {
-  border-radius: 10px;
-  height: 5vh;
-  object-fit: cover;
-  object-position: center;
+  border-radius: 10px !important;
+  height: 6vh !important;
+  aspect-ratio: 1/1;
+  object-fit: cover !important;
+  object-position: center !important;
+  transition: ease-in-out 0.5s;
+}
+
+.creator-img:hover{
+  transform: scale(1.2);
+  box-shadow: 5px 5px 5px 5px #383636;
 }
 
 .background-img {
@@ -79,6 +86,7 @@ export default {
   background-position: center;
   background-size: cover;
   border-radius: 10px;
+  border: solid 3px #efefef77;
   transition: ease-in-out 0.3s;
 }
 
@@ -87,7 +95,7 @@ export default {
 }
 
 .name-background{
-  background-color: rgba(40, 39, 39, 0.621);
+  background-color: rgba(13, 12, 12, 0.621);
   padding: 0.3em;
   border-radius: 10px;
 }
