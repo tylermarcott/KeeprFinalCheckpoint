@@ -8,7 +8,7 @@
    <footer>
   </footer>
 
-  <ModalWrapper :id="'keep-create'">
+  <ModalWrapper :id="'keep-create'" class="transparent-background">
     <template #body>
       <KeepForm/>
     </template>
@@ -48,10 +48,23 @@ export default {
   --main-height: calc(100vh - 32px - 64px);
 }
 
+header{
+  background-color: #f9f9f9;
+}
+
+main{
+    background-color: #f9f9f9;
+}
+
 
 footer {
   display: grid;
   place-content: center;
   height: 32px;
+  background-color: #f9f9f9;
+}
+
+.transparent-background{
+  background-color: transparent;
 }
 </style>

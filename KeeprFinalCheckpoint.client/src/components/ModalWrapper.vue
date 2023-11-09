@@ -2,11 +2,13 @@
 
 
 <!-- FIXME: need to find a way to hide this button or something, this button color is what's causing the stupid gray shit -->
-  <button v-if="showButton" type="button" :class="`btn btn-${btnColor}`" class="mb-2 text-light" data-bs-toggle="modal"
+  <button v-if="showButton" type="button" :class="`btn btn-${btnColor} invisible-button`" class="mb-2 text-light" data-bs-toggle="modal"
     :data-bs-target="`#${id}`">
-    <slot name="button">
+    <slot name="button" class="invisible-button">
     </slot>
   </button>
+
+
 
   <!-- Modal Body -->
   <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
@@ -39,4 +41,13 @@ export default {
 </script>
 
 
-<style></style>
+<style>
+.invisible-button {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: transparent !important;
+  overflow: hidden;
+  /* To make sure nothing spills out */
+}
+</style>
