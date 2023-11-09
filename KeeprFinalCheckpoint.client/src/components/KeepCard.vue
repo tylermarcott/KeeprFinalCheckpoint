@@ -2,10 +2,8 @@
 
 <!-- NOTE: to fix modals, have to use a combination of .stop on the delete button, and modal getOrCreateInstance syntax on the actual modal I think? Need to fix this up, because it can be put on our portfolio. -->
 
-
-
   <section class="container background-img text-light elevation-2">
-    <div class="row justify-content-end">
+    <div class="row">
       <div class="col-3 text-end button-background" data-bs-dismiss="modal">
         <div @click="setActiveKeep(keep?.id)">
           <div class="delete-button" @click="deleteKeep(keep.id)" v-if="keep?.creatorId == user.id">
@@ -82,6 +80,7 @@ export default {
   background-position: center;
   background-size: cover;
   border-radius: 10px;
+  transition: ease-in-out 0.3s;
 }
 
 .background-img:hover{
@@ -94,7 +93,7 @@ export default {
 }
 
 .delete-button{
-  color: red;
+  color: rgb(210, 22, 22);
   font-size: 25px;
 }
 

@@ -1,24 +1,20 @@
 <template>
   <div class="container-fluid">
     <section class="row justify-content-center">
-      <div class="col-12 m-2">
-          <div class="row justify-content-center">
-            <div class="col-12 col-md-8">
-              <div class="masonry-container">
-                <div class="text-light mb-3" v-for="keep in keeps" :key="keep.id">
-                  <ModalWrapper id="show-keep-details">
-                    <template #button>
-                      <div @click="getMyVaults(keep.id)">
-                        <KeepCard :keep="keep"/>
-                      </div>
-                    </template>
-                    <template #body>
-                      <KeepDetails :keep="keep"/>
-                    </template>
-                  </ModalWrapper>
+      <div class="col-12 col-md-8">
+        <div class="masonry-container">
+          <div class="text-light mb-3" v-for="keep in keeps" :key="keep.id">
+            <ModalWrapper id="show-keep-details">
+              <template #button>
+                <div @click="getMyVaults(keep.id)">
+                  <KeepCard :keep="keep"/>
                 </div>
-              </div>
-            </div>
+              </template>
+              <template #body>
+                <KeepDetails :keep="keep"/>
+              </template>
+            </ModalWrapper>
+          </div>
         </div>
       </div>
     </section>
