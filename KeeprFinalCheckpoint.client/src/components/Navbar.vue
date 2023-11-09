@@ -92,6 +92,6 @@ a:hover {
 .background-card{
   background-color: rgba(255, 235, 205, 0.256);
   border-radius: 10px;
-  margin-left: 36vh;
+  margin-left: 50vh;
 }
 </style>
