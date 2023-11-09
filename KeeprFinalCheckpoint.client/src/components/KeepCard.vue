@@ -3,18 +3,16 @@
 <!-- NOTE: to fix modals, have to use a combination of .stop on the delete button, and modal getOrCreateInstance syntax on the actual modal I think? Need to fix this up, because it can be put on our portfolio. -->
 
   <section class="container background-img text-light elevation-2">
-    <div class="row">
-      <div class="col-3 text-end button-background" data-bs-dismiss="modal">
-        <div @click="setActiveKeep(keep?.id)">
-          <div class="delete-button" @click="deleteKeep(keep.id)" v-if="keep?.creatorId == user.id">
-            <i class="mdi mdi-cancel"></i>
-          </div>
-        </div>
+    <div class="row justify-content-end">
+      <div @click="setActiveKeep(keep?.id)" class="col-3 text-center button-background delete-button m-1" data-bs-dismiss="modal" v-if="keep?.creatorId == user.id"> 
+          <i class="mdi mdi-cancel"></i>
       </div>
     </div>
     <div class="row keep-details">
-      <div class="col-8 name-background">
-        {{ keep?.name }}
+      <div class="col-8">
+        <div class="name-background">
+          {{ keep?.name }}
+        </div>
       </div>
       <div class="col-4" data-bs-dismiss="modal">
       <router-link :to="{ path: `profile/${keep?.creatorId}` }">
@@ -46,6 +44,7 @@ export default {
       async setActiveKeep(keepId) {
         try {
           keepsService.setActiveKeep(keepId)
+          this.deleteKeep(keepId)
         } catch (error) {
           Pop.error(error)
         }
@@ -69,7 +68,7 @@ export default {
 <style>
 
 .creator-img {
-  border-radius: 50%;
+  border-radius: 10px;
   height: 5vh;
   object-fit: cover;
   object-position: center;
@@ -89,6 +88,7 @@ export default {
 
 .name-background{
   background-color: rgba(40, 39, 39, 0.621);
+  padding: 0.3em;
   border-radius: 10px;
 }
 
@@ -103,6 +103,7 @@ export default {
 
 .button-background{
   background-color: rgba(47, 44, 44, 0.715);
+  width: 6.5vh;
   border-radius: 10px;
   transition: ease-in-out 0.5s;
 }
