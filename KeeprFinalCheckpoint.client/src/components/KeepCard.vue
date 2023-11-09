@@ -6,7 +6,7 @@
 
   <section class="container background-img text-light elevation-2">
     <div class="row justify-content-end">
-      <div class="col-2 text-end" data-bs-dismiss="modal">
+      <div class="col-3 text-end button-background" data-bs-dismiss="modal">
         <div @click="setActiveKeep(keep?.id)">
           <div class="delete-button" @click="deleteKeep(keep.id)" v-if="keep?.creatorId == user.id">
             <i class="mdi mdi-cancel"></i>
@@ -82,10 +82,6 @@ export default {
   background-position: center;
   background-size: cover;
   border-radius: 10px;
-
-  /* FIXME: created set height for ease of testing. Go back and try to fix masonry container later */
-  /* min-height: 20vh;
-  width: 100%; */
 }
 
 .background-img:hover{
@@ -99,7 +95,17 @@ export default {
 
 .delete-button{
   color: red;
-  font-size: 20px;
+  font-size: 25px;
+}
+
+.button-background:hover{
+  transform: scale(1.2);
+}
+
+.button-background{
+  background-color: rgba(47, 44, 44, 0.715);
+  border-radius: 10px;
+  transition: ease-in-out 0.5s;
 }
 
 .keep-details{
