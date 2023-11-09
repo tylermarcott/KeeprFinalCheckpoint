@@ -11,7 +11,7 @@
             <img :src="account.picture || user.picture" alt="account photo" height="40" class="rounded login-img elevation-2" />
           </div>
         </div>
-        <div class="dropdown-menu dropdown-menu-lg-end dropdown-menu-start p-0" aria-labelledby="authDropdown">
+        <div class="dropdown-class dropdown-menu dropdown-menu-lg-end dropdown-menu-start p-0" aria-labelledby="authDropdown">
           <div class="list-group">
             <router-link :to="{ name: 'Account' }">
               <div class="list-group-item dropdown-item list-group-item-action">
@@ -58,6 +58,12 @@ export default {
 
 .login-img:hover{
   transform: scale(1.1);
+}
+
+.dropdown-class{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 18px;
+  border: solid 2px #4b494541;
 }
 
 </style>

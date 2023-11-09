@@ -92,7 +92,7 @@ a:hover {
 }
 
 .background-card{
-  background-color: rgba(255, 235, 205, 0.256);
+  background-color: #ffebcd41;
   border-radius: 10px;
   margin-left: 50vh;
 }
@@ -101,7 +101,7 @@ a:hover {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 30px;
   transition: ease-in-out 0.3s;
-  background-color: rgba(255, 235, 205, 0.256);
+  background-color: #ffebcd41;
   border-radius: 10px;
   padding: 0.2em;
 }
