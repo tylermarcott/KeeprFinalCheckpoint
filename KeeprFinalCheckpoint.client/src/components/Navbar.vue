@@ -25,6 +25,9 @@
           </ul>
         </div>
     </div>
+
+    <!-- FIXME: need to find a away to make this centered at all times. It is centered when the user is logged in, but not centered when no user is logged in. -->
+
     <div class="background-card elevation-2">
       <h3 class="title">the keepr co.</h3>
     </div>
