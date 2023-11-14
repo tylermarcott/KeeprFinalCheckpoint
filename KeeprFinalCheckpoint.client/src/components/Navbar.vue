@@ -104,6 +104,7 @@ a:hover {
   border: solid 3px #acacacbd;
   background-color: whitesmoke;
   border-radius: 10px;
+  padding-top: 0.5em;
 }
 
 .home-button {

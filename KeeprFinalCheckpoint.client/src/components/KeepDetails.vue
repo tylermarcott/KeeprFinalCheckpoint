@@ -1,6 +1,10 @@
 <template>
   <div class="container-fluid">
     <section class="row">
+
+
+      <!-- FIXME: certain images, such as boxy the cat, are large enough that they spill down and create a scroll. Find a way to set a max height for photos so we can get rid of this and not have any scroll on any keep details modal no matter the size of the image. -->
+
       <div class="col-6">
         <img class="keep-img" :src="activeKeep?.img" :alt="activeKeep?.name">
       </div>
