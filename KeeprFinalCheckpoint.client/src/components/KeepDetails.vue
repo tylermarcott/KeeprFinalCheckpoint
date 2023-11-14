@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <section class="row">
       <div class="col-6">
-        <img :src="activeKeep?.img" :alt="activeKeep?.name">
+        <img class="keep-img" :src="activeKeep?.img" :alt="activeKeep?.name">
       </div>
       <div class="col-6">
         <div class="row">
@@ -13,7 +13,7 @@
             <i class="mdi mdi-alpha-k-box-outline"></i> {{ activeKeep?.kept }}
           </div>
         </div>
-        <div class="row">
+        <div class="row mt-3">
           <h1>
             {{ activeKeep?.name }}
           </h1>
@@ -83,6 +83,10 @@ setup() {
 }
 
 .row-size{
-  height: 30vh;
+  height: 26vh;
+}
+
+.keep-img{
+  box-shadow: 2px 2px 2px 2px #383636;
 }
 </style>
