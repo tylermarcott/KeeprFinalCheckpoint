@@ -9,7 +9,12 @@
       </div>
     </div>
     <div class="row keep-details">
-      <div class="col-8 mt-1 pb-2">
+      <div v-if="keep.creatorId != user.id" class="col-8 mt-1 pb-2">
+        <div class="name-background">
+          {{ keep?.name }}
+        </div>
+      </div>
+      <div v-else class="col-12 text-center mt-1 pb-2">
         <div class="name-background">
           {{ keep?.name }}
         </div>

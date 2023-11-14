@@ -29,7 +29,7 @@
     </div>
     <div class="row justify-content-center">
       <div class="col-8 text-center my-2">
-        <h3>
+        <h3 class="headers mt-2">
           {{ account.name }}
         </h3>
       </div>
@@ -39,7 +39,7 @@
   <section class="container">
     <div class="row">
       <div class="col-8">
-        <h1>Vaults</h1>
+        <h1 class="headers mt-5">Vaults</h1>
       </div>
     </div>
     <div class="row justify-content-center">
@@ -53,10 +53,10 @@
     </div>
     <div class="row">
       <div class="col-8">
-        <h1>Keeps</h1>
+        <h1 class="headers mt-5">Keeps</h1>
       </div>
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-5">
       <div class="col-8">
         <div class="masonry-container">
           <div v-for="keep in keeps" :key="keep.id">
@@ -132,7 +132,12 @@ img {
   }
 }
 
+.headers{
+  color: whitesmoke;
+}
+
 .cover-img{
-  /* height: 20; */
+  min-height: 40vh;
+  min-width: 40vh;
 }
 </style>
