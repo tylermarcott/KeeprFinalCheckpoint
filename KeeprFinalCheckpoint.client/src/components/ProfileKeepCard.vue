@@ -5,16 +5,15 @@
         <button @click="deleteVaultKeep(keep.vaultKeepId)" v-if="activeVault?.creatorId == user.id" class="btn btn-danger">
           <i class="mdi mdi-cancel"></i>
         </button>
-        <img :src="keep?.img">
-        <!-- <div @click="setActiveKeep(keep?.id)">
-        </div> -->
+        <div>
+          <img :src="keep?.img">
+        </div>
       </div>
     </div>
     <div class="row">
       <div class="col-8">
         {{ keep?.name }}
       </div>
-
     </div>
   </section>
 </template>
@@ -34,6 +33,7 @@ export default {
   setup() {
     return {
       user: computed(() => AppState.user),
+      account: computed(() => AppState.account),
       activeVault: computed(()=> AppState.activeVault),
       async setActiveKeep(keepId) {
         try {

@@ -9,15 +9,17 @@
       </div>
     </div>
     <div class="row keep-details">
-      <div class="col-8">
+      <div class="col-8 mt-1 pb-2">
         <div class="name-background">
           {{ keep?.name }}
         </div>
       </div>
-      <div class="col-4" data-bs-dismiss="modal">
+      <div v-if="keep.creatorId != user.id" class="col-4" data-bs-dismiss="modal">
       <router-link :to="{ path: `profile/${keep?.creatorId}` }">
           <img class="creator-img" :src="keep?.creator.picture">
         </router-link>
+      </div>
+      <div v-else class="pb-3">
       </div>
     </div>
   </section>
@@ -88,6 +90,7 @@ export default {
   border-radius: 10px;
   border: solid 3px #efefef77;
   transition: ease-in-out 0.3s;
+  min-width: 25vh;
 }
 
 .background-img:hover{
