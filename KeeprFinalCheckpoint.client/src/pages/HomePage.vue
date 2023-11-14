@@ -27,6 +27,7 @@ import { computed, watchEffect } from 'vue';
 import { keepsService } from '../services/KeepsService.js'
 import Pop from "../utils/Pop.js";
 import { accountService } from "../services/AccountService.js";
+import { logger } from "../utils/Logger.js";
 export default {
   setup() {
     watchEffect(() => {
@@ -46,7 +47,11 @@ export default {
       async getMyVaults(keepId) {
         try {
           await keepsService.setActiveKeep(keepId)
-          await accountService.getMyVaults()
+          const user = AppState.user
+          logger.log('here is the current user', user)
+          if(user.isAuthenticated){
+            await accountService.getMyVaults()
+          }
         } catch (error) {
           Pop.error(error)
         }
