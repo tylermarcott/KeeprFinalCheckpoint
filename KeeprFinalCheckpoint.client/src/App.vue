@@ -50,14 +50,14 @@ export default {
 }
 
 header{
-    background-color: rgb(31, 30, 30);
-
+  background-color: rgb(31, 30, 30);
+  overflow: hidden;
 }
 
 main{
-    background-color: rgb(31, 30, 30);
-    padding-bottom: 4em;
-  }
+  background-color: rgb(31, 30, 30);
+  padding-bottom: 4em;
+}
 
 footer{
   background-color: rgb(31, 30, 30);
