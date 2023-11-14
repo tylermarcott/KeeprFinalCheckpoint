@@ -1,7 +1,5 @@
 <template>
-  <div class="container-fluid elevation-2">
-    <!-- NOTE: Mick put this in and it crashed -->
-    <!-- {{ keep.name }} {{ activeKeep.name }} -->
+  <div class="container-fluid">
     <section class="row">
       <div class="col-6">
         <img :src="activeKeep?.img" :alt="activeKeep?.name">
@@ -25,7 +23,7 @@
             {{ activeKeep?.description }}
           </p>
         </div>
-        <div class="row">
+        <div class="row row-size justify-content-center align-items-center">
           <div class="col-3">
               <VaultDropdown/>
           </div>
@@ -34,7 +32,7 @@
               Save
             </button>
           </div>
-          <div class="col-2" data-bs-dismiss="modal">
+          <div class="col-3 ms-4 mt-3" data-bs-dismiss="modal">
             <router-link :to="{ path: `profile/${keep?.creatorId}` }">
               <img class="creator-img" :src="activeKeep?.creator.picture">
             </router-link>
@@ -82,5 +80,9 @@ setup() {
   height: 5vh;
   object-fit: cover;
   object-position: center;
+}
+
+.row-size{
+  height: 30vh;
 }
 </style>
