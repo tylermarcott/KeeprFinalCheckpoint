@@ -1,7 +1,7 @@
 <template>
   <header>
     <!-- FIXME: change this back to 'navbar' along with import and comp below when you are done testing -->
-    <NavbarBreaking />
+    <Navbar />
   </header>
   <main>
     <router-view />
@@ -9,19 +9,19 @@
   <footer>
   </footer>
 
-  <ModalWrapper :id="'keep-create'" class="transparent-background">
+  <ModalWrapper :id="'keep-create'" class="modal-background">
     <template #body>
       <KeepForm/>
     </template>
   </ModalWrapper>
 
-  <ModalWrapper :id="'account-edit'">
+  <ModalWrapper :id="'account-edit'" class="modal-background">
       <template #body>
         <AccountForm/>
       </template>
     </ModalWrapper>
 
-  <ModalWrapper :id="'vault-create'">
+  <ModalWrapper :id="'vault-create'" class="modal-background">
     <template #body>
       <VaultForm/>
     </template>
@@ -31,7 +31,7 @@
 <script>
 import { computed } from 'vue'
 import { AppState } from './AppState'
-import NavbarBreaking from './components/NavbarBreaking.vue'
+import Navbar from './components/Navbar.vue'
 
 export default {
   setup() {
@@ -39,7 +39,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { NavbarBreaking }
+  components: { Navbar }
 }
 </script>
 <style lang="scss">
@@ -50,25 +50,20 @@ export default {
 }
 
 header{
-  // background-color: #f9f9f9;
     background-color: rgb(31, 30, 30);
 
 }
 
 main{
-    // background-color: #f9f9f9;
     background-color: rgb(31, 30, 30);
+    padding-bottom: 4em;
+  }
+
+footer{
+  background-color: rgb(31, 30, 30);
 }
 
-
-footer {
-  display: grid;
-  place-content: center;
-  height: 32px;
-  background-color: #f9f9f9;
-}
-
-.transparent-background{
-  background-color: transparent;
+.modal-background{
+  background-color: rgb(31, 30, 30);
 }
 </style>
