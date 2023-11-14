@@ -1,11 +1,12 @@
 <template>
   <header>
-    <Navbar />
+    <!-- FIXME: change this back to 'navbar' along with import and comp below when you are done testing -->
+    <NavbarBreaking />
   </header>
   <main>
     <router-view />
   </main>
-   <footer>
+  <footer>
   </footer>
 
   <ModalWrapper :id="'keep-create'" class="transparent-background">
@@ -30,7 +31,7 @@
 <script>
 import { computed } from 'vue'
 import { AppState } from './AppState'
-import Navbar from './components/Navbar.vue'
+import NavbarBreaking from './components/NavbarBreaking.vue'
 
 export default {
   setup() {
@@ -38,7 +39,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar }
+  components: { NavbarBreaking }
 }
 </script>
 <style lang="scss">

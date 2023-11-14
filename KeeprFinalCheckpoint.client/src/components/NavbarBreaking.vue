@@ -6,24 +6,24 @@
       </div>
     </router-link>
     <div class="me-4" v-if="user.isAuthenticated">
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            create
-          </button>
-          <!-- FIXME: ok, so display form works now, but the modal is on top of the form (everything is grayed out), and it won't go away. Need to fix this next. -->
-          <ul class="dropdown-menu">
-            <li>    
-              <a class="dropdown-item" data-bs-target="#keep-create" data-bs-toggle="modal" href="#" @click.stop>
-                new keep
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item" data-bs-target="#vault-create" data-bs-toggle="modal" href="#" @click.stop>
-                new vault
-              </a>
-            </li>
-          </ul>
-        </div>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          create
+        </button>
+        <!-- FIXME: ok, so display form works now, but the modal is on top of the form (everything is grayed out), and it won't go away. Need to fix this next. -->
+        <ul class="dropdown-menu">
+          <li>
+            <a class="dropdown-item" data-bs-target="#keep-create" data-bs-toggle="modal" href="#" @click.stop>
+              new keep
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" data-bs-target="#vault-create" data-bs-toggle="modal" href="#" @click.stop>
+              new vault
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <!-- FIXME: need to find a away to make this centered at all times. It is centered when the user is logged in, but not centered when no user is logged in. -->
@@ -51,10 +51,10 @@ import { AppState } from "../AppState.js";
 export default {
   setup() {
     return {
-      user: computed(()=> AppState.user)
+      user: computed(() => AppState.user)
     }
   },
-  components: { Login}
+  components: { Login }
 }
 </script>
 
@@ -78,20 +78,21 @@ a:hover {
     height: 64px;
   }
 }
-.title{
+
+.title {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 40px;
   padding: 0.3em;
 }
 
-.background-card{
+.background-card {
   border: solid 3px #acacacbd;
   background-color: whitesmoke;
   border-radius: 10px;
   margin-left: 50vh;
 }
 
-.home-button{
+.home-button {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 30px;
   transition: ease-in-out 0.5s;
@@ -101,7 +102,7 @@ a:hover {
   padding: 0.2em;
 }
 
-.home-button:hover{
+.home-button:hover {
   transform: scale(1.1);
 }
 </style>
