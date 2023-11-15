@@ -1,9 +1,13 @@
 <template>
-  <button @click="deleteVault(vault?.id)" v-if="vault?.creatorId == user.id" class="btn btn-danger">
-    <i class="mdi mdi-cancel"></i>
-  </button>
   <router-link :to="{ path: `vault/${vault?.id}` }">
-  <section class="container background text-light elevation-2">
+    <section class="container background text-light elevation-2">
+      <div class="row justify-content-end">
+        <div class="col-1">
+          <button @click="deleteVault(vault?.id)" v-if="vault?.creatorId == user.id" class="btn btn-danger">
+            <i class="mdi mdi-cancel"></i>
+          </button>
+        </div>
+      </div>
       <section class="container" @click="getVaultById(vault?.id)">
         <div class="row">
         </div>
@@ -65,12 +69,11 @@ setup(props) {
 .background {
   background-image: v-bind(cardImg);
   background-position: center;
-  object-fit: cover;
+  background-size: cover;
   border-radius: 10px;
-
-  /* FIXME: created set height for ease of testing. Go back and try to fix masonry container later */
-  min-height: 20vh;
-  width: 100%;
-  margin-bottom: 1.25em;
+  border: solid 3px #efefef77;
+  transition: ease-in-out 0.3s;
+  min-width: 25vh;
+  min-height: 100vh;
 }
 </style>

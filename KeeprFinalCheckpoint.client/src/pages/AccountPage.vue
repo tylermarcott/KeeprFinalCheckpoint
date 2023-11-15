@@ -42,7 +42,10 @@
         <h1 class="headers mt-5">Vaults</h1>
       </div>
     </div>
-    <div class="row justify-content-center">
+
+
+
+    <div class="row justify-content-center mt-5">
       <div class="col-8">
         <div class="masonry-container">
           <div v-for="vault in vaults" :key="vault.id">
@@ -51,11 +54,16 @@
         </div>
       </div>
     </div>
+
+
     <div class="row">
       <div class="col-8">
         <h1 class="headers mt-5">Keeps</h1>
       </div>
     </div>
+
+
+
     <div class="row justify-content-center mt-5">
       <div class="col-8">
         <div class="masonry-container">
@@ -74,6 +82,9 @@
         </div>
       </div>
     </div>
+
+
+
   </section>
 </div>
 </template>
