@@ -11,19 +11,19 @@
         <div class="col-1">
           <img class="profile-img" :src="profile?.picture" :alt="profile?.name">
         </div>
-        <div class="col-12 text-center">
+        <div class="col-12 text-center headers">
           <h3>
             {{ profile?.name }}
           </h3>
         </div>
-        <div class="col-12 text-center">
+        <div class="col-12 text-center headers">
           {{ vaultSize }} Vaults | {{ keepSize }} Keeps
         </div>
       </div>
     </section>
     <section>
       <div class="row justify-content-center">
-        <div class="col-8">
+        <div class="col-8 headers">
           <h1>
             Vaults
           </h1>
@@ -36,7 +36,7 @@
       </div>
     </section>
       <div class="row justify-content-center">
-        <div class="col-8">
+        <div class="col-8 headers">
           <h1>
             Keeps
           </h1>
@@ -144,5 +144,9 @@ export default {
 
 .cover-img{
   max-height: 20vh;
+}
+
+.headers{
+  color: whitesmoke;
 }
 </style>
