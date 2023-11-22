@@ -148,6 +148,8 @@ img {
 }
 
 .cover-img{
+  height: 40vh;
+  width: 40vh;
   min-height: 40vh;
   min-width: 40vh;
 }

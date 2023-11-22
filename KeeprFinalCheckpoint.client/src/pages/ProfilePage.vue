@@ -2,7 +2,7 @@
   <div class="container">
     <section>
       <div class="row justify-content-center">
-        <div class="col-8">
+        <div class="col-8 text-center">
           <!-- FIXME: fix this stretched image -->
           <img class="cover-img" :src="profile?.coverImg" alt="no-img">
         </div>
@@ -123,12 +123,11 @@ export default {
 
 
 <style>
-.profile-img{
-  border-radius: 50%;
-  height: 6vh;
-  aspect-ratio: 1/1;
-  object-position: cover;
-  object-fit: center;
+.cover-img{
+  height: 40vh;
+  width: 40vh;
+  min-height: 40vh;
+  min-width: 40vh;
 }
 
 .masonry-container{
@@ -140,10 +139,6 @@ export default {
     width: 100%;
     margin-bottom: 1.25em;
   }
-}
-
-.cover-img{
-  max-height: 20vh;
 }
 
 .headers{
