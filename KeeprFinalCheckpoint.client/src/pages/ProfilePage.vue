@@ -40,10 +40,9 @@
           <h1>
             Keeps
           </h1>
-        </div>
-        <div class="masonry-container">
-          <div v-for="keep in keeps" :key="keep.id">
-            <ModalWrapper id="show-keep-details">
+          <div class="masonry-container">
+            <div v-for="keep in keeps" :key="keep.id">
+              <ModalWrapper id="show-keep-details">
                 <template #button>
                   <div @click="getMyVaults">
                     <div @click="setActiveKeep(keep.id)">
@@ -51,10 +50,11 @@
                     </div>
                   </div>
                 </template>
-              <template #body>
-                <KeepDetails :keep="keep"/>
-              </template>
-            </ModalWrapper>
+                <template #body>
+                  <KeepDetails :keep="keep"/>
+                </template>
+              </ModalWrapper>
+            </div>
           </div>
         </div>
       </div>
