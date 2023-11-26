@@ -20,7 +20,7 @@
         </div>
       </div>
       <div v-if="keep.creatorId != user.id" class="col-4" data-bs-dismiss="modal">
-      <router-link :to="{ path: `profile/${keep?.creatorId}` }">
+        <router-link :to="{ path: `profile/${keep?.creatorId}` }">
           <img class="creator-img" :src="keep?.creator.picture">
         </router-link>
       </div>

@@ -1,19 +1,19 @@
 <template>
   <router-link :to="{ path: `vault/${vault?.id}` }">
-    <section class="container background text-light elevation-2">
+    <section class="container background text-light elevation-2" :style="{ backgroundImage: vaultImg }" inline styling works>
       <div class="row justify-content-end">
         <div class="col-1">
-          <button @click="deleteVault(vault?.id)" v-if="vault?.creatorId == user.id" class="btn btn-danger">
+          <div @click="deleteVault(vault?.id)" class="col-3 text-center button-background delete-button m-1" data-bs-dismiss="modal" v-if="vault?.creatorId == user.id">
             <i class="mdi mdi-cancel"></i>
-          </button>
+          </div>
         </div>
       </div>
-      <section class="container" @click="getVaultById(vault?.id)">
+      <section class="container keep-details" @click="getVaultById(vault?.id)">
         <div class="row">
-        </div>
-        <div class="row">
-          <div class="col-8">
-            {{ vault?.name }}   
+          <div class="col-12 text-center mt-1 pb-2">
+            <div class="name-background">
+              {{ vault?.name }}
+            </div>
           </div>
         </div>
       </section>
@@ -33,7 +33,7 @@ export default {
 setup(props) {
   return {
     user: computed(()=> AppState.user),
-    cardImg: computed(() => `url(${props.vault.img})`),
+    vaultImg: computed(() => `url(${props.vault.img})`),
     async getVaultById(vaultId){
       try {
         await vaultsService.getVaultById(vaultId)
@@ -66,13 +66,51 @@ setup(props) {
 
 
 <style>
+
+.creator-img:hover{
+  transform: scale(1.2);
+  box-shadow: 5px 5px 5px 5px #383636;
+}
+
 .background {
-  background-image: v-bind(cardImg);
+  /* background-image: v-bind(vaultImg); */
   background-position: center;
   background-size: cover;
   border-radius: 10px;
   border: solid 3px #efefef77;
   transition: ease-in-out 0.3s;
   min-width: 25vh;
+}
+
+.background-img:hover{
+  transform: scale(1.05);
+}
+
+.name-background{
+  background-color: rgba(13, 12, 12, 0.621);
+  padding: 0.3em;
+  border-radius: 10px;
+}
+
+.delete-button{
+  color: rgb(210, 22, 22);
+  font-size: 25px;
+}
+
+.button-background:hover{
+  transform: scale(1.2);
+}
+
+.button-background{
+  background-color: rgba(47, 44, 44, 0.715);
+  width: 6.5vh;
+  border-radius: 10px;
+  transition: ease-in-out 0.5s;
+}
+
+/* NOTE: this creates the static height for the container, can't figure out how to make the background images work properly with the masonry container yet*** */
+.keep-details{
+  margin-top: 20vh;
+  font-weight: 500;
 }
 </style>
