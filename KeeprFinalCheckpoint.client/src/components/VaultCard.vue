@@ -1,12 +1,10 @@
 <template>
   <router-link :to="{ path: `vault/${vault?.id}` }">
     <section class="container background text-light elevation-2" :style="{ backgroundImage: vaultImg }" inline styling works>
-      <div class="row justify-content-end">
-        <div class="col-1">
-          <div @click="deleteVault(vault?.id)" class="col-3 text-center button-background delete-button m-1" data-bs-dismiss="modal" v-if="vault?.creatorId == user.id">
+      <div class="row justify-content-end button-adjust">
+          <div @click="deleteVault.stop(vault?.id)" class="col-3 text-center button-background delete-button m-1" data-bs-dismiss="modal" v-if="vault?.creatorId == user.id">
             <i class="mdi mdi-cancel"></i>
           </div>
-        </div>
       </div>
       <section class="container keep-details" @click="getVaultById(vault?.id)">
         <div class="row">
@@ -99,6 +97,10 @@ setup(props) {
 
 .button-background:hover{
   transform: scale(1.2);
+}
+
+.button-adjust{
+  padding-left: 1em;
 }
 
 .button-background{
