@@ -4,12 +4,12 @@
       <div class="row justify-content-center">
         <img class="vault-cover-img" :src="vault?.img" alt="">
       </div>
-      <div class="row text-center">
+      <div class="row headers text-center">
         <h4>
           {{ vault?.name }} by {{ vault?.creator.name }}
         </h4>
       </div>
-      <div class="row text-center mb-5">
+      <div class="row headers text-center mb-5">
         <h5>
           {{ keepLength }} Keeps
         </h5>
@@ -90,6 +90,10 @@ setup() {
   object-position: center;
   height: 20vh;
   width: 50vh;
+}
+
+.headers{
+  color: whitesmoke;
 }
 
 .masonry-container{
