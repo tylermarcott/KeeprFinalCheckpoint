@@ -74,6 +74,5 @@ setup(props) {
   border: solid 3px #efefef77;
   transition: ease-in-out 0.3s;
   min-width: 25vh;
-  min-height: 100vh;
 }
 </style>
