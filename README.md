@@ -1,6 +1,7 @@
 Keepr
 
 Description:
+
 Keepr is a full stack application that is similar to Pinterest. Keepr utilizes a Vue.js front-end with a MySQL/ C# backend hosted through AWS/ EC2.
 
 - Users can create Keeps (pins) and add them to Vaults (boards). A Keep includes a name, an image and a short description.
