@@ -1,5 +1,3 @@
-# KeeprFinalCheckpoint
-
 <h1 align="center">Keepr</h1>
 
 <div>
