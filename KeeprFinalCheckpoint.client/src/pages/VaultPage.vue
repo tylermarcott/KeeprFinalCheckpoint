@@ -52,6 +52,10 @@ import { logger } from "../utils/Logger.js";
 import { router } from "../router.js";
 
 
+
+// FIXME: not being able to populate the image for other users on their keeps. If you created the keep, you should not see your own profile img.
+
+
 export default {
 setup() {
   const route = useRoute()
