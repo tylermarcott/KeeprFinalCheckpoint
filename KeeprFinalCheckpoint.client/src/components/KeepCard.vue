@@ -2,7 +2,7 @@
 
 <!-- NOTE: to fix modals, have to use a combination of .stop on the delete button, and modal getOrCreateInstance syntax on the actual modal I think? Need to fix this up, because it can be put on our portfolio. -->
 
-  <section class="container background-img text-light elevation-2">
+  <section class="container background-img text-light elevation-2" :style="{ backgroundImage: cardImg }">
     <div class="row justify-content-end">
       <div @click="setActiveKeep(keep?.id)" class="col-3 text-center button-background delete-button m-1" data-bs-dismiss="modal" v-if="keep?.creatorId == user.id"> 
           <i class="mdi mdi-cancel"></i>
@@ -89,7 +89,6 @@ export default {
 }
 
 .background-img {
-  background-image: v-bind(cardImg);
   background-position: center;
   background-size: cover;
   border-radius: 10px;
