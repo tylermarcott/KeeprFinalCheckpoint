@@ -91,9 +91,11 @@ setup() {
 .vault-cover-img{
   object-fit: cover;
   object-position: center;
-  height: 30vh;
+  height: 35vh;
   width: 60vh;
-  border-radius: 5px;
+  margin: 1em;
+  padding: 0vw;
+  border-radius: 5px !important;
 }
 
 .headers{
