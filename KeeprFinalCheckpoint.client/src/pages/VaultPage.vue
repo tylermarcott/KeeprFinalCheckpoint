@@ -6,7 +6,11 @@
       </div>
       <div class="row headers text-center">
         <h4>
-          {{ vault?.name }} by {{ vault?.creator.name }}
+          {{ vault?.name }} 
+        </h4>
+        <p class="fs-5">by</p>
+        <h4>
+          {{ vault?.creator.name }}
         </h4>
       </div>
       <div class="row headers text-center mb-5">
@@ -20,6 +24,8 @@
       <div class="col-12 col-md-7 col-lg-9">
         <div class="masonry-container">
           <div class="elevation-2 rounded text-light mb-2" v-for="keep in keeps" :key="keep.id">
+
+            <!-- FIXME: I need the ability to be able to delete any keep out of the vualt, without deleting the keep itself. But I need them to look like the normal keep cards. Maybe just copy the keep card onto profile keep card -->
             
             <ModalWrapper id="show-keep-details">
               <template #button>
@@ -52,9 +58,6 @@ setup() {
   onMounted(()=> {
     getVaultById()
   })
-  // watchEffect(()=>{
-  //   getKeepsInVault()
-  // })
   async function getVaultById(){
     try {
       const vaultId = route.params.vaultId
@@ -88,8 +91,9 @@ setup() {
 .vault-cover-img{
   object-fit: cover;
   object-position: center;
-  height: 20vh;
-  width: 50vh;
+  height: 30vh;
+  width: 60vh;
+  border-radius: 5px;
 }
 
 .headers{
