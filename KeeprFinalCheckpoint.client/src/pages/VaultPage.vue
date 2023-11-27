@@ -23,7 +23,7 @@
       
       <div class="col-12 col-md-7 col-lg-9">
         <div class="masonry-container">
-          <div class="elevation-2 rounded text-light mb-2" v-for="keep in keeps" :key="keep.id">
+          <div class="rounded text-light mb-2" v-for="keep in keeps" :key="keep.id">
 
             <!-- FIXME: I need the ability to be able to delete any keep out of the vualt, without deleting the keep itself. But I need them to look like the normal keep cards. Maybe just copy the keep card onto profile keep card -->
             
@@ -91,8 +91,10 @@ setup() {
 .vault-cover-img{
   object-fit: cover;
   object-position: center;
-  height: 35vh;
-  width: 60vh;
+  height: 40vh;
+  width: 40vh;
+  min-height: 40vh;
+  min-width: 40vh;
   margin: 1em;
   padding: 0vw;
   border-radius: 5px !important;
