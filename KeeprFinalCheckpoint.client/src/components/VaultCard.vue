@@ -1,3 +1,7 @@
+
+
+<!-- FIXME: still having issues with the card getting cut off at a certain height. I had fixed it and it seemed like it was working, but now it's having the same issue again -->
+
 <template>
   <router-link :to="{ path: `vault/${vault?.id}` }">
     <section class="container background text-light elevation-2" :style="{ backgroundImage: vaultImg }" inline styling works>
