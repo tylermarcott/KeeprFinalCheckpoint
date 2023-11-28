@@ -1,10 +1,11 @@
 
 
 <!-- FIXME: still having issues with the card getting cut off at a certain height. I had fixed it and it seemed like it was working, but now it's having the same issue again -->
+<!-- FIXME: on testing, changing the column size does not effect anything. It is being overriden somehow, this is the cause of the issue I think -->
 
 <template>
   <router-link :to="{ path: `vault/${vault?.id}` }">
-    <section class="container background text-light elevation-2" :style="{ backgroundImage: vaultImg }" inline styling works>
+    <section class="container background text-light elevation-2" :style="{ backgroundImage: vaultImg }">
       <div class="row justify-content-end">
           <div @click="deleteVault.stop(vault?.id)" class="col-3 text-center button-background delete-button m-1" data-bs-dismiss="modal" v-if="vault?.creatorId == user.id">
             <i class="mdi mdi-cancel"></i>
