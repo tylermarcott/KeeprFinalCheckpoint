@@ -7,6 +7,8 @@
       </div>
     </div>
 
+    <!-- COMMENT: comment for commit -->
+
     <div class="row justify-content-center">
       <div class="col-8 text-center">
         <img :src="account.picture" :alt="account.name">
