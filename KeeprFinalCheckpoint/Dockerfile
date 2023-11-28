@@ -1,16 +1,41 @@
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
-WORKDIR /app
+# Use an official Node.js runtime as the base image for the client build
+FROM node:20 AS client-builder
 
-# Copy everything
-COPY *.csproj ./
-# Restore as distinct layers
-RUN dotnet restore
-# Build and publish a release
-COPY . ./
-RUN dotnet publish -c Release -o out
+# Set the working directory in the client builder container
+WORKDIR /app/client
 
-# Start runtime image
-FROM mcr.microsoft.com/dotnet/sdk:6.0
-WORKDIR /app
-COPY --from=build-env /app/out .
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet KeeprFinalCheckpoint.dll
+# Copy the client-side package.json and package-lock.json to the client builder container
+COPY client/package*.json ./
+
+# Install client application dependencies
+RUN npm install
+
+# Copy the client application source code to the client builder container
+COPY client ./
+
+# Build the client-side code
+RUN npm run build
+
+# Use a smaller base image for the final server image
+FROM node:20
+
+# Set the working directory in the server container
+WORKDIR /app/server
+
+# Copy the server-side package.json and package-lock.json to the server container
+COPY server/package*.json ./
+
+# Install server application dependencies
+RUN npm install
+
+# Copy the server application source code to the server container
+COPY server ./
+
+# Copy the built client files from the client builder container to the server's www directory
+COPY --from=client-builder /app/client/docs /app/server/www
+
+# Expose the port your application runs on (e.g., 3000)
+EXPOSE 3000
+
+# Define the command to start your Node.js application
+CMD [ "node", "index.js" ]
