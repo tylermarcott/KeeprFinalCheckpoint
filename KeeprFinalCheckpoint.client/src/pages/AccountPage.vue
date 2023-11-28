@@ -45,7 +45,7 @@
 
 
 
-    <div class="row justify-content-center mt-5">
+    <div class="row justify-content-center mt-5 vault-row">
       <div class="col-8">
         <div class="masonry-container">
           <div v-for="vault in vaults" :key="vault.id">

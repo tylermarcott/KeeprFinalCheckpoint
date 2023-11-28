@@ -75,7 +75,6 @@ setup(props) {
 }
 
 .background {
-  /* background-image: v-bind(vaultImg); */
   background-position: center;
   background-size: cover;
   border-radius: 10px;
