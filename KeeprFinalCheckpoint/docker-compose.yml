@@ -3,6 +3,6 @@ services:
   web:
     image: zarathrian/keeprcheckpoint:latest
     ports:
-      - "7045:7045"
+      - "7045:80"
     env_file:
       - keeprcheckpoint-env
