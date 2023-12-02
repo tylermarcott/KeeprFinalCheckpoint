@@ -1,14 +1,17 @@
-
 {
   "folders": [
     {
-      "path": "KeeprFinalCheckpoint.client",
+      "path": "client",
       "name": "client"
     },
     {
-      "path": "KeeprFinalCheckpoint",
+      "path": "server",
       "name": "server"
-    },{"path":".github/workflows", "name":"workflows"}
+    },
+    {
+      "path": ".github/workflows",
+      "name": "workflows"
+    }
   ],
   "settings": {
     "editor.suggestSelection": "first",
